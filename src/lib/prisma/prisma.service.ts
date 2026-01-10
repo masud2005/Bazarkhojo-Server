@@ -40,7 +40,7 @@ export class PrismaService implements OnModuleInit, OnModuleDestroy {
     }
 
     /** Expose Prisma models (like prisma.user, prisma.post, etc.) */
-    get client() {
-        return this.prisma;
-    }
+    // get client() {
+    //     return this.prisma;
+    // }
 }
