@@ -1,0 +1,75 @@
+name: NestJS + Prisma CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint-build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'   # NestJS 11 + Prisma 7 → Node 20 ভালো চলে (18ও চলবে)
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Run ESLint + Prettier fix (if needed)
+        run: npm run lint
+
+      - name: TypeScript check (no emit)
+        run: npx tsc --noEmit
+
+      - name: Apply Prisma Migrations to test DB
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
+
+      # যদি seed script থাকে (prisma/seed.ts) → যোগ করো
+      # - name: Seed test database
+      #   run: npx ts-node prisma/seed.ts   # অথবা npm run prisma:seed যদি scripts-এ থাকে
+      #   env:
+      #     DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
+
+      - name: Run Jest Tests (unit + integration)
+        run: npm run test -- --coverage --ci
+        env:
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
+          NODE_ENV: test
+
+      - name: Build the app (production check)
+        run: npm run build
+
+      # Optional: Coverage upload (Codecov setup করলে)
+      # - name: Upload coverage
+      #   uses: codecov/codecov-action@v4
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
