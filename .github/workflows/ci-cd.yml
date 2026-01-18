@@ -1,4 +1,4 @@
-name: NestJS + Prisma CI
+name: NestJS + Prisma CI (pnpm)
 
 on:
   push:
@@ -30,46 +30,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10   # তোমার লোকাল pnpm ভার্সন ম্যাচ করাও (pnpm -v চালিয়ে দেখো), অথবা 9/10 যা চাও
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'   # NestJS 11 + Prisma 7 → Node 20 ভালো চলে (18ও চলবে)
-          cache: 'npm'
+          node-version: '20'   # তোমার NestJS/Node ভার্সন
+          cache: 'pnpm'        # এটা pnpm store cache করে (ফাস্ট!)
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile   # CI-তে lockfile চেক + exact install
 
       - name: Generate Prisma Client
-        run: npx prisma generate
+        run: pnpm prisma generate
 
-      - name: Run ESLint + Prettier fix (if needed)
-        run: npm run lint
+      - name: Run ESLint
+        run: pnpm lint
 
       - name: TypeScript check (no emit)
-        run: npx tsc --noEmit
+        run: pnpm tsc --noEmit   # যদি scripts-এ না থাকে, pnpm exec tsc --noEmit
 
       - name: Apply Prisma Migrations to test DB
-        run: npx prisma migrate deploy
+        run: pnpm prisma migrate deploy
         env:
           DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
 
-      # যদি seed script থাকে (prisma/seed.ts) → যোগ করো
-      # - name: Seed test database
-      #   run: npx ts-node prisma/seed.ts   # অথবা npm run prisma:seed যদি scripts-এ থাকে
-      #   env:
-      #     DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
-
-      - name: Run Jest Tests (unit + integration)
-        run: npm run test -- --coverage --ci
+      - name: Run Jest Tests
+        run: pnpm test -- --coverage --ci
         env:
           DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
           NODE_ENV: test
 
-      - name: Build the app (production check)
-        run: npm run build
-
-      # Optional: Coverage upload (Codecov setup করলে)
-      # - name: Upload coverage
-      #   uses: codecov/codecov-action@v4
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Build the app
+        run: pnpm build
