@@ -31,7 +31,8 @@
   },
   "include": [
     "src",
-    "prisma/generated/client"
+    "prisma/generated/client",
+    "test"
   ],
   "exclude": [
     "node_modules",
