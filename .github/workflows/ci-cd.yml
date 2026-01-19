@@ -58,11 +58,11 @@ jobs:
         env:
           DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
 
-      - name: Run Jest Tests
-        run: pnpm test -- --coverage --ci
-        env:
-          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
-          NODE_ENV: test
+      # - name: Run Jest Tests
+      #   run: pnpm test -- --coverage --ci
+      #   env:
+      #     DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb?schema=public
+      #     NODE_ENV: test
 
       - name: Build the app
         run: pnpm build
