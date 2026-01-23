@@ -66,3 +66,13 @@ jobs:
 
       - name: Build application
         run: pnpm build
+  deploy:
+    name: Deploy to Render
+    needs: lint-build-test
+    runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Trigger Render Deploy
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
