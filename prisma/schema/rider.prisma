@@ -1,6 +1,6 @@
 model Rider {
-  id                Int       @id @default(autoincrement())
-  userId            Int       @unique
+  id                String    @id @default(uuid())
+  userId            String    @unique
   vehicleType       String?
   licenseNumber     String?
   currentLocation   Json?

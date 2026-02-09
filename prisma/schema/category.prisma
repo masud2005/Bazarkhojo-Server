@@ -1,9 +1,9 @@
 model Category {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(uuid())
   name        String
   slug        String    @unique
   description String?
-  parentId    Int?
+  parentId    String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 

@@ -1,5 +1,5 @@
 model Coupon {
-  id              Int         @id @default(autoincrement())
+  id              String      @id @default(uuid())
   code            String      @unique
   type            DiscountType
   value           Decimal     @db.Decimal(10, 2)
@@ -9,8 +9,8 @@ model Coupon {
   endDate         DateTime?
   usageLimit      Int?
   usedCount       Int         @default(0)
-  sellerId        Int?
-  categoryId      Int?
+  sellerId        String?
+  categoryId      String?
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 

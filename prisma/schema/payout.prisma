@@ -1,6 +1,6 @@
 model Payout {
-  id               Int          @id @default(autoincrement())
-  sellerId         Int
+  id               String       @id @default(uuid())
+  sellerId         String
   amount           Decimal      @db.Decimal(12, 2)
   commissionDeducted Decimal?   @db.Decimal(12, 2)
   status           PayoutStatus @default(PENDING)

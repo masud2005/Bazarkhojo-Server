@@ -1,8 +1,8 @@
 model CouponUsage {
-  id           Int      @id @default(autoincrement())
-  couponId     Int
-  orderId      Int
-  userId       Int
+  id           String   @id @default(uuid())
+  couponId     String
+  orderId      String
+  userId       String
   discountAmount Decimal  @db.Decimal(10, 2)
   createdAt    DateTime @default(now())
 

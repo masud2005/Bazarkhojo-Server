@@ -1,6 +1,6 @@
 model AuditLog {
-  id        Int      @id @default(autoincrement())
-  userId    Int?
+  id        String   @id @default(uuid())
+  userId    String?
   action    String
   ip        String?
   createdAt DateTime @default(now())
@@ -9,9 +9,9 @@ model AuditLog {
 }
 
 model OutboxEvent {
-  id            Int      @id @default(autoincrement())
+  id            String   @id @default(uuid())
   aggregateType String
-  aggregateId   Int
+  aggregateId   String
   eventType     String
   payload       Json
   processed     Boolean

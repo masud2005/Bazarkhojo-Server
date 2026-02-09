@@ -1,6 +1,6 @@
 model WalletTransaction {
-  id          Int              @id @default(autoincrement())
-  walletId    Int
+  id          String           @id @default(uuid())
+  walletId    String
   type        TransactionType
   amount      Decimal          @db.Decimal(12, 2)
   balanceBefore Decimal         @db.Decimal(12, 2)
@@ -8,7 +8,7 @@ model WalletTransaction {
   reference   String?
   idempotencyKey String         @unique
   description String?
-  orderId     Int?
+  orderId     String?
   referenceId String?
   createdAt   DateTime         @default(now())
 

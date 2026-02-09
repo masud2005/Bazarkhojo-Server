@@ -27,20 +27,16 @@ export type AggregateSeller = {
 }
 
 export type SellerAvgAggregateOutputType = {
-  id: number | null
-  userId: number | null
   commissionRate: runtime.Decimal | null
 }
 
 export type SellerSumAggregateOutputType = {
-  id: number | null
-  userId: number | null
   commissionRate: runtime.Decimal | null
 }
 
 export type SellerMinAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   shopName: string | null
   shopSlug: string | null
   shopDescription: string | null
@@ -59,8 +55,8 @@ export type SellerMinAggregateOutputType = {
 }
 
 export type SellerMaxAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   shopName: string | null
   shopSlug: string | null
   shopDescription: string | null
@@ -102,14 +98,10 @@ export type SellerCountAggregateOutputType = {
 
 
 export type SellerAvgAggregateInputType = {
-  id?: true
-  userId?: true
   commissionRate?: true
 }
 
 export type SellerSumAggregateInputType = {
-  id?: true
-  userId?: true
   commissionRate?: true
 }
 
@@ -262,8 +254,8 @@ export type SellerGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type SellerGroupByOutputType = {
-  id: number
-  userId: number
+  id: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription: string | null
@@ -306,8 +298,8 @@ export type SellerWhereInput = {
   AND?: Prisma.SellerWhereInput | Prisma.SellerWhereInput[]
   OR?: Prisma.SellerWhereInput[]
   NOT?: Prisma.SellerWhereInput | Prisma.SellerWhereInput[]
-  id?: Prisma.IntFilter<"Seller"> | number
-  userId?: Prisma.IntFilter<"Seller"> | number
+  id?: Prisma.StringFilter<"Seller"> | string
+  userId?: Prisma.StringFilter<"Seller"> | string
   shopName?: Prisma.StringFilter<"Seller"> | string
   shopSlug?: Prisma.StringFilter<"Seller"> | string
   shopDescription?: Prisma.StringNullableFilter<"Seller"> | string | null
@@ -364,8 +356,8 @@ export type SellerOrderByWithRelationInput = {
 }
 
 export type SellerWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
-  userId?: number
+  id?: string
+  userId?: string
   shopSlug?: string
   AND?: Prisma.SellerWhereInput | Prisma.SellerWhereInput[]
   OR?: Prisma.SellerWhereInput[]
@@ -425,8 +417,8 @@ export type SellerScalarWhereWithAggregatesInput = {
   AND?: Prisma.SellerScalarWhereWithAggregatesInput | Prisma.SellerScalarWhereWithAggregatesInput[]
   OR?: Prisma.SellerScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SellerScalarWhereWithAggregatesInput | Prisma.SellerScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Seller"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"Seller"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Seller"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"Seller"> | string
   shopName?: Prisma.StringWithAggregatesFilter<"Seller"> | string
   shopSlug?: Prisma.StringWithAggregatesFilter<"Seller"> | string
   shopDescription?: Prisma.StringNullableWithAggregatesFilter<"Seller"> | string | null
@@ -446,6 +438,7 @@ export type SellerScalarWhereWithAggregatesInput = {
 }
 
 export type SellerCreateInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -473,8 +466,8 @@ export type SellerCreateInput = {
 }
 
 export type SellerUncheckedCreateInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -501,6 +494,7 @@ export type SellerUncheckedCreateInput = {
 }
 
 export type SellerUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -528,8 +522,8 @@ export type SellerUpdateInput = {
 }
 
 export type SellerUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -556,8 +550,8 @@ export type SellerUncheckedUpdateInput = {
 }
 
 export type SellerCreateManyInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -577,6 +571,7 @@ export type SellerCreateManyInput = {
 }
 
 export type SellerUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -596,8 +591,8 @@ export type SellerUpdateManyMutationInput = {
 }
 
 export type SellerUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -648,8 +643,6 @@ export type SellerCountOrderByAggregateInput = {
 }
 
 export type SellerAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   commissionRate?: Prisma.SortOrder
 }
 
@@ -694,8 +687,6 @@ export type SellerMinOrderByAggregateInput = {
 }
 
 export type SellerSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   commissionRate?: Prisma.SortOrder
 }
 
@@ -836,6 +827,7 @@ export type SellerUncheckedUpdateOneWithoutUserNestedInput = {
 }
 
 export type SellerCreateWithoutCouponsInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -862,8 +854,8 @@ export type SellerCreateWithoutCouponsInput = {
 }
 
 export type SellerUncheckedCreateWithoutCouponsInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -905,6 +897,7 @@ export type SellerUpdateToOneWithWhereWithoutCouponsInput = {
 }
 
 export type SellerUpdateWithoutCouponsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -931,8 +924,8 @@ export type SellerUpdateWithoutCouponsInput = {
 }
 
 export type SellerUncheckedUpdateWithoutCouponsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -958,6 +951,7 @@ export type SellerUncheckedUpdateWithoutCouponsInput = {
 }
 
 export type SellerCreateWithoutDiscountsInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -984,8 +978,8 @@ export type SellerCreateWithoutDiscountsInput = {
 }
 
 export type SellerUncheckedCreateWithoutDiscountsInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1027,6 +1021,7 @@ export type SellerUpdateToOneWithWhereWithoutDiscountsInput = {
 }
 
 export type SellerUpdateWithoutDiscountsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1053,8 +1048,8 @@ export type SellerUpdateWithoutDiscountsInput = {
 }
 
 export type SellerUncheckedUpdateWithoutDiscountsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1080,6 +1075,7 @@ export type SellerUncheckedUpdateWithoutDiscountsInput = {
 }
 
 export type SellerCreateWithoutFollowsInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1106,8 +1102,8 @@ export type SellerCreateWithoutFollowsInput = {
 }
 
 export type SellerUncheckedCreateWithoutFollowsInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1149,6 +1145,7 @@ export type SellerUpdateToOneWithWhereWithoutFollowsInput = {
 }
 
 export type SellerUpdateWithoutFollowsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1175,8 +1172,8 @@ export type SellerUpdateWithoutFollowsInput = {
 }
 
 export type SellerUncheckedUpdateWithoutFollowsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1202,6 +1199,7 @@ export type SellerUncheckedUpdateWithoutFollowsInput = {
 }
 
 export type SellerCreateWithoutPayoutsInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1228,8 +1226,8 @@ export type SellerCreateWithoutPayoutsInput = {
 }
 
 export type SellerUncheckedCreateWithoutPayoutsInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1271,6 +1269,7 @@ export type SellerUpdateToOneWithWhereWithoutPayoutsInput = {
 }
 
 export type SellerUpdateWithoutPayoutsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1297,8 +1296,8 @@ export type SellerUpdateWithoutPayoutsInput = {
 }
 
 export type SellerUncheckedUpdateWithoutPayoutsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1324,6 +1323,7 @@ export type SellerUncheckedUpdateWithoutPayoutsInput = {
 }
 
 export type SellerCreateWithoutProductsInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1350,8 +1350,8 @@ export type SellerCreateWithoutProductsInput = {
 }
 
 export type SellerUncheckedCreateWithoutProductsInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1393,6 +1393,7 @@ export type SellerUpdateToOneWithWhereWithoutProductsInput = {
 }
 
 export type SellerUpdateWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1419,8 +1420,8 @@ export type SellerUpdateWithoutProductsInput = {
 }
 
 export type SellerUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1446,6 +1447,7 @@ export type SellerUncheckedUpdateWithoutProductsInput = {
 }
 
 export type SellerCreateWithoutReviewRepliesInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1472,8 +1474,8 @@ export type SellerCreateWithoutReviewRepliesInput = {
 }
 
 export type SellerUncheckedCreateWithoutReviewRepliesInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1515,6 +1517,7 @@ export type SellerUpdateToOneWithWhereWithoutReviewRepliesInput = {
 }
 
 export type SellerUpdateWithoutReviewRepliesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1541,8 +1544,8 @@ export type SellerUpdateWithoutReviewRepliesInput = {
 }
 
 export type SellerUncheckedUpdateWithoutReviewRepliesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1568,6 +1571,7 @@ export type SellerUncheckedUpdateWithoutReviewRepliesInput = {
 }
 
 export type SellerCreateWithoutSellerOrdersInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1594,8 +1598,8 @@ export type SellerCreateWithoutSellerOrdersInput = {
 }
 
 export type SellerUncheckedCreateWithoutSellerOrdersInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1637,6 +1641,7 @@ export type SellerUpdateToOneWithWhereWithoutSellerOrdersInput = {
 }
 
 export type SellerUpdateWithoutSellerOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1663,8 +1668,8 @@ export type SellerUpdateWithoutSellerOrdersInput = {
 }
 
 export type SellerUncheckedUpdateWithoutSellerOrdersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1690,6 +1695,7 @@ export type SellerUncheckedUpdateWithoutSellerOrdersInput = {
 }
 
 export type SellerCreateWithoutUserInput = {
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1716,7 +1722,7 @@ export type SellerCreateWithoutUserInput = {
 }
 
 export type SellerUncheckedCreateWithoutUserInput = {
-  id?: number
+  id?: string
   shopName: string
   shopSlug: string
   shopDescription?: string | null
@@ -1759,6 +1765,7 @@ export type SellerUpdateToOneWithWhereWithoutUserInput = {
 }
 
 export type SellerUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1785,7 +1792,7 @@ export type SellerUpdateWithoutUserInput = {
 }
 
 export type SellerUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
   shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2023,8 +2030,8 @@ export type $SellerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     reviewReplies: Prisma.$ReviewReplyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    userId: number
+    id: string
+    userId: string
     shopName: string
     shopSlug: string
     shopDescription: string | null
@@ -2472,8 +2479,8 @@ export interface Prisma__SellerClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Seller model
  */
 export interface SellerFieldRefs {
-  readonly id: Prisma.FieldRef<"Seller", 'Int'>
-  readonly userId: Prisma.FieldRef<"Seller", 'Int'>
+  readonly id: Prisma.FieldRef<"Seller", 'String'>
+  readonly userId: Prisma.FieldRef<"Seller", 'String'>
   readonly shopName: Prisma.FieldRef<"Seller", 'String'>
   readonly shopSlug: Prisma.FieldRef<"Seller", 'String'>
   readonly shopDescription: Prisma.FieldRef<"Seller", 'String'>

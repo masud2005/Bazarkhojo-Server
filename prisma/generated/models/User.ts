@@ -20,24 +20,12 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
 
-export type UserAvgAggregateOutputType = {
-  id: number | null
-  referredBy: number | null
-}
-
-export type UserSumAggregateOutputType = {
-  id: number | null
-  referredBy: number | null
-}
-
 export type UserMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   email: string | null
   password: string | null
   firstName: string | null
@@ -50,14 +38,14 @@ export type UserMinAggregateOutputType = {
   twoFactorSecret: string | null
   lastLogin: Date | null
   referralCode: string | null
-  referredBy: number | null
+  referredBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   email: string | null
   password: string | null
   firstName: string | null
@@ -70,7 +58,7 @@ export type UserMaxAggregateOutputType = {
   twoFactorSecret: string | null
   lastLogin: Date | null
   referralCode: string | null
-  referredBy: number | null
+  referredBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -97,16 +85,6 @@ export type UserCountAggregateOutputType = {
   _all: number
 }
 
-
-export type UserAvgAggregateInputType = {
-  id?: true
-  referredBy?: true
-}
-
-export type UserSumAggregateInputType = {
-  id?: true
-  referredBy?: true
-}
 
 export type UserMinAggregateInputType = {
   id?: true
@@ -207,18 +185,6 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: UserAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: UserSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -249,14 +215,12 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
-  _avg?: UserAvgAggregateInputType
-  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
 
 export type UserGroupByOutputType = {
-  id: number
+  id: string
   email: string
   password: string
   firstName: string | null
@@ -269,13 +233,11 @@ export type UserGroupByOutputType = {
   twoFactorSecret: string | null
   lastLogin: Date | null
   referralCode: string | null
-  referredBy: number | null
+  referredBy: string | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -299,7 +261,7 @@ export type UserWhereInput = {
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  id?: Prisma.IntFilter<"User"> | number
+  id?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
@@ -312,7 +274,7 @@ export type UserWhereInput = {
   twoFactorSecret?: Prisma.StringNullableFilter<"User"> | string | null
   lastLogin?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   referralCode?: Prisma.StringNullableFilter<"User"> | string | null
-  referredBy?: Prisma.IntNullableFilter<"User"> | number | null
+  referredBy?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
@@ -385,7 +347,7 @@ export type UserOrderByWithRelationInput = {
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   email?: string
   referralCode?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
@@ -401,7 +363,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   twoFactorSecret?: Prisma.StringNullableFilter<"User"> | string | null
   lastLogin?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  referredBy?: Prisma.IntNullableFilter<"User"> | number | null
+  referredBy?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
@@ -449,17 +411,15 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
-  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
-  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
   AND?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"User"> | number
+  id?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
   firstName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
@@ -472,13 +432,14 @@ export type UserScalarWhereWithAggregatesInput = {
   twoFactorSecret?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   lastLogin?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   referralCode?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  referredBy?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  referredBy?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
 
 export type UserCreateInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -520,7 +481,7 @@ export type UserCreateInput = {
 }
 
 export type UserUncheckedCreateInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -533,7 +494,7 @@ export type UserUncheckedCreateInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -562,6 +523,7 @@ export type UserUncheckedCreateInput = {
 }
 
 export type UserUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -603,7 +565,7 @@ export type UserUpdateInput = {
 }
 
 export type UserUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -616,7 +578,7 @@ export type UserUncheckedUpdateInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -645,7 +607,7 @@ export type UserUncheckedUpdateInput = {
 }
 
 export type UserCreateManyInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -658,13 +620,14 @@ export type UserCreateManyInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
 }
 
 export type UserUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -683,7 +646,7 @@ export type UserUpdateManyMutationInput = {
 }
 
 export type UserUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -696,7 +659,7 @@ export type UserUncheckedUpdateManyInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -742,11 +705,6 @@ export type UserCountOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
 }
 
-export type UserAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  referredBy?: Prisma.SortOrder
-}
-
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -785,11 +743,6 @@ export type UserMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-}
-
-export type UserSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  referredBy?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutAddressesInput = {
@@ -1151,6 +1104,7 @@ export type UserUpdateOneRequiredWithoutWishlistsNestedInput = {
 }
 
 export type UserCreateWithoutAddressesInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1191,7 +1145,7 @@ export type UserCreateWithoutAddressesInput = {
 }
 
 export type UserUncheckedCreateWithoutAddressesInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1204,7 +1158,7 @@ export type UserUncheckedCreateWithoutAddressesInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1248,6 +1202,7 @@ export type UserUpdateToOneWithWhereWithoutAddressesInput = {
 }
 
 export type UserUpdateWithoutAddressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1288,7 +1243,7 @@ export type UserUpdateWithoutAddressesInput = {
 }
 
 export type UserUncheckedUpdateWithoutAddressesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1301,7 +1256,7 @@ export type UserUncheckedUpdateWithoutAddressesInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1329,6 +1284,7 @@ export type UserUncheckedUpdateWithoutAddressesInput = {
 }
 
 export type UserCreateWithoutBlogsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1369,7 +1325,7 @@ export type UserCreateWithoutBlogsInput = {
 }
 
 export type UserUncheckedCreateWithoutBlogsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1382,7 +1338,7 @@ export type UserUncheckedCreateWithoutBlogsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1426,6 +1382,7 @@ export type UserUpdateToOneWithWhereWithoutBlogsInput = {
 }
 
 export type UserUpdateWithoutBlogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1466,7 +1423,7 @@ export type UserUpdateWithoutBlogsInput = {
 }
 
 export type UserUncheckedUpdateWithoutBlogsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1479,7 +1436,7 @@ export type UserUncheckedUpdateWithoutBlogsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1507,6 +1464,7 @@ export type UserUncheckedUpdateWithoutBlogsInput = {
 }
 
 export type UserCreateWithoutCartInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1547,7 +1505,7 @@ export type UserCreateWithoutCartInput = {
 }
 
 export type UserUncheckedCreateWithoutCartInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1560,7 +1518,7 @@ export type UserUncheckedCreateWithoutCartInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1604,6 +1562,7 @@ export type UserUpdateToOneWithWhereWithoutCartInput = {
 }
 
 export type UserUpdateWithoutCartInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1644,7 +1603,7 @@ export type UserUpdateWithoutCartInput = {
 }
 
 export type UserUncheckedUpdateWithoutCartInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1657,7 +1616,7 @@ export type UserUncheckedUpdateWithoutCartInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1685,6 +1644,7 @@ export type UserUncheckedUpdateWithoutCartInput = {
 }
 
 export type UserCreateWithoutConversationsAsUser1Input = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1725,7 +1685,7 @@ export type UserCreateWithoutConversationsAsUser1Input = {
 }
 
 export type UserUncheckedCreateWithoutConversationsAsUser1Input = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1738,7 +1698,7 @@ export type UserUncheckedCreateWithoutConversationsAsUser1Input = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1771,6 +1731,7 @@ export type UserCreateOrConnectWithoutConversationsAsUser1Input = {
 }
 
 export type UserCreateWithoutConversationsAsUser2Input = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1811,7 +1772,7 @@ export type UserCreateWithoutConversationsAsUser2Input = {
 }
 
 export type UserUncheckedCreateWithoutConversationsAsUser2Input = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -1824,7 +1785,7 @@ export type UserUncheckedCreateWithoutConversationsAsUser2Input = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1868,6 +1829,7 @@ export type UserUpdateToOneWithWhereWithoutConversationsAsUser1Input = {
 }
 
 export type UserUpdateWithoutConversationsAsUser1Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1908,7 +1870,7 @@ export type UserUpdateWithoutConversationsAsUser1Input = {
 }
 
 export type UserUncheckedUpdateWithoutConversationsAsUser1Input = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1921,7 +1883,7 @@ export type UserUncheckedUpdateWithoutConversationsAsUser1Input = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1960,6 +1922,7 @@ export type UserUpdateToOneWithWhereWithoutConversationsAsUser2Input = {
 }
 
 export type UserUpdateWithoutConversationsAsUser2Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2000,7 +1963,7 @@ export type UserUpdateWithoutConversationsAsUser2Input = {
 }
 
 export type UserUncheckedUpdateWithoutConversationsAsUser2Input = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2013,7 +1976,7 @@ export type UserUncheckedUpdateWithoutConversationsAsUser2Input = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2041,6 +2004,7 @@ export type UserUncheckedUpdateWithoutConversationsAsUser2Input = {
 }
 
 export type UserCreateWithoutMessagesInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2081,7 +2045,7 @@ export type UserCreateWithoutMessagesInput = {
 }
 
 export type UserUncheckedCreateWithoutMessagesInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2094,7 +2058,7 @@ export type UserUncheckedCreateWithoutMessagesInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -2138,6 +2102,7 @@ export type UserUpdateToOneWithWhereWithoutMessagesInput = {
 }
 
 export type UserUpdateWithoutMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2178,7 +2143,7 @@ export type UserUpdateWithoutMessagesInput = {
 }
 
 export type UserUncheckedUpdateWithoutMessagesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2191,7 +2156,7 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2219,6 +2184,7 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
 }
 
 export type UserCreateWithoutCouponUsagesInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2259,7 +2225,7 @@ export type UserCreateWithoutCouponUsagesInput = {
 }
 
 export type UserUncheckedCreateWithoutCouponUsagesInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2272,7 +2238,7 @@ export type UserUncheckedCreateWithoutCouponUsagesInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -2316,6 +2282,7 @@ export type UserUpdateToOneWithWhereWithoutCouponUsagesInput = {
 }
 
 export type UserUpdateWithoutCouponUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2356,7 +2323,7 @@ export type UserUpdateWithoutCouponUsagesInput = {
 }
 
 export type UserUncheckedUpdateWithoutCouponUsagesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2369,7 +2336,7 @@ export type UserUncheckedUpdateWithoutCouponUsagesInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2397,6 +2364,7 @@ export type UserUncheckedUpdateWithoutCouponUsagesInput = {
 }
 
 export type UserCreateWithoutFlashSalesInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2437,7 +2405,7 @@ export type UserCreateWithoutFlashSalesInput = {
 }
 
 export type UserUncheckedCreateWithoutFlashSalesInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2450,7 +2418,7 @@ export type UserUncheckedCreateWithoutFlashSalesInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -2494,6 +2462,7 @@ export type UserUpdateToOneWithWhereWithoutFlashSalesInput = {
 }
 
 export type UserUpdateWithoutFlashSalesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2534,7 +2503,7 @@ export type UserUpdateWithoutFlashSalesInput = {
 }
 
 export type UserUncheckedUpdateWithoutFlashSalesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2547,7 +2516,7 @@ export type UserUncheckedUpdateWithoutFlashSalesInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2575,6 +2544,7 @@ export type UserUncheckedUpdateWithoutFlashSalesInput = {
 }
 
 export type UserCreateWithoutFollowsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2615,7 +2585,7 @@ export type UserCreateWithoutFollowsInput = {
 }
 
 export type UserUncheckedCreateWithoutFollowsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2628,7 +2598,7 @@ export type UserUncheckedCreateWithoutFollowsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -2672,6 +2642,7 @@ export type UserUpdateToOneWithWhereWithoutFollowsInput = {
 }
 
 export type UserUpdateWithoutFollowsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2712,7 +2683,7 @@ export type UserUpdateWithoutFollowsInput = {
 }
 
 export type UserUncheckedUpdateWithoutFollowsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2725,7 +2696,7 @@ export type UserUncheckedUpdateWithoutFollowsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2753,6 +2724,7 @@ export type UserUncheckedUpdateWithoutFollowsInput = {
 }
 
 export type UserCreateWithoutAuditLogsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2793,7 +2765,7 @@ export type UserCreateWithoutAuditLogsInput = {
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2806,7 +2778,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -2850,6 +2822,7 @@ export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
 }
 
 export type UserUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2890,7 +2863,7 @@ export type UserUpdateWithoutAuditLogsInput = {
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2903,7 +2876,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2931,6 +2904,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
 }
 
 export type UserCreateWithoutNotificationsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2971,7 +2945,7 @@ export type UserCreateWithoutNotificationsInput = {
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -2984,7 +2958,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -3028,6 +3002,7 @@ export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
 }
 
 export type UserUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3068,7 +3043,7 @@ export type UserUpdateWithoutNotificationsInput = {
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3081,7 +3056,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3109,6 +3084,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
 }
 
 export type UserCreateWithoutNotificationPrefInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3149,7 +3125,7 @@ export type UserCreateWithoutNotificationPrefInput = {
 }
 
 export type UserUncheckedCreateWithoutNotificationPrefInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3162,7 +3138,7 @@ export type UserUncheckedCreateWithoutNotificationPrefInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -3206,6 +3182,7 @@ export type UserUpdateToOneWithWhereWithoutNotificationPrefInput = {
 }
 
 export type UserUpdateWithoutNotificationPrefInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3246,7 +3223,7 @@ export type UserUpdateWithoutNotificationPrefInput = {
 }
 
 export type UserUncheckedUpdateWithoutNotificationPrefInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3259,7 +3236,7 @@ export type UserUncheckedUpdateWithoutNotificationPrefInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3287,6 +3264,7 @@ export type UserUncheckedUpdateWithoutNotificationPrefInput = {
 }
 
 export type UserCreateWithoutOrdersInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3327,7 +3305,7 @@ export type UserCreateWithoutOrdersInput = {
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3340,7 +3318,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -3384,6 +3362,7 @@ export type UserUpdateToOneWithWhereWithoutOrdersInput = {
 }
 
 export type UserUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3424,7 +3403,7 @@ export type UserUpdateWithoutOrdersInput = {
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3437,7 +3416,7 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3465,6 +3444,7 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
 }
 
 export type UserCreateWithoutReturnsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3505,7 +3485,7 @@ export type UserCreateWithoutReturnsInput = {
 }
 
 export type UserUncheckedCreateWithoutReturnsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3518,7 +3498,7 @@ export type UserUncheckedCreateWithoutReturnsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -3562,6 +3542,7 @@ export type UserUpdateToOneWithWhereWithoutReturnsInput = {
 }
 
 export type UserUpdateWithoutReturnsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3602,7 +3583,7 @@ export type UserUpdateWithoutReturnsInput = {
 }
 
 export type UserUncheckedUpdateWithoutReturnsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3615,7 +3596,7 @@ export type UserUncheckedUpdateWithoutReturnsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3643,6 +3624,7 @@ export type UserUncheckedUpdateWithoutReturnsInput = {
 }
 
 export type UserCreateWithoutReviewsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3683,7 +3665,7 @@ export type UserCreateWithoutReviewsInput = {
 }
 
 export type UserUncheckedCreateWithoutReviewsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3696,7 +3678,7 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -3740,6 +3722,7 @@ export type UserUpdateToOneWithWhereWithoutReviewsInput = {
 }
 
 export type UserUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3780,7 +3763,7 @@ export type UserUpdateWithoutReviewsInput = {
 }
 
 export type UserUncheckedUpdateWithoutReviewsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3793,7 +3776,7 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3821,6 +3804,7 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
 }
 
 export type UserCreateWithoutRiderInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3861,7 +3845,7 @@ export type UserCreateWithoutRiderInput = {
 }
 
 export type UserUncheckedCreateWithoutRiderInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -3874,7 +3858,7 @@ export type UserUncheckedCreateWithoutRiderInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -3918,6 +3902,7 @@ export type UserUpdateToOneWithWhereWithoutRiderInput = {
 }
 
 export type UserUpdateWithoutRiderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3958,7 +3943,7 @@ export type UserUpdateWithoutRiderInput = {
 }
 
 export type UserUncheckedUpdateWithoutRiderInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3971,7 +3956,7 @@ export type UserUncheckedUpdateWithoutRiderInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3999,6 +3984,7 @@ export type UserUncheckedUpdateWithoutRiderInput = {
 }
 
 export type UserCreateWithoutSellerInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4039,7 +4025,7 @@ export type UserCreateWithoutSellerInput = {
 }
 
 export type UserUncheckedCreateWithoutSellerInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4052,7 +4038,7 @@ export type UserUncheckedCreateWithoutSellerInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -4096,6 +4082,7 @@ export type UserUpdateToOneWithWhereWithoutSellerInput = {
 }
 
 export type UserUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4136,7 +4123,7 @@ export type UserUpdateWithoutSellerInput = {
 }
 
 export type UserUncheckedUpdateWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4149,7 +4136,7 @@ export type UserUncheckedUpdateWithoutSellerInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4177,6 +4164,7 @@ export type UserUncheckedUpdateWithoutSellerInput = {
 }
 
 export type UserCreateWithoutSupportTicketsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4217,7 +4205,7 @@ export type UserCreateWithoutSupportTicketsInput = {
 }
 
 export type UserUncheckedCreateWithoutSupportTicketsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4230,7 +4218,7 @@ export type UserUncheckedCreateWithoutSupportTicketsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -4274,6 +4262,7 @@ export type UserUpdateToOneWithWhereWithoutSupportTicketsInput = {
 }
 
 export type UserUpdateWithoutSupportTicketsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4314,7 +4303,7 @@ export type UserUpdateWithoutSupportTicketsInput = {
 }
 
 export type UserUncheckedUpdateWithoutSupportTicketsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4327,7 +4316,7 @@ export type UserUncheckedUpdateWithoutSupportTicketsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4355,6 +4344,7 @@ export type UserUncheckedUpdateWithoutSupportTicketsInput = {
 }
 
 export type UserCreateWithoutTicketRepliesInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4395,7 +4385,7 @@ export type UserCreateWithoutTicketRepliesInput = {
 }
 
 export type UserUncheckedCreateWithoutTicketRepliesInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4408,7 +4398,7 @@ export type UserUncheckedCreateWithoutTicketRepliesInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -4452,6 +4442,7 @@ export type UserUpdateToOneWithWhereWithoutTicketRepliesInput = {
 }
 
 export type UserUpdateWithoutTicketRepliesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4492,7 +4483,7 @@ export type UserUpdateWithoutTicketRepliesInput = {
 }
 
 export type UserUncheckedUpdateWithoutTicketRepliesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4505,7 +4496,7 @@ export type UserUncheckedUpdateWithoutTicketRepliesInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4533,6 +4524,7 @@ export type UserUncheckedUpdateWithoutTicketRepliesInput = {
 }
 
 export type UserCreateWithoutReferredUsersInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4573,7 +4565,7 @@ export type UserCreateWithoutReferredUsersInput = {
 }
 
 export type UserUncheckedCreateWithoutReferredUsersInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4586,7 +4578,7 @@ export type UserUncheckedCreateWithoutReferredUsersInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -4619,6 +4611,7 @@ export type UserCreateOrConnectWithoutReferredUsersInput = {
 }
 
 export type UserCreateWithoutReferredByUserInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4659,7 +4652,7 @@ export type UserCreateWithoutReferredByUserInput = {
 }
 
 export type UserUncheckedCreateWithoutReferredByUserInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4721,6 +4714,7 @@ export type UserUpdateToOneWithWhereWithoutReferredUsersInput = {
 }
 
 export type UserUpdateWithoutReferredUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4761,7 +4755,7 @@ export type UserUpdateWithoutReferredUsersInput = {
 }
 
 export type UserUncheckedUpdateWithoutReferredUsersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4774,7 +4768,7 @@ export type UserUncheckedUpdateWithoutReferredUsersInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4821,7 +4815,7 @@ export type UserScalarWhereInput = {
   AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
   OR?: Prisma.UserScalarWhereInput[]
   NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  id?: Prisma.IntFilter<"User"> | number
+  id?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
@@ -4834,13 +4828,14 @@ export type UserScalarWhereInput = {
   twoFactorSecret?: Prisma.StringNullableFilter<"User"> | string | null
   lastLogin?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   referralCode?: Prisma.StringNullableFilter<"User"> | string | null
-  referredBy?: Prisma.IntNullableFilter<"User"> | number | null
+  referredBy?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
 }
 
 export type UserCreateWithoutWalletInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4881,7 +4876,7 @@ export type UserCreateWithoutWalletInput = {
 }
 
 export type UserUncheckedCreateWithoutWalletInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -4894,7 +4889,7 @@ export type UserUncheckedCreateWithoutWalletInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -4938,6 +4933,7 @@ export type UserUpdateToOneWithWhereWithoutWalletInput = {
 }
 
 export type UserUpdateWithoutWalletInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4978,7 +4974,7 @@ export type UserUpdateWithoutWalletInput = {
 }
 
 export type UserUncheckedUpdateWithoutWalletInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4991,7 +4987,7 @@ export type UserUncheckedUpdateWithoutWalletInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5019,6 +5015,7 @@ export type UserUncheckedUpdateWithoutWalletInput = {
 }
 
 export type UserCreateWithoutWishlistsInput = {
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -5059,7 +5056,7 @@ export type UserCreateWithoutWishlistsInput = {
 }
 
 export type UserUncheckedCreateWithoutWishlistsInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -5072,7 +5069,7 @@ export type UserUncheckedCreateWithoutWishlistsInput = {
   twoFactorSecret?: string | null
   lastLogin?: Date | string | null
   referralCode?: string | null
-  referredBy?: number | null
+  referredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -5116,6 +5113,7 @@ export type UserUpdateToOneWithWhereWithoutWishlistsInput = {
 }
 
 export type UserUpdateWithoutWishlistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5156,7 +5154,7 @@ export type UserUpdateWithoutWishlistsInput = {
 }
 
 export type UserUncheckedUpdateWithoutWishlistsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5169,7 +5167,7 @@ export type UserUncheckedUpdateWithoutWishlistsInput = {
   twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5197,7 +5195,7 @@ export type UserUncheckedUpdateWithoutWishlistsInput = {
 }
 
 export type UserCreateManyReferredByUserInput = {
-  id?: number
+  id?: string
   email: string
   password: string
   firstName?: string | null
@@ -5216,6 +5214,7 @@ export type UserCreateManyReferredByUserInput = {
 }
 
 export type UserUpdateWithoutReferredByUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5256,7 +5255,7 @@ export type UserUpdateWithoutReferredByUserInput = {
 }
 
 export type UserUncheckedUpdateWithoutReferredByUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5297,7 +5296,7 @@ export type UserUncheckedUpdateWithoutReferredByUserInput = {
 }
 
 export type UserUncheckedUpdateManyWithoutReferredByUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5658,7 +5657,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     email: string
     password: string
     firstName: string | null
@@ -5671,7 +5670,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     twoFactorSecret: string | null
     lastLogin: Date | null
     referralCode: string | null
-    referredBy: number | null
+    referredBy: string | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -6121,7 +6120,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  * Fields of the User model
  */
 export interface UserFieldRefs {
-  readonly id: Prisma.FieldRef<"User", 'Int'>
+  readonly id: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly firstName: Prisma.FieldRef<"User", 'String'>
@@ -6134,7 +6133,7 @@ export interface UserFieldRefs {
   readonly twoFactorSecret: Prisma.FieldRef<"User", 'String'>
   readonly lastLogin: Prisma.FieldRef<"User", 'DateTime'>
   readonly referralCode: Prisma.FieldRef<"User", 'String'>
-  readonly referredBy: Prisma.FieldRef<"User", 'Int'>
+  readonly referredBy: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>

@@ -27,20 +27,16 @@ export type AggregateRider = {
 }
 
 export type RiderAvgAggregateOutputType = {
-  id: number | null
-  userId: number | null
   totalEarnings: runtime.Decimal | null
 }
 
 export type RiderSumAggregateOutputType = {
-  id: number | null
-  userId: number | null
   totalEarnings: runtime.Decimal | null
 }
 
 export type RiderMinAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   vehicleType: string | null
   licenseNumber: string | null
   isAvailable: boolean | null
@@ -50,8 +46,8 @@ export type RiderMinAggregateOutputType = {
 }
 
 export type RiderMaxAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   vehicleType: string | null
   licenseNumber: string | null
   isAvailable: boolean | null
@@ -75,14 +71,10 @@ export type RiderCountAggregateOutputType = {
 
 
 export type RiderAvgAggregateInputType = {
-  id?: true
-  userId?: true
   totalEarnings?: true
 }
 
 export type RiderSumAggregateInputType = {
-  id?: true
-  userId?: true
   totalEarnings?: true
 }
 
@@ -208,8 +200,8 @@ export type RiderGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 export type RiderGroupByOutputType = {
-  id: number
-  userId: number
+  id: string
+  userId: string
   vehicleType: string | null
   licenseNumber: string | null
   currentLocation: runtime.JsonValue | null
@@ -243,8 +235,8 @@ export type RiderWhereInput = {
   AND?: Prisma.RiderWhereInput | Prisma.RiderWhereInput[]
   OR?: Prisma.RiderWhereInput[]
   NOT?: Prisma.RiderWhereInput | Prisma.RiderWhereInput[]
-  id?: Prisma.IntFilter<"Rider"> | number
-  userId?: Prisma.IntFilter<"Rider"> | number
+  id?: Prisma.StringFilter<"Rider"> | string
+  userId?: Prisma.StringFilter<"Rider"> | string
   vehicleType?: Prisma.StringNullableFilter<"Rider"> | string | null
   licenseNumber?: Prisma.StringNullableFilter<"Rider"> | string | null
   currentLocation?: Prisma.JsonNullableFilter<"Rider">
@@ -271,8 +263,8 @@ export type RiderOrderByWithRelationInput = {
 }
 
 export type RiderWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
-  userId?: number
+  id?: string
+  userId?: string
   AND?: Prisma.RiderWhereInput | Prisma.RiderWhereInput[]
   OR?: Prisma.RiderWhereInput[]
   NOT?: Prisma.RiderWhereInput | Prisma.RiderWhereInput[]
@@ -308,8 +300,8 @@ export type RiderScalarWhereWithAggregatesInput = {
   AND?: Prisma.RiderScalarWhereWithAggregatesInput | Prisma.RiderScalarWhereWithAggregatesInput[]
   OR?: Prisma.RiderScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RiderScalarWhereWithAggregatesInput | Prisma.RiderScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Rider"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"Rider"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Rider"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"Rider"> | string
   vehicleType?: Prisma.StringNullableWithAggregatesFilter<"Rider"> | string | null
   licenseNumber?: Prisma.StringNullableWithAggregatesFilter<"Rider"> | string | null
   currentLocation?: Prisma.JsonNullableWithAggregatesFilter<"Rider">
@@ -320,6 +312,7 @@ export type RiderScalarWhereWithAggregatesInput = {
 }
 
 export type RiderCreateInput = {
+  id?: string
   vehicleType?: string | null
   licenseNumber?: string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -332,8 +325,8 @@ export type RiderCreateInput = {
 }
 
 export type RiderUncheckedCreateInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   vehicleType?: string | null
   licenseNumber?: string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -345,6 +338,7 @@ export type RiderUncheckedCreateInput = {
 }
 
 export type RiderUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -357,8 +351,8 @@ export type RiderUpdateInput = {
 }
 
 export type RiderUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -370,8 +364,8 @@ export type RiderUncheckedUpdateInput = {
 }
 
 export type RiderCreateManyInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   vehicleType?: string | null
   licenseNumber?: string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -382,6 +376,7 @@ export type RiderCreateManyInput = {
 }
 
 export type RiderUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -392,8 +387,8 @@ export type RiderUpdateManyMutationInput = {
 }
 
 export type RiderUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -421,8 +416,6 @@ export type RiderCountOrderByAggregateInput = {
 }
 
 export type RiderAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   totalEarnings?: Prisma.SortOrder
 }
 
@@ -449,8 +442,6 @@ export type RiderMinOrderByAggregateInput = {
 }
 
 export type RiderSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   totalEarnings?: Prisma.SortOrder
 }
 
@@ -503,6 +494,7 @@ export type RiderUncheckedUpdateOneWithoutUserNestedInput = {
 }
 
 export type RiderCreateWithoutOrdersInput = {
+  id?: string
   vehicleType?: string | null
   licenseNumber?: string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -514,8 +506,8 @@ export type RiderCreateWithoutOrdersInput = {
 }
 
 export type RiderUncheckedCreateWithoutOrdersInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   vehicleType?: string | null
   licenseNumber?: string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -542,6 +534,7 @@ export type RiderUpdateToOneWithWhereWithoutOrdersInput = {
 }
 
 export type RiderUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -553,8 +546,8 @@ export type RiderUpdateWithoutOrdersInput = {
 }
 
 export type RiderUncheckedUpdateWithoutOrdersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -565,6 +558,7 @@ export type RiderUncheckedUpdateWithoutOrdersInput = {
 }
 
 export type RiderCreateWithoutUserInput = {
+  id?: string
   vehicleType?: string | null
   licenseNumber?: string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -576,7 +570,7 @@ export type RiderCreateWithoutUserInput = {
 }
 
 export type RiderUncheckedCreateWithoutUserInput = {
-  id?: number
+  id?: string
   vehicleType?: string | null
   licenseNumber?: string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -604,6 +598,7 @@ export type RiderUpdateToOneWithWhereWithoutUserInput = {
 }
 
 export type RiderUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -615,7 +610,7 @@ export type RiderUpdateWithoutUserInput = {
 }
 
 export type RiderUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicleType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   currentLocation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -730,8 +725,8 @@ export type $RiderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     orders: Prisma.$OrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    userId: number
+    id: string
+    userId: string
     vehicleType: string | null
     licenseNumber: string | null
     currentLocation: runtime.JsonValue | null
@@ -1164,8 +1159,8 @@ export interface Prisma__RiderClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the Rider model
  */
 export interface RiderFieldRefs {
-  readonly id: Prisma.FieldRef<"Rider", 'Int'>
-  readonly userId: Prisma.FieldRef<"Rider", 'Int'>
+  readonly id: Prisma.FieldRef<"Rider", 'String'>
+  readonly userId: Prisma.FieldRef<"Rider", 'String'>
   readonly vehicleType: Prisma.FieldRef<"Rider", 'String'>
   readonly licenseNumber: Prisma.FieldRef<"Rider", 'String'>
   readonly currentLocation: Prisma.FieldRef<"Rider", 'Json'>

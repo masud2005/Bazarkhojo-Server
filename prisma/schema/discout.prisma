@@ -1,7 +1,7 @@
 model Discount {
-  id                Int         @id @default(autoincrement())
-  sellerId          Int
-  productId         Int?        // null = shop-wide
+  id                String      @id @default(uuid())
+  sellerId          String
+  productId         String?
   type              DiscountType
   value             Decimal     @db.Decimal(10, 2)
   startDate         DateTime?

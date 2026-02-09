@@ -27,30 +27,24 @@ export type AggregateFlashSaleProduct = {
 }
 
 export type FlashSaleProductAvgAggregateOutputType = {
-  id: number | null
-  flashSaleId: number | null
-  productId: number | null
   discountPrice: runtime.Decimal | null
 }
 
 export type FlashSaleProductSumAggregateOutputType = {
-  id: number | null
-  flashSaleId: number | null
-  productId: number | null
   discountPrice: runtime.Decimal | null
 }
 
 export type FlashSaleProductMinAggregateOutputType = {
-  id: number | null
-  flashSaleId: number | null
-  productId: number | null
+  id: string | null
+  flashSaleId: string | null
+  productId: string | null
   discountPrice: runtime.Decimal | null
 }
 
 export type FlashSaleProductMaxAggregateOutputType = {
-  id: number | null
-  flashSaleId: number | null
-  productId: number | null
+  id: string | null
+  flashSaleId: string | null
+  productId: string | null
   discountPrice: runtime.Decimal | null
 }
 
@@ -64,16 +58,10 @@ export type FlashSaleProductCountAggregateOutputType = {
 
 
 export type FlashSaleProductAvgAggregateInputType = {
-  id?: true
-  flashSaleId?: true
-  productId?: true
   discountPrice?: true
 }
 
 export type FlashSaleProductSumAggregateInputType = {
-  id?: true
-  flashSaleId?: true
-  productId?: true
   discountPrice?: true
 }
 
@@ -186,9 +174,9 @@ export type FlashSaleProductGroupByArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 export type FlashSaleProductGroupByOutputType = {
-  id: number
-  flashSaleId: number
-  productId: number
+  id: string
+  flashSaleId: string
+  productId: string
   discountPrice: runtime.Decimal
   _count: FlashSaleProductCountAggregateOutputType | null
   _avg: FlashSaleProductAvgAggregateOutputType | null
@@ -216,9 +204,9 @@ export type FlashSaleProductWhereInput = {
   AND?: Prisma.FlashSaleProductWhereInput | Prisma.FlashSaleProductWhereInput[]
   OR?: Prisma.FlashSaleProductWhereInput[]
   NOT?: Prisma.FlashSaleProductWhereInput | Prisma.FlashSaleProductWhereInput[]
-  id?: Prisma.IntFilter<"FlashSaleProduct"> | number
-  flashSaleId?: Prisma.IntFilter<"FlashSaleProduct"> | number
-  productId?: Prisma.IntFilter<"FlashSaleProduct"> | number
+  id?: Prisma.StringFilter<"FlashSaleProduct"> | string
+  flashSaleId?: Prisma.StringFilter<"FlashSaleProduct"> | string
+  productId?: Prisma.StringFilter<"FlashSaleProduct"> | string
   discountPrice?: Prisma.DecimalFilter<"FlashSaleProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   flashSale?: Prisma.XOR<Prisma.FlashSaleScalarRelationFilter, Prisma.FlashSaleWhereInput>
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
@@ -234,13 +222,13 @@ export type FlashSaleProductOrderByWithRelationInput = {
 }
 
 export type FlashSaleProductWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   flashSaleId_productId?: Prisma.FlashSaleProductFlashSaleIdProductIdCompoundUniqueInput
   AND?: Prisma.FlashSaleProductWhereInput | Prisma.FlashSaleProductWhereInput[]
   OR?: Prisma.FlashSaleProductWhereInput[]
   NOT?: Prisma.FlashSaleProductWhereInput | Prisma.FlashSaleProductWhereInput[]
-  flashSaleId?: Prisma.IntFilter<"FlashSaleProduct"> | number
-  productId?: Prisma.IntFilter<"FlashSaleProduct"> | number
+  flashSaleId?: Prisma.StringFilter<"FlashSaleProduct"> | string
+  productId?: Prisma.StringFilter<"FlashSaleProduct"> | string
   discountPrice?: Prisma.DecimalFilter<"FlashSaleProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   flashSale?: Prisma.XOR<Prisma.FlashSaleScalarRelationFilter, Prisma.FlashSaleWhereInput>
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
@@ -262,53 +250,56 @@ export type FlashSaleProductScalarWhereWithAggregatesInput = {
   AND?: Prisma.FlashSaleProductScalarWhereWithAggregatesInput | Prisma.FlashSaleProductScalarWhereWithAggregatesInput[]
   OR?: Prisma.FlashSaleProductScalarWhereWithAggregatesInput[]
   NOT?: Prisma.FlashSaleProductScalarWhereWithAggregatesInput | Prisma.FlashSaleProductScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"FlashSaleProduct"> | number
-  flashSaleId?: Prisma.IntWithAggregatesFilter<"FlashSaleProduct"> | number
-  productId?: Prisma.IntWithAggregatesFilter<"FlashSaleProduct"> | number
+  id?: Prisma.StringWithAggregatesFilter<"FlashSaleProduct"> | string
+  flashSaleId?: Prisma.StringWithAggregatesFilter<"FlashSaleProduct"> | string
+  productId?: Prisma.StringWithAggregatesFilter<"FlashSaleProduct"> | string
   discountPrice?: Prisma.DecimalWithAggregatesFilter<"FlashSaleProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductCreateInput = {
+  id?: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   flashSale: Prisma.FlashSaleCreateNestedOneWithoutProductsInput
   product: Prisma.ProductCreateNestedOneWithoutFlashSaleProductsInput
 }
 
 export type FlashSaleProductUncheckedCreateInput = {
-  id?: number
-  flashSaleId: number
-  productId: number
+  id?: string
+  flashSaleId: string
+  productId: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   flashSale?: Prisma.FlashSaleUpdateOneRequiredWithoutProductsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutFlashSaleProductsNestedInput
 }
 
 export type FlashSaleProductUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  flashSaleId?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  flashSaleId?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductCreateManyInput = {
-  id?: number
-  flashSaleId: number
-  productId: number
+  id?: string
+  flashSaleId: string
+  productId: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  flashSaleId?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  flashSaleId?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -323,8 +314,8 @@ export type FlashSaleProductOrderByRelationAggregateInput = {
 }
 
 export type FlashSaleProductFlashSaleIdProductIdCompoundUniqueInput = {
-  flashSaleId: number
-  productId: number
+  flashSaleId: string
+  productId: string
 }
 
 export type FlashSaleProductCountOrderByAggregateInput = {
@@ -335,9 +326,6 @@ export type FlashSaleProductCountOrderByAggregateInput = {
 }
 
 export type FlashSaleProductAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  flashSaleId?: Prisma.SortOrder
-  productId?: Prisma.SortOrder
   discountPrice?: Prisma.SortOrder
 }
 
@@ -356,9 +344,6 @@ export type FlashSaleProductMinOrderByAggregateInput = {
 }
 
 export type FlashSaleProductSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  flashSaleId?: Prisma.SortOrder
-  productId?: Prisma.SortOrder
   discountPrice?: Prisma.SortOrder
 }
 
@@ -447,13 +432,14 @@ export type FlashSaleProductUncheckedUpdateManyWithoutProductNestedInput = {
 }
 
 export type FlashSaleProductCreateWithoutFlashSaleInput = {
+  id?: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   product: Prisma.ProductCreateNestedOneWithoutFlashSaleProductsInput
 }
 
 export type FlashSaleProductUncheckedCreateWithoutFlashSaleInput = {
-  id?: number
-  productId: number
+  id?: string
+  productId: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -487,20 +473,21 @@ export type FlashSaleProductScalarWhereInput = {
   AND?: Prisma.FlashSaleProductScalarWhereInput | Prisma.FlashSaleProductScalarWhereInput[]
   OR?: Prisma.FlashSaleProductScalarWhereInput[]
   NOT?: Prisma.FlashSaleProductScalarWhereInput | Prisma.FlashSaleProductScalarWhereInput[]
-  id?: Prisma.IntFilter<"FlashSaleProduct"> | number
-  flashSaleId?: Prisma.IntFilter<"FlashSaleProduct"> | number
-  productId?: Prisma.IntFilter<"FlashSaleProduct"> | number
+  id?: Prisma.StringFilter<"FlashSaleProduct"> | string
+  flashSaleId?: Prisma.StringFilter<"FlashSaleProduct"> | string
+  productId?: Prisma.StringFilter<"FlashSaleProduct"> | string
   discountPrice?: Prisma.DecimalFilter<"FlashSaleProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductCreateWithoutProductInput = {
+  id?: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   flashSale: Prisma.FlashSaleCreateNestedOneWithoutProductsInput
 }
 
 export type FlashSaleProductUncheckedCreateWithoutProductInput = {
-  id?: number
-  flashSaleId: number
+  id?: string
+  flashSaleId: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -531,48 +518,50 @@ export type FlashSaleProductUpdateManyWithWhereWithoutProductInput = {
 }
 
 export type FlashSaleProductCreateManyFlashSaleInput = {
-  id?: number
-  productId: number
+  id?: string
+  productId: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductUpdateWithoutFlashSaleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   product?: Prisma.ProductUpdateOneRequiredWithoutFlashSaleProductsNestedInput
 }
 
 export type FlashSaleProductUncheckedUpdateWithoutFlashSaleInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductUncheckedUpdateManyWithoutFlashSaleInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductCreateManyProductInput = {
-  id?: number
-  flashSaleId: number
+  id?: string
+  flashSaleId: string
   discountPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductUpdateWithoutProductInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   flashSale?: Prisma.FlashSaleUpdateOneRequiredWithoutProductsNestedInput
 }
 
 export type FlashSaleProductUncheckedUpdateWithoutProductInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  flashSaleId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  flashSaleId?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type FlashSaleProductUncheckedUpdateManyWithoutProductInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  flashSaleId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  flashSaleId?: Prisma.StringFieldUpdateOperationsInput | string
   discountPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -633,9 +622,9 @@ export type $FlashSaleProductPayload<ExtArgs extends runtime.Types.Extensions.In
     product: Prisma.$ProductPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    flashSaleId: number
-    productId: number
+    id: string
+    flashSaleId: string
+    productId: string
     discountPrice: runtime.Decimal
   }, ExtArgs["result"]["flashSaleProduct"]>
   composites: {}
@@ -1062,9 +1051,9 @@ export interface Prisma__FlashSaleProductClient<T, Null = never, ExtArgs extends
  * Fields of the FlashSaleProduct model
  */
 export interface FlashSaleProductFieldRefs {
-  readonly id: Prisma.FieldRef<"FlashSaleProduct", 'Int'>
-  readonly flashSaleId: Prisma.FieldRef<"FlashSaleProduct", 'Int'>
-  readonly productId: Prisma.FieldRef<"FlashSaleProduct", 'Int'>
+  readonly id: Prisma.FieldRef<"FlashSaleProduct", 'String'>
+  readonly flashSaleId: Prisma.FieldRef<"FlashSaleProduct", 'String'>
+  readonly productId: Prisma.FieldRef<"FlashSaleProduct", 'String'>
   readonly discountPrice: Prisma.FieldRef<"FlashSaleProduct", 'Decimal'>
 }
     

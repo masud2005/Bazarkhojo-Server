@@ -1,7 +1,7 @@
 model ReviewReply {
-  id        Int      @id @default(autoincrement())
-  reviewId  Int
-  sellerId  Int
+  id        String   @id @default(uuid())
+  reviewId  String
+  sellerId  String
   reply     String
   createdAt DateTime @default(now())
 

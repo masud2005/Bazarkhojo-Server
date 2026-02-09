@@ -27,26 +27,18 @@ export type AggregateReturn = {
 }
 
 export type ReturnAvgAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  orderItemId: number | null
-  userId: number | null
   refundAmount: runtime.Decimal | null
 }
 
 export type ReturnSumAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  orderItemId: number | null
-  userId: number | null
   refundAmount: runtime.Decimal | null
 }
 
 export type ReturnMinAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  orderItemId: number | null
-  userId: number | null
+  id: string | null
+  orderId: string | null
+  orderItemId: string | null
+  userId: string | null
   reason: string | null
   status: $Enums.ReturnStatus | null
   refundAmount: runtime.Decimal | null
@@ -55,10 +47,10 @@ export type ReturnMinAggregateOutputType = {
 }
 
 export type ReturnMaxAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  orderItemId: number | null
-  userId: number | null
+  id: string | null
+  orderId: string | null
+  orderItemId: string | null
+  userId: string | null
   reason: string | null
   status: $Enums.ReturnStatus | null
   refundAmount: runtime.Decimal | null
@@ -81,18 +73,10 @@ export type ReturnCountAggregateOutputType = {
 
 
 export type ReturnAvgAggregateInputType = {
-  id?: true
-  orderId?: true
-  orderItemId?: true
-  userId?: true
   refundAmount?: true
 }
 
 export type ReturnSumAggregateInputType = {
-  id?: true
-  orderId?: true
-  orderItemId?: true
-  userId?: true
   refundAmount?: true
 }
 
@@ -220,10 +204,10 @@ export type ReturnGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type ReturnGroupByOutputType = {
-  id: number
-  orderId: number
-  orderItemId: number
-  userId: number
+  id: string
+  orderId: string
+  orderItemId: string
+  userId: string
   reason: string
   status: $Enums.ReturnStatus
   refundAmount: runtime.Decimal | null
@@ -255,10 +239,10 @@ export type ReturnWhereInput = {
   AND?: Prisma.ReturnWhereInput | Prisma.ReturnWhereInput[]
   OR?: Prisma.ReturnWhereInput[]
   NOT?: Prisma.ReturnWhereInput | Prisma.ReturnWhereInput[]
-  id?: Prisma.IntFilter<"Return"> | number
-  orderId?: Prisma.IntFilter<"Return"> | number
-  orderItemId?: Prisma.IntFilter<"Return"> | number
-  userId?: Prisma.IntFilter<"Return"> | number
+  id?: Prisma.StringFilter<"Return"> | string
+  orderId?: Prisma.StringFilter<"Return"> | string
+  orderItemId?: Prisma.StringFilter<"Return"> | string
+  userId?: Prisma.StringFilter<"Return"> | string
   reason?: Prisma.StringFilter<"Return"> | string
   status?: Prisma.EnumReturnStatusFilter<"Return"> | $Enums.ReturnStatus
   refundAmount?: Prisma.DecimalNullableFilter<"Return"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -285,13 +269,13 @@ export type ReturnOrderByWithRelationInput = {
 }
 
 export type ReturnWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.ReturnWhereInput | Prisma.ReturnWhereInput[]
   OR?: Prisma.ReturnWhereInput[]
   NOT?: Prisma.ReturnWhereInput | Prisma.ReturnWhereInput[]
-  orderId?: Prisma.IntFilter<"Return"> | number
-  orderItemId?: Prisma.IntFilter<"Return"> | number
-  userId?: Prisma.IntFilter<"Return"> | number
+  orderId?: Prisma.StringFilter<"Return"> | string
+  orderItemId?: Prisma.StringFilter<"Return"> | string
+  userId?: Prisma.StringFilter<"Return"> | string
   reason?: Prisma.StringFilter<"Return"> | string
   status?: Prisma.EnumReturnStatusFilter<"Return"> | $Enums.ReturnStatus
   refundAmount?: Prisma.DecimalNullableFilter<"Return"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -323,10 +307,10 @@ export type ReturnScalarWhereWithAggregatesInput = {
   AND?: Prisma.ReturnScalarWhereWithAggregatesInput | Prisma.ReturnScalarWhereWithAggregatesInput[]
   OR?: Prisma.ReturnScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ReturnScalarWhereWithAggregatesInput | Prisma.ReturnScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Return"> | number
-  orderId?: Prisma.IntWithAggregatesFilter<"Return"> | number
-  orderItemId?: Prisma.IntWithAggregatesFilter<"Return"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"Return"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Return"> | string
+  orderId?: Prisma.StringWithAggregatesFilter<"Return"> | string
+  orderItemId?: Prisma.StringWithAggregatesFilter<"Return"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"Return"> | string
   reason?: Prisma.StringWithAggregatesFilter<"Return"> | string
   status?: Prisma.EnumReturnStatusWithAggregatesFilter<"Return"> | $Enums.ReturnStatus
   refundAmount?: Prisma.DecimalNullableWithAggregatesFilter<"Return"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -335,6 +319,7 @@ export type ReturnScalarWhereWithAggregatesInput = {
 }
 
 export type ReturnCreateInput = {
+  id?: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -346,10 +331,10 @@ export type ReturnCreateInput = {
 }
 
 export type ReturnUncheckedCreateInput = {
-  id?: number
-  orderId: number
-  orderItemId: number
-  userId: number
+  id?: string
+  orderId: string
+  orderItemId: string
+  userId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -358,6 +343,7 @@ export type ReturnUncheckedCreateInput = {
 }
 
 export type ReturnUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -369,10 +355,10 @@ export type ReturnUpdateInput = {
 }
 
 export type ReturnUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderItemId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderItemId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -381,10 +367,10 @@ export type ReturnUncheckedUpdateInput = {
 }
 
 export type ReturnCreateManyInput = {
-  id?: number
-  orderId: number
-  orderItemId: number
-  userId: number
+  id?: string
+  orderId: string
+  orderItemId: string
+  userId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -393,6 +379,7 @@ export type ReturnCreateManyInput = {
 }
 
 export type ReturnUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -401,10 +388,10 @@ export type ReturnUpdateManyMutationInput = {
 }
 
 export type ReturnUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderItemId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderItemId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -435,10 +422,6 @@ export type ReturnCountOrderByAggregateInput = {
 }
 
 export type ReturnAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
-  orderItemId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   refundAmount?: Prisma.SortOrder
 }
 
@@ -467,10 +450,6 @@ export type ReturnMinOrderByAggregateInput = {
 }
 
 export type ReturnSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
-  orderItemId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   refundAmount?: Prisma.SortOrder
 }
 
@@ -605,6 +584,7 @@ export type ReturnUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type ReturnCreateWithoutOrderItemInput = {
+  id?: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -615,9 +595,9 @@ export type ReturnCreateWithoutOrderItemInput = {
 }
 
 export type ReturnUncheckedCreateWithoutOrderItemInput = {
-  id?: number
-  orderId: number
-  userId: number
+  id?: string
+  orderId: string
+  userId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -655,10 +635,10 @@ export type ReturnScalarWhereInput = {
   AND?: Prisma.ReturnScalarWhereInput | Prisma.ReturnScalarWhereInput[]
   OR?: Prisma.ReturnScalarWhereInput[]
   NOT?: Prisma.ReturnScalarWhereInput | Prisma.ReturnScalarWhereInput[]
-  id?: Prisma.IntFilter<"Return"> | number
-  orderId?: Prisma.IntFilter<"Return"> | number
-  orderItemId?: Prisma.IntFilter<"Return"> | number
-  userId?: Prisma.IntFilter<"Return"> | number
+  id?: Prisma.StringFilter<"Return"> | string
+  orderId?: Prisma.StringFilter<"Return"> | string
+  orderItemId?: Prisma.StringFilter<"Return"> | string
+  userId?: Prisma.StringFilter<"Return"> | string
   reason?: Prisma.StringFilter<"Return"> | string
   status?: Prisma.EnumReturnStatusFilter<"Return"> | $Enums.ReturnStatus
   refundAmount?: Prisma.DecimalNullableFilter<"Return"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -667,6 +647,7 @@ export type ReturnScalarWhereInput = {
 }
 
 export type ReturnCreateWithoutOrderInput = {
+  id?: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -677,9 +658,9 @@ export type ReturnCreateWithoutOrderInput = {
 }
 
 export type ReturnUncheckedCreateWithoutOrderInput = {
-  id?: number
-  orderItemId: number
-  userId: number
+  id?: string
+  orderItemId: string
+  userId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -714,6 +695,7 @@ export type ReturnUpdateManyWithWhereWithoutOrderInput = {
 }
 
 export type ReturnCreateWithoutUserInput = {
+  id?: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -724,9 +706,9 @@ export type ReturnCreateWithoutUserInput = {
 }
 
 export type ReturnUncheckedCreateWithoutUserInput = {
-  id?: number
-  orderId: number
-  orderItemId: number
+  id?: string
+  orderId: string
+  orderItemId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -761,9 +743,9 @@ export type ReturnUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type ReturnCreateManyOrderItemInput = {
-  id?: number
-  orderId: number
-  userId: number
+  id?: string
+  orderId: string
+  userId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -772,6 +754,7 @@ export type ReturnCreateManyOrderItemInput = {
 }
 
 export type ReturnUpdateWithoutOrderItemInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -782,9 +765,9 @@ export type ReturnUpdateWithoutOrderItemInput = {
 }
 
 export type ReturnUncheckedUpdateWithoutOrderItemInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -793,9 +776,9 @@ export type ReturnUncheckedUpdateWithoutOrderItemInput = {
 }
 
 export type ReturnUncheckedUpdateManyWithoutOrderItemInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -804,9 +787,9 @@ export type ReturnUncheckedUpdateManyWithoutOrderItemInput = {
 }
 
 export type ReturnCreateManyOrderInput = {
-  id?: number
-  orderItemId: number
-  userId: number
+  id?: string
+  orderItemId: string
+  userId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -815,6 +798,7 @@ export type ReturnCreateManyOrderInput = {
 }
 
 export type ReturnUpdateWithoutOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -825,9 +809,9 @@ export type ReturnUpdateWithoutOrderInput = {
 }
 
 export type ReturnUncheckedUpdateWithoutOrderInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderItemId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderItemId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -836,9 +820,9 @@ export type ReturnUncheckedUpdateWithoutOrderInput = {
 }
 
 export type ReturnUncheckedUpdateManyWithoutOrderInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderItemId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderItemId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -847,9 +831,9 @@ export type ReturnUncheckedUpdateManyWithoutOrderInput = {
 }
 
 export type ReturnCreateManyUserInput = {
-  id?: number
-  orderId: number
-  orderItemId: number
+  id?: string
+  orderId: string
+  orderItemId: string
   reason: string
   status?: $Enums.ReturnStatus
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -858,6 +842,7 @@ export type ReturnCreateManyUserInput = {
 }
 
 export type ReturnUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -868,9 +853,9 @@ export type ReturnUpdateWithoutUserInput = {
 }
 
 export type ReturnUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderItemId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderItemId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -879,9 +864,9 @@ export type ReturnUncheckedUpdateWithoutUserInput = {
 }
 
 export type ReturnUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderItemId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderItemId?: Prisma.StringFieldUpdateOperationsInput | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumReturnStatusFieldUpdateOperationsInput | $Enums.ReturnStatus
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -973,10 +958,10 @@ export type $ReturnPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    orderId: number
-    orderItemId: number
-    userId: number
+    id: string
+    orderId: string
+    orderItemId: string
+    userId: string
     reason: string
     status: $Enums.ReturnStatus
     refundAmount: runtime.Decimal | null
@@ -1408,10 +1393,10 @@ export interface Prisma__ReturnClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Return model
  */
 export interface ReturnFieldRefs {
-  readonly id: Prisma.FieldRef<"Return", 'Int'>
-  readonly orderId: Prisma.FieldRef<"Return", 'Int'>
-  readonly orderItemId: Prisma.FieldRef<"Return", 'Int'>
-  readonly userId: Prisma.FieldRef<"Return", 'Int'>
+  readonly id: Prisma.FieldRef<"Return", 'String'>
+  readonly orderId: Prisma.FieldRef<"Return", 'String'>
+  readonly orderItemId: Prisma.FieldRef<"Return", 'String'>
+  readonly userId: Prisma.FieldRef<"Return", 'String'>
   readonly reason: Prisma.FieldRef<"Return", 'String'>
   readonly status: Prisma.FieldRef<"Return", 'ReturnStatus'>
   readonly refundAmount: Prisma.FieldRef<"Return", 'Decimal'>

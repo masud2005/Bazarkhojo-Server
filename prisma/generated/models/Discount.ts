@@ -27,9 +27,6 @@ export type AggregateDiscount = {
 }
 
 export type DiscountAvgAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
-  productId: number | null
   value: runtime.Decimal | null
   minPurchaseAmount: runtime.Decimal | null
   usageLimit: number | null
@@ -37,9 +34,6 @@ export type DiscountAvgAggregateOutputType = {
 }
 
 export type DiscountSumAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
-  productId: number | null
   value: runtime.Decimal | null
   minPurchaseAmount: runtime.Decimal | null
   usageLimit: number | null
@@ -47,9 +41,9 @@ export type DiscountSumAggregateOutputType = {
 }
 
 export type DiscountMinAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
-  productId: number | null
+  id: string | null
+  sellerId: string | null
+  productId: string | null
   type: $Enums.DiscountType | null
   value: runtime.Decimal | null
   startDate: Date | null
@@ -62,9 +56,9 @@ export type DiscountMinAggregateOutputType = {
 }
 
 export type DiscountMaxAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
-  productId: number | null
+  id: string | null
+  sellerId: string | null
+  productId: string | null
   type: $Enums.DiscountType | null
   value: runtime.Decimal | null
   startDate: Date | null
@@ -94,9 +88,6 @@ export type DiscountCountAggregateOutputType = {
 
 
 export type DiscountAvgAggregateInputType = {
-  id?: true
-  sellerId?: true
-  productId?: true
   value?: true
   minPurchaseAmount?: true
   usageLimit?: true
@@ -104,9 +95,6 @@ export type DiscountAvgAggregateInputType = {
 }
 
 export type DiscountSumAggregateInputType = {
-  id?: true
-  sellerId?: true
-  productId?: true
   value?: true
   minPurchaseAmount?: true
   usageLimit?: true
@@ -246,9 +234,9 @@ export type DiscountGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type DiscountGroupByOutputType = {
-  id: number
-  sellerId: number
-  productId: number | null
+  id: string
+  sellerId: string
+  productId: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal
   startDate: Date | null
@@ -284,9 +272,9 @@ export type DiscountWhereInput = {
   AND?: Prisma.DiscountWhereInput | Prisma.DiscountWhereInput[]
   OR?: Prisma.DiscountWhereInput[]
   NOT?: Prisma.DiscountWhereInput | Prisma.DiscountWhereInput[]
-  id?: Prisma.IntFilter<"Discount"> | number
-  sellerId?: Prisma.IntFilter<"Discount"> | number
-  productId?: Prisma.IntNullableFilter<"Discount"> | number | null
+  id?: Prisma.StringFilter<"Discount"> | string
+  sellerId?: Prisma.StringFilter<"Discount"> | string
+  productId?: Prisma.StringNullableFilter<"Discount"> | string | null
   type?: Prisma.EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.DateTimeNullableFilter<"Discount"> | Date | string | null
@@ -318,12 +306,12 @@ export type DiscountOrderByWithRelationInput = {
 }
 
 export type DiscountWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.DiscountWhereInput | Prisma.DiscountWhereInput[]
   OR?: Prisma.DiscountWhereInput[]
   NOT?: Prisma.DiscountWhereInput | Prisma.DiscountWhereInput[]
-  sellerId?: Prisma.IntFilter<"Discount"> | number
-  productId?: Prisma.IntNullableFilter<"Discount"> | number | null
+  sellerId?: Prisma.StringFilter<"Discount"> | string
+  productId?: Prisma.StringNullableFilter<"Discount"> | string | null
   type?: Prisma.EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.DateTimeNullableFilter<"Discount"> | Date | string | null
@@ -361,9 +349,9 @@ export type DiscountScalarWhereWithAggregatesInput = {
   AND?: Prisma.DiscountScalarWhereWithAggregatesInput | Prisma.DiscountScalarWhereWithAggregatesInput[]
   OR?: Prisma.DiscountScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DiscountScalarWhereWithAggregatesInput | Prisma.DiscountScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Discount"> | number
-  sellerId?: Prisma.IntWithAggregatesFilter<"Discount"> | number
-  productId?: Prisma.IntNullableWithAggregatesFilter<"Discount"> | number | null
+  id?: Prisma.StringWithAggregatesFilter<"Discount"> | string
+  sellerId?: Prisma.StringWithAggregatesFilter<"Discount"> | string
+  productId?: Prisma.StringNullableWithAggregatesFilter<"Discount"> | string | null
   type?: Prisma.EnumDiscountTypeWithAggregatesFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalWithAggregatesFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Discount"> | Date | string | null
@@ -376,6 +364,7 @@ export type DiscountScalarWhereWithAggregatesInput = {
 }
 
 export type DiscountCreateInput = {
+  id?: string
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -390,9 +379,9 @@ export type DiscountCreateInput = {
 }
 
 export type DiscountUncheckedCreateInput = {
-  id?: number
-  sellerId: number
-  productId?: number | null
+  id?: string
+  sellerId: string
+  productId?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -405,6 +394,7 @@ export type DiscountUncheckedCreateInput = {
 }
 
 export type DiscountUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -419,9 +409,9 @@ export type DiscountUpdateInput = {
 }
 
 export type DiscountUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -434,9 +424,9 @@ export type DiscountUncheckedUpdateInput = {
 }
 
 export type DiscountCreateManyInput = {
-  id?: number
-  sellerId: number
-  productId?: number | null
+  id?: string
+  sellerId: string
+  productId?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -449,6 +439,7 @@ export type DiscountCreateManyInput = {
 }
 
 export type DiscountUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -461,9 +452,9 @@ export type DiscountUpdateManyMutationInput = {
 }
 
 export type DiscountUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -491,9 +482,6 @@ export type DiscountCountOrderByAggregateInput = {
 }
 
 export type DiscountAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
-  productId?: Prisma.SortOrder
   value?: Prisma.SortOrder
   minPurchaseAmount?: Prisma.SortOrder
   usageLimit?: Prisma.SortOrder
@@ -531,9 +519,6 @@ export type DiscountMinOrderByAggregateInput = {
 }
 
 export type DiscountSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
-  productId?: Prisma.SortOrder
   value?: Prisma.SortOrder
   minPurchaseAmount?: Prisma.SortOrder
   usageLimit?: Prisma.SortOrder
@@ -635,6 +620,7 @@ export type DiscountUncheckedUpdateManyWithoutSellerNestedInput = {
 }
 
 export type DiscountCreateWithoutProductInput = {
+  id?: string
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -648,8 +634,8 @@ export type DiscountCreateWithoutProductInput = {
 }
 
 export type DiscountUncheckedCreateWithoutProductInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -691,9 +677,9 @@ export type DiscountScalarWhereInput = {
   AND?: Prisma.DiscountScalarWhereInput | Prisma.DiscountScalarWhereInput[]
   OR?: Prisma.DiscountScalarWhereInput[]
   NOT?: Prisma.DiscountScalarWhereInput | Prisma.DiscountScalarWhereInput[]
-  id?: Prisma.IntFilter<"Discount"> | number
-  sellerId?: Prisma.IntFilter<"Discount"> | number
-  productId?: Prisma.IntNullableFilter<"Discount"> | number | null
+  id?: Prisma.StringFilter<"Discount"> | string
+  sellerId?: Prisma.StringFilter<"Discount"> | string
+  productId?: Prisma.StringNullableFilter<"Discount"> | string | null
   type?: Prisma.EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.DateTimeNullableFilter<"Discount"> | Date | string | null
@@ -706,6 +692,7 @@ export type DiscountScalarWhereInput = {
 }
 
 export type DiscountCreateWithoutSellerInput = {
+  id?: string
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -719,8 +706,8 @@ export type DiscountCreateWithoutSellerInput = {
 }
 
 export type DiscountUncheckedCreateWithoutSellerInput = {
-  id?: number
-  productId?: number | null
+  id?: string
+  productId?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -759,8 +746,8 @@ export type DiscountUpdateManyWithWhereWithoutSellerInput = {
 }
 
 export type DiscountCreateManyProductInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -773,6 +760,7 @@ export type DiscountCreateManyProductInput = {
 }
 
 export type DiscountUpdateWithoutProductInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -786,8 +774,8 @@ export type DiscountUpdateWithoutProductInput = {
 }
 
 export type DiscountUncheckedUpdateWithoutProductInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -800,8 +788,8 @@ export type DiscountUncheckedUpdateWithoutProductInput = {
 }
 
 export type DiscountUncheckedUpdateManyWithoutProductInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -814,8 +802,8 @@ export type DiscountUncheckedUpdateManyWithoutProductInput = {
 }
 
 export type DiscountCreateManySellerInput = {
-  id?: number
-  productId?: number | null
+  id?: string
+  productId?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Date | string | null
@@ -828,6 +816,7 @@ export type DiscountCreateManySellerInput = {
 }
 
 export type DiscountUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -841,8 +830,8 @@ export type DiscountUpdateWithoutSellerInput = {
 }
 
 export type DiscountUncheckedUpdateWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -855,8 +844,8 @@ export type DiscountUncheckedUpdateWithoutSellerInput = {
 }
 
 export type DiscountUncheckedUpdateManyWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -957,9 +946,9 @@ export type $DiscountPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     product: Prisma.$ProductPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    sellerId: number
-    productId: number | null
+    id: string
+    sellerId: string
+    productId: string | null
     type: $Enums.DiscountType
     value: runtime.Decimal
     startDate: Date | null
@@ -1394,9 +1383,9 @@ export interface Prisma__DiscountClient<T, Null = never, ExtArgs extends runtime
  * Fields of the Discount model
  */
 export interface DiscountFieldRefs {
-  readonly id: Prisma.FieldRef<"Discount", 'Int'>
-  readonly sellerId: Prisma.FieldRef<"Discount", 'Int'>
-  readonly productId: Prisma.FieldRef<"Discount", 'Int'>
+  readonly id: Prisma.FieldRef<"Discount", 'String'>
+  readonly sellerId: Prisma.FieldRef<"Discount", 'String'>
+  readonly productId: Prisma.FieldRef<"Discount", 'String'>
   readonly type: Prisma.FieldRef<"Discount", 'DiscountType'>
   readonly value: Prisma.FieldRef<"Discount", 'Decimal'>
   readonly startDate: Prisma.FieldRef<"Discount", 'DateTime'>

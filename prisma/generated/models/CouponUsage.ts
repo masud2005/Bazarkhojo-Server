@@ -27,35 +27,27 @@ export type AggregateCouponUsage = {
 }
 
 export type CouponUsageAvgAggregateOutputType = {
-  id: number | null
-  couponId: number | null
-  orderId: number | null
-  userId: number | null
   discountAmount: runtime.Decimal | null
 }
 
 export type CouponUsageSumAggregateOutputType = {
-  id: number | null
-  couponId: number | null
-  orderId: number | null
-  userId: number | null
   discountAmount: runtime.Decimal | null
 }
 
 export type CouponUsageMinAggregateOutputType = {
-  id: number | null
-  couponId: number | null
-  orderId: number | null
-  userId: number | null
+  id: string | null
+  couponId: string | null
+  orderId: string | null
+  userId: string | null
   discountAmount: runtime.Decimal | null
   createdAt: Date | null
 }
 
 export type CouponUsageMaxAggregateOutputType = {
-  id: number | null
-  couponId: number | null
-  orderId: number | null
-  userId: number | null
+  id: string | null
+  couponId: string | null
+  orderId: string | null
+  userId: string | null
   discountAmount: runtime.Decimal | null
   createdAt: Date | null
 }
@@ -72,18 +64,10 @@ export type CouponUsageCountAggregateOutputType = {
 
 
 export type CouponUsageAvgAggregateInputType = {
-  id?: true
-  couponId?: true
-  orderId?: true
-  userId?: true
   discountAmount?: true
 }
 
 export type CouponUsageSumAggregateInputType = {
-  id?: true
-  couponId?: true
-  orderId?: true
-  userId?: true
   discountAmount?: true
 }
 
@@ -202,10 +186,10 @@ export type CouponUsageGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type CouponUsageGroupByOutputType = {
-  id: number
-  couponId: number
-  orderId: number
-  userId: number
+  id: string
+  couponId: string
+  orderId: string
+  userId: string
   discountAmount: runtime.Decimal
   createdAt: Date
   _count: CouponUsageCountAggregateOutputType | null
@@ -234,10 +218,10 @@ export type CouponUsageWhereInput = {
   AND?: Prisma.CouponUsageWhereInput | Prisma.CouponUsageWhereInput[]
   OR?: Prisma.CouponUsageWhereInput[]
   NOT?: Prisma.CouponUsageWhereInput | Prisma.CouponUsageWhereInput[]
-  id?: Prisma.IntFilter<"CouponUsage"> | number
-  couponId?: Prisma.IntFilter<"CouponUsage"> | number
-  orderId?: Prisma.IntFilter<"CouponUsage"> | number
-  userId?: Prisma.IntFilter<"CouponUsage"> | number
+  id?: Prisma.StringFilter<"CouponUsage"> | string
+  couponId?: Prisma.StringFilter<"CouponUsage"> | string
+  orderId?: Prisma.StringFilter<"CouponUsage"> | string
+  userId?: Prisma.StringFilter<"CouponUsage"> | string
   discountAmount?: Prisma.DecimalFilter<"CouponUsage"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"CouponUsage"> | Date | string
   coupon?: Prisma.XOR<Prisma.CouponScalarRelationFilter, Prisma.CouponWhereInput>
@@ -258,13 +242,13 @@ export type CouponUsageOrderByWithRelationInput = {
 }
 
 export type CouponUsageWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.CouponUsageWhereInput | Prisma.CouponUsageWhereInput[]
   OR?: Prisma.CouponUsageWhereInput[]
   NOT?: Prisma.CouponUsageWhereInput | Prisma.CouponUsageWhereInput[]
-  couponId?: Prisma.IntFilter<"CouponUsage"> | number
-  orderId?: Prisma.IntFilter<"CouponUsage"> | number
-  userId?: Prisma.IntFilter<"CouponUsage"> | number
+  couponId?: Prisma.StringFilter<"CouponUsage"> | string
+  orderId?: Prisma.StringFilter<"CouponUsage"> | string
+  userId?: Prisma.StringFilter<"CouponUsage"> | string
   discountAmount?: Prisma.DecimalFilter<"CouponUsage"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"CouponUsage"> | Date | string
   coupon?: Prisma.XOR<Prisma.CouponScalarRelationFilter, Prisma.CouponWhereInput>
@@ -290,15 +274,16 @@ export type CouponUsageScalarWhereWithAggregatesInput = {
   AND?: Prisma.CouponUsageScalarWhereWithAggregatesInput | Prisma.CouponUsageScalarWhereWithAggregatesInput[]
   OR?: Prisma.CouponUsageScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CouponUsageScalarWhereWithAggregatesInput | Prisma.CouponUsageScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"CouponUsage"> | number
-  couponId?: Prisma.IntWithAggregatesFilter<"CouponUsage"> | number
-  orderId?: Prisma.IntWithAggregatesFilter<"CouponUsage"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"CouponUsage"> | number
+  id?: Prisma.StringWithAggregatesFilter<"CouponUsage"> | string
+  couponId?: Prisma.StringWithAggregatesFilter<"CouponUsage"> | string
+  orderId?: Prisma.StringWithAggregatesFilter<"CouponUsage"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"CouponUsage"> | string
   discountAmount?: Prisma.DecimalWithAggregatesFilter<"CouponUsage"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CouponUsage"> | Date | string
 }
 
 export type CouponUsageCreateInput = {
+  id?: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   coupon: Prisma.CouponCreateNestedOneWithoutCouponUsagesInput
@@ -307,15 +292,16 @@ export type CouponUsageCreateInput = {
 }
 
 export type CouponUsageUncheckedCreateInput = {
-  id?: number
-  couponId: number
-  orderId: number
-  userId: number
+  id?: string
+  couponId: string
+  orderId: string
+  userId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coupon?: Prisma.CouponUpdateOneRequiredWithoutCouponUsagesNestedInput
@@ -324,33 +310,34 @@ export type CouponUsageUpdateInput = {
 }
 
 export type CouponUsageUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  couponId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  couponId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageCreateManyInput = {
-  id?: number
-  couponId: number
-  orderId: number
-  userId: number
+  id?: string
+  couponId: string
+  orderId: string
+  userId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  couponId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  couponId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -365,10 +352,6 @@ export type CouponUsageCountOrderByAggregateInput = {
 }
 
 export type CouponUsageAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  couponId?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   discountAmount?: Prisma.SortOrder
 }
 
@@ -391,10 +374,6 @@ export type CouponUsageMinOrderByAggregateInput = {
 }
 
 export type CouponUsageSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  couponId?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   discountAmount?: Prisma.SortOrder
 }
 
@@ -543,6 +522,7 @@ export type CouponUsageUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type CouponUsageCreateWithoutCouponInput = {
+  id?: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   order: Prisma.OrderCreateNestedOneWithoutCouponUsagesInput
@@ -550,9 +530,9 @@ export type CouponUsageCreateWithoutCouponInput = {
 }
 
 export type CouponUsageUncheckedCreateWithoutCouponInput = {
-  id?: number
-  orderId: number
-  userId: number
+  id?: string
+  orderId: string
+  userId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
@@ -587,15 +567,16 @@ export type CouponUsageScalarWhereInput = {
   AND?: Prisma.CouponUsageScalarWhereInput | Prisma.CouponUsageScalarWhereInput[]
   OR?: Prisma.CouponUsageScalarWhereInput[]
   NOT?: Prisma.CouponUsageScalarWhereInput | Prisma.CouponUsageScalarWhereInput[]
-  id?: Prisma.IntFilter<"CouponUsage"> | number
-  couponId?: Prisma.IntFilter<"CouponUsage"> | number
-  orderId?: Prisma.IntFilter<"CouponUsage"> | number
-  userId?: Prisma.IntFilter<"CouponUsage"> | number
+  id?: Prisma.StringFilter<"CouponUsage"> | string
+  couponId?: Prisma.StringFilter<"CouponUsage"> | string
+  orderId?: Prisma.StringFilter<"CouponUsage"> | string
+  userId?: Prisma.StringFilter<"CouponUsage"> | string
   discountAmount?: Prisma.DecimalFilter<"CouponUsage"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"CouponUsage"> | Date | string
 }
 
 export type CouponUsageCreateWithoutOrderInput = {
+  id?: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   coupon: Prisma.CouponCreateNestedOneWithoutCouponUsagesInput
@@ -603,9 +584,9 @@ export type CouponUsageCreateWithoutOrderInput = {
 }
 
 export type CouponUsageUncheckedCreateWithoutOrderInput = {
-  id?: number
-  couponId: number
-  userId: number
+  id?: string
+  couponId: string
+  userId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
@@ -637,6 +618,7 @@ export type CouponUsageUpdateManyWithWhereWithoutOrderInput = {
 }
 
 export type CouponUsageCreateWithoutUserInput = {
+  id?: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   coupon: Prisma.CouponCreateNestedOneWithoutCouponUsagesInput
@@ -644,9 +626,9 @@ export type CouponUsageCreateWithoutUserInput = {
 }
 
 export type CouponUsageUncheckedCreateWithoutUserInput = {
-  id?: number
-  couponId: number
-  orderId: number
+  id?: string
+  couponId: string
+  orderId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
@@ -678,14 +660,15 @@ export type CouponUsageUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type CouponUsageCreateManyCouponInput = {
-  id?: number
-  orderId: number
-  userId: number
+  id?: string
+  orderId: string
+  userId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateWithoutCouponInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   order?: Prisma.OrderUpdateOneRequiredWithoutCouponUsagesNestedInput
@@ -693,30 +676,31 @@ export type CouponUsageUpdateWithoutCouponInput = {
 }
 
 export type CouponUsageUncheckedUpdateWithoutCouponInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageUncheckedUpdateManyWithoutCouponInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageCreateManyOrderInput = {
-  id?: number
-  couponId: number
-  userId: number
+  id?: string
+  couponId: string
+  userId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateWithoutOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coupon?: Prisma.CouponUpdateOneRequiredWithoutCouponUsagesNestedInput
@@ -724,30 +708,31 @@ export type CouponUsageUpdateWithoutOrderInput = {
 }
 
 export type CouponUsageUncheckedUpdateWithoutOrderInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  couponId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  couponId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageUncheckedUpdateManyWithoutOrderInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  couponId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  couponId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageCreateManyUserInput = {
-  id?: number
-  couponId: number
-  orderId: number
+  id?: string
+  couponId: string
+  orderId: string
   discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
 
 export type CouponUsageUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coupon?: Prisma.CouponUpdateOneRequiredWithoutCouponUsagesNestedInput
@@ -755,17 +740,17 @@ export type CouponUsageUpdateWithoutUserInput = {
 }
 
 export type CouponUsageUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  couponId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  couponId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CouponUsageUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  couponId?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  couponId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
   discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -842,10 +827,10 @@ export type $CouponUsagePayload<ExtArgs extends runtime.Types.Extensions.Interna
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    couponId: number
-    orderId: number
-    userId: number
+    id: string
+    couponId: string
+    orderId: string
+    userId: string
     discountAmount: runtime.Decimal
     createdAt: Date
   }, ExtArgs["result"]["couponUsage"]>
@@ -1274,10 +1259,10 @@ export interface Prisma__CouponUsageClient<T, Null = never, ExtArgs extends runt
  * Fields of the CouponUsage model
  */
 export interface CouponUsageFieldRefs {
-  readonly id: Prisma.FieldRef<"CouponUsage", 'Int'>
-  readonly couponId: Prisma.FieldRef<"CouponUsage", 'Int'>
-  readonly orderId: Prisma.FieldRef<"CouponUsage", 'Int'>
-  readonly userId: Prisma.FieldRef<"CouponUsage", 'Int'>
+  readonly id: Prisma.FieldRef<"CouponUsage", 'String'>
+  readonly couponId: Prisma.FieldRef<"CouponUsage", 'String'>
+  readonly orderId: Prisma.FieldRef<"CouponUsage", 'String'>
+  readonly userId: Prisma.FieldRef<"CouponUsage", 'String'>
   readonly discountAmount: Prisma.FieldRef<"CouponUsage", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"CouponUsage", 'DateTime'>
 }

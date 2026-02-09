@@ -20,35 +20,21 @@ export type WishlistModel = runtime.Types.Result.DefaultSelection<Prisma.$Wishli
 
 export type AggregateWishlist = {
   _count: WishlistCountAggregateOutputType | null
-  _avg: WishlistAvgAggregateOutputType | null
-  _sum: WishlistSumAggregateOutputType | null
   _min: WishlistMinAggregateOutputType | null
   _max: WishlistMaxAggregateOutputType | null
 }
 
-export type WishlistAvgAggregateOutputType = {
-  id: number | null
-  userId: number | null
-  productId: number | null
-}
-
-export type WishlistSumAggregateOutputType = {
-  id: number | null
-  userId: number | null
-  productId: number | null
-}
-
 export type WishlistMinAggregateOutputType = {
-  id: number | null
-  userId: number | null
-  productId: number | null
+  id: string | null
+  userId: string | null
+  productId: string | null
   createdAt: Date | null
 }
 
 export type WishlistMaxAggregateOutputType = {
-  id: number | null
-  userId: number | null
-  productId: number | null
+  id: string | null
+  userId: string | null
+  productId: string | null
   createdAt: Date | null
 }
 
@@ -60,18 +46,6 @@ export type WishlistCountAggregateOutputType = {
   _all: number
 }
 
-
-export type WishlistAvgAggregateInputType = {
-  id?: true
-  userId?: true
-  productId?: true
-}
-
-export type WishlistSumAggregateInputType = {
-  id?: true
-  userId?: true
-  productId?: true
-}
 
 export type WishlistMinAggregateInputType = {
   id?: true
@@ -133,18 +107,6 @@ export type WishlistAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: WishlistAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: WishlistSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: WishlistMinAggregateInputType
@@ -175,20 +137,16 @@ export type WishlistGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: WishlistCountAggregateInputType | true
-  _avg?: WishlistAvgAggregateInputType
-  _sum?: WishlistSumAggregateInputType
   _min?: WishlistMinAggregateInputType
   _max?: WishlistMaxAggregateInputType
 }
 
 export type WishlistGroupByOutputType = {
-  id: number
-  userId: number
-  productId: number
+  id: string
+  userId: string
+  productId: string
   createdAt: Date
   _count: WishlistCountAggregateOutputType | null
-  _avg: WishlistAvgAggregateOutputType | null
-  _sum: WishlistSumAggregateOutputType | null
   _min: WishlistMinAggregateOutputType | null
   _max: WishlistMaxAggregateOutputType | null
 }
@@ -212,9 +170,9 @@ export type WishlistWhereInput = {
   AND?: Prisma.WishlistWhereInput | Prisma.WishlistWhereInput[]
   OR?: Prisma.WishlistWhereInput[]
   NOT?: Prisma.WishlistWhereInput | Prisma.WishlistWhereInput[]
-  id?: Prisma.IntFilter<"Wishlist"> | number
-  userId?: Prisma.IntFilter<"Wishlist"> | number
-  productId?: Prisma.IntFilter<"Wishlist"> | number
+  id?: Prisma.StringFilter<"Wishlist"> | string
+  userId?: Prisma.StringFilter<"Wishlist"> | string
+  productId?: Prisma.StringFilter<"Wishlist"> | string
   createdAt?: Prisma.DateTimeFilter<"Wishlist"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
@@ -230,13 +188,13 @@ export type WishlistOrderByWithRelationInput = {
 }
 
 export type WishlistWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   userId_productId?: Prisma.WishlistUserIdProductIdCompoundUniqueInput
   AND?: Prisma.WishlistWhereInput | Prisma.WishlistWhereInput[]
   OR?: Prisma.WishlistWhereInput[]
   NOT?: Prisma.WishlistWhereInput | Prisma.WishlistWhereInput[]
-  userId?: Prisma.IntFilter<"Wishlist"> | number
-  productId?: Prisma.IntFilter<"Wishlist"> | number
+  userId?: Prisma.StringFilter<"Wishlist"> | string
+  productId?: Prisma.StringFilter<"Wishlist"> | string
   createdAt?: Prisma.DateTimeFilter<"Wishlist"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
@@ -248,63 +206,64 @@ export type WishlistOrderByWithAggregationInput = {
   productId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.WishlistCountOrderByAggregateInput
-  _avg?: Prisma.WishlistAvgOrderByAggregateInput
   _max?: Prisma.WishlistMaxOrderByAggregateInput
   _min?: Prisma.WishlistMinOrderByAggregateInput
-  _sum?: Prisma.WishlistSumOrderByAggregateInput
 }
 
 export type WishlistScalarWhereWithAggregatesInput = {
   AND?: Prisma.WishlistScalarWhereWithAggregatesInput | Prisma.WishlistScalarWhereWithAggregatesInput[]
   OR?: Prisma.WishlistScalarWhereWithAggregatesInput[]
   NOT?: Prisma.WishlistScalarWhereWithAggregatesInput | Prisma.WishlistScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Wishlist"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"Wishlist"> | number
-  productId?: Prisma.IntWithAggregatesFilter<"Wishlist"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Wishlist"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"Wishlist"> | string
+  productId?: Prisma.StringWithAggregatesFilter<"Wishlist"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Wishlist"> | Date | string
 }
 
 export type WishlistCreateInput = {
+  id?: string
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutWishlistsInput
   product: Prisma.ProductCreateNestedOneWithoutWishlistsInput
 }
 
 export type WishlistUncheckedCreateInput = {
-  id?: number
-  userId: number
-  productId: number
+  id?: string
+  userId: string
+  productId: string
   createdAt?: Date | string
 }
 
 export type WishlistUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutWishlistsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutWishlistsNestedInput
 }
 
 export type WishlistUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistCreateManyInput = {
-  id?: number
-  userId: number
-  productId: number
+  id?: string
+  userId: string
+  productId: string
   createdAt?: Date | string
 }
 
 export type WishlistUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -319,8 +278,8 @@ export type WishlistOrderByRelationAggregateInput = {
 }
 
 export type WishlistUserIdProductIdCompoundUniqueInput = {
-  userId: number
-  productId: number
+  userId: string
+  productId: string
 }
 
 export type WishlistCountOrderByAggregateInput = {
@@ -328,12 +287,6 @@ export type WishlistCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   productId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type WishlistAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  productId?: Prisma.SortOrder
 }
 
 export type WishlistMaxOrderByAggregateInput = {
@@ -348,12 +301,6 @@ export type WishlistMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   productId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type WishlistSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  productId?: Prisma.SortOrder
 }
 
 export type WishlistCreateNestedManyWithoutProductInput = {
@@ -441,13 +388,14 @@ export type WishlistUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type WishlistCreateWithoutProductInput = {
+  id?: string
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutWishlistsInput
 }
 
 export type WishlistUncheckedCreateWithoutProductInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   createdAt?: Date | string
 }
 
@@ -481,20 +429,21 @@ export type WishlistScalarWhereInput = {
   AND?: Prisma.WishlistScalarWhereInput | Prisma.WishlistScalarWhereInput[]
   OR?: Prisma.WishlistScalarWhereInput[]
   NOT?: Prisma.WishlistScalarWhereInput | Prisma.WishlistScalarWhereInput[]
-  id?: Prisma.IntFilter<"Wishlist"> | number
-  userId?: Prisma.IntFilter<"Wishlist"> | number
-  productId?: Prisma.IntFilter<"Wishlist"> | number
+  id?: Prisma.StringFilter<"Wishlist"> | string
+  userId?: Prisma.StringFilter<"Wishlist"> | string
+  productId?: Prisma.StringFilter<"Wishlist"> | string
   createdAt?: Prisma.DateTimeFilter<"Wishlist"> | Date | string
 }
 
 export type WishlistCreateWithoutUserInput = {
+  id?: string
   createdAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutWishlistsInput
 }
 
 export type WishlistUncheckedCreateWithoutUserInput = {
-  id?: number
-  productId: number
+  id?: string
+  productId: string
   createdAt?: Date | string
 }
 
@@ -525,48 +474,50 @@ export type WishlistUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type WishlistCreateManyProductInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   createdAt?: Date | string
 }
 
 export type WishlistUpdateWithoutProductInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutWishlistsNestedInput
 }
 
 export type WishlistUncheckedUpdateWithoutProductInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistUncheckedUpdateManyWithoutProductInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistCreateManyUserInput = {
-  id?: number
-  productId: number
+  id?: string
+  productId: string
   createdAt?: Date | string
 }
 
 export type WishlistUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.ProductUpdateOneRequiredWithoutWishlistsNestedInput
 }
 
 export type WishlistUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -627,9 +578,9 @@ export type $WishlistPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     product: Prisma.$ProductPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    userId: number
-    productId: number
+    id: string
+    userId: string
+    productId: string
     createdAt: Date
   }, ExtArgs["result"]["wishlist"]>
   composites: {}
@@ -1056,9 +1007,9 @@ export interface Prisma__WishlistClient<T, Null = never, ExtArgs extends runtime
  * Fields of the Wishlist model
  */
 export interface WishlistFieldRefs {
-  readonly id: Prisma.FieldRef<"Wishlist", 'Int'>
-  readonly userId: Prisma.FieldRef<"Wishlist", 'Int'>
-  readonly productId: Prisma.FieldRef<"Wishlist", 'Int'>
+  readonly id: Prisma.FieldRef<"Wishlist", 'String'>
+  readonly userId: Prisma.FieldRef<"Wishlist", 'String'>
+  readonly productId: Prisma.FieldRef<"Wishlist", 'String'>
   readonly createdAt: Prisma.FieldRef<"Wishlist", 'DateTime'>
 }
     

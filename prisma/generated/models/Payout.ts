@@ -27,22 +27,18 @@ export type AggregatePayout = {
 }
 
 export type PayoutAvgAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
   amount: runtime.Decimal | null
   commissionDeducted: runtime.Decimal | null
 }
 
 export type PayoutSumAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
   amount: runtime.Decimal | null
   commissionDeducted: runtime.Decimal | null
 }
 
 export type PayoutMinAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
+  id: string | null
+  sellerId: string | null
   amount: runtime.Decimal | null
   commissionDeducted: runtime.Decimal | null
   status: $Enums.PayoutStatus | null
@@ -53,8 +49,8 @@ export type PayoutMinAggregateOutputType = {
 }
 
 export type PayoutMaxAggregateOutputType = {
-  id: number | null
-  sellerId: number | null
+  id: string | null
+  sellerId: string | null
   amount: runtime.Decimal | null
   commissionDeducted: runtime.Decimal | null
   status: $Enums.PayoutStatus | null
@@ -79,15 +75,11 @@ export type PayoutCountAggregateOutputType = {
 
 
 export type PayoutAvgAggregateInputType = {
-  id?: true
-  sellerId?: true
   amount?: true
   commissionDeducted?: true
 }
 
 export type PayoutSumAggregateInputType = {
-  id?: true
-  sellerId?: true
   amount?: true
   commissionDeducted?: true
 }
@@ -216,8 +208,8 @@ export type PayoutGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type PayoutGroupByOutputType = {
-  id: number
-  sellerId: number
+  id: string
+  sellerId: string
   amount: runtime.Decimal
   commissionDeducted: runtime.Decimal | null
   status: $Enums.PayoutStatus
@@ -251,8 +243,8 @@ export type PayoutWhereInput = {
   AND?: Prisma.PayoutWhereInput | Prisma.PayoutWhereInput[]
   OR?: Prisma.PayoutWhereInput[]
   NOT?: Prisma.PayoutWhereInput | Prisma.PayoutWhereInput[]
-  id?: Prisma.IntFilter<"Payout"> | number
-  sellerId?: Prisma.IntFilter<"Payout"> | number
+  id?: Prisma.StringFilter<"Payout"> | string
+  sellerId?: Prisma.StringFilter<"Payout"> | string
   amount?: Prisma.DecimalFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.DecimalNullableFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFilter<"Payout"> | $Enums.PayoutStatus
@@ -277,11 +269,11 @@ export type PayoutOrderByWithRelationInput = {
 }
 
 export type PayoutWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.PayoutWhereInput | Prisma.PayoutWhereInput[]
   OR?: Prisma.PayoutWhereInput[]
   NOT?: Prisma.PayoutWhereInput | Prisma.PayoutWhereInput[]
-  sellerId?: Prisma.IntFilter<"Payout"> | number
+  sellerId?: Prisma.StringFilter<"Payout"> | string
   amount?: Prisma.DecimalFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.DecimalNullableFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFilter<"Payout"> | $Enums.PayoutStatus
@@ -313,8 +305,8 @@ export type PayoutScalarWhereWithAggregatesInput = {
   AND?: Prisma.PayoutScalarWhereWithAggregatesInput | Prisma.PayoutScalarWhereWithAggregatesInput[]
   OR?: Prisma.PayoutScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PayoutScalarWhereWithAggregatesInput | Prisma.PayoutScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Payout"> | number
-  sellerId?: Prisma.IntWithAggregatesFilter<"Payout"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Payout"> | string
+  sellerId?: Prisma.StringWithAggregatesFilter<"Payout"> | string
   amount?: Prisma.DecimalWithAggregatesFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.DecimalNullableWithAggregatesFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusWithAggregatesFilter<"Payout"> | $Enums.PayoutStatus
@@ -325,6 +317,7 @@ export type PayoutScalarWhereWithAggregatesInput = {
 }
 
 export type PayoutCreateInput = {
+  id?: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.PayoutStatus
@@ -336,8 +329,8 @@ export type PayoutCreateInput = {
 }
 
 export type PayoutUncheckedCreateInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.PayoutStatus
@@ -348,6 +341,7 @@ export type PayoutUncheckedCreateInput = {
 }
 
 export type PayoutUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFieldUpdateOperationsInput | $Enums.PayoutStatus
@@ -359,8 +353,8 @@ export type PayoutUpdateInput = {
 }
 
 export type PayoutUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFieldUpdateOperationsInput | $Enums.PayoutStatus
@@ -371,8 +365,8 @@ export type PayoutUncheckedUpdateInput = {
 }
 
 export type PayoutCreateManyInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.PayoutStatus
@@ -383,6 +377,7 @@ export type PayoutCreateManyInput = {
 }
 
 export type PayoutUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFieldUpdateOperationsInput | $Enums.PayoutStatus
@@ -393,8 +388,8 @@ export type PayoutUpdateManyMutationInput = {
 }
 
 export type PayoutUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFieldUpdateOperationsInput | $Enums.PayoutStatus
@@ -417,8 +412,6 @@ export type PayoutCountOrderByAggregateInput = {
 }
 
 export type PayoutAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   commissionDeducted?: Prisma.SortOrder
 }
@@ -448,8 +441,6 @@ export type PayoutMinOrderByAggregateInput = {
 }
 
 export type PayoutSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   commissionDeducted?: Prisma.SortOrder
 }
@@ -515,6 +506,7 @@ export type PayoutUncheckedUpdateManyWithoutSellerNestedInput = {
 }
 
 export type PayoutCreateWithoutSellerInput = {
+  id?: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.PayoutStatus
@@ -525,7 +517,7 @@ export type PayoutCreateWithoutSellerInput = {
 }
 
 export type PayoutUncheckedCreateWithoutSellerInput = {
-  id?: number
+  id?: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.PayoutStatus
@@ -565,8 +557,8 @@ export type PayoutScalarWhereInput = {
   AND?: Prisma.PayoutScalarWhereInput | Prisma.PayoutScalarWhereInput[]
   OR?: Prisma.PayoutScalarWhereInput[]
   NOT?: Prisma.PayoutScalarWhereInput | Prisma.PayoutScalarWhereInput[]
-  id?: Prisma.IntFilter<"Payout"> | number
-  sellerId?: Prisma.IntFilter<"Payout"> | number
+  id?: Prisma.StringFilter<"Payout"> | string
+  sellerId?: Prisma.StringFilter<"Payout"> | string
   amount?: Prisma.DecimalFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.DecimalNullableFilter<"Payout"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFilter<"Payout"> | $Enums.PayoutStatus
@@ -577,7 +569,7 @@ export type PayoutScalarWhereInput = {
 }
 
 export type PayoutCreateManySellerInput = {
-  id?: number
+  id?: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.PayoutStatus
@@ -588,6 +580,7 @@ export type PayoutCreateManySellerInput = {
 }
 
 export type PayoutUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFieldUpdateOperationsInput | $Enums.PayoutStatus
@@ -598,7 +591,7 @@ export type PayoutUpdateWithoutSellerInput = {
 }
 
 export type PayoutUncheckedUpdateWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFieldUpdateOperationsInput | $Enums.PayoutStatus
@@ -609,7 +602,7 @@ export type PayoutUncheckedUpdateWithoutSellerInput = {
 }
 
 export type PayoutUncheckedUpdateManyWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   commissionDeducted?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumPayoutStatusFieldUpdateOperationsInput | $Enums.PayoutStatus
@@ -689,8 +682,8 @@ export type $PayoutPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     seller: Prisma.$SellerPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    sellerId: number
+    id: string
+    sellerId: string
     amount: runtime.Decimal
     commissionDeducted: runtime.Decimal | null
     status: $Enums.PayoutStatus
@@ -1122,8 +1115,8 @@ export interface Prisma__PayoutClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Payout model
  */
 export interface PayoutFieldRefs {
-  readonly id: Prisma.FieldRef<"Payout", 'Int'>
-  readonly sellerId: Prisma.FieldRef<"Payout", 'Int'>
+  readonly id: Prisma.FieldRef<"Payout", 'String'>
+  readonly sellerId: Prisma.FieldRef<"Payout", 'String'>
   readonly amount: Prisma.FieldRef<"Payout", 'Decimal'>
   readonly commissionDeducted: Prisma.FieldRef<"Payout", 'Decimal'>
   readonly status: Prisma.FieldRef<"Payout", 'PayoutStatus'>

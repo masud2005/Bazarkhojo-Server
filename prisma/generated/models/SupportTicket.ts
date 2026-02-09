@@ -20,25 +20,13 @@ export type SupportTicketModel = runtime.Types.Result.DefaultSelection<Prisma.$S
 
 export type AggregateSupportTicket = {
   _count: SupportTicketCountAggregateOutputType | null
-  _avg: SupportTicketAvgAggregateOutputType | null
-  _sum: SupportTicketSumAggregateOutputType | null
   _min: SupportTicketMinAggregateOutputType | null
   _max: SupportTicketMaxAggregateOutputType | null
 }
 
-export type SupportTicketAvgAggregateOutputType = {
-  id: number | null
-  userId: number | null
-}
-
-export type SupportTicketSumAggregateOutputType = {
-  id: number | null
-  userId: number | null
-}
-
 export type SupportTicketMinAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   subject: string | null
   description: string | null
   status: $Enums.SupportTicketStatus | null
@@ -47,8 +35,8 @@ export type SupportTicketMinAggregateOutputType = {
 }
 
 export type SupportTicketMaxAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   subject: string | null
   description: string | null
   status: $Enums.SupportTicketStatus | null
@@ -67,16 +55,6 @@ export type SupportTicketCountAggregateOutputType = {
   _all: number
 }
 
-
-export type SupportTicketAvgAggregateInputType = {
-  id?: true
-  userId?: true
-}
-
-export type SupportTicketSumAggregateInputType = {
-  id?: true
-  userId?: true
-}
 
 export type SupportTicketMinAggregateInputType = {
   id?: true
@@ -147,18 +125,6 @@ export type SupportTicketAggregateArgs<ExtArgs extends runtime.Types.Extensions.
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: SupportTicketAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: SupportTicketSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: SupportTicketMinAggregateInputType
@@ -189,23 +155,19 @@ export type SupportTicketGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   _count?: SupportTicketCountAggregateInputType | true
-  _avg?: SupportTicketAvgAggregateInputType
-  _sum?: SupportTicketSumAggregateInputType
   _min?: SupportTicketMinAggregateInputType
   _max?: SupportTicketMaxAggregateInputType
 }
 
 export type SupportTicketGroupByOutputType = {
-  id: number
-  userId: number
+  id: string
+  userId: string
   subject: string
   description: string
   status: $Enums.SupportTicketStatus
   createdAt: Date
   updatedAt: Date
   _count: SupportTicketCountAggregateOutputType | null
-  _avg: SupportTicketAvgAggregateOutputType | null
-  _sum: SupportTicketSumAggregateOutputType | null
   _min: SupportTicketMinAggregateOutputType | null
   _max: SupportTicketMaxAggregateOutputType | null
 }
@@ -229,8 +191,8 @@ export type SupportTicketWhereInput = {
   AND?: Prisma.SupportTicketWhereInput | Prisma.SupportTicketWhereInput[]
   OR?: Prisma.SupportTicketWhereInput[]
   NOT?: Prisma.SupportTicketWhereInput | Prisma.SupportTicketWhereInput[]
-  id?: Prisma.IntFilter<"SupportTicket"> | number
-  userId?: Prisma.IntFilter<"SupportTicket"> | number
+  id?: Prisma.StringFilter<"SupportTicket"> | string
+  userId?: Prisma.StringFilter<"SupportTicket"> | string
   subject?: Prisma.StringFilter<"SupportTicket"> | string
   description?: Prisma.StringFilter<"SupportTicket"> | string
   status?: Prisma.EnumSupportTicketStatusFilter<"SupportTicket"> | $Enums.SupportTicketStatus
@@ -253,11 +215,11 @@ export type SupportTicketOrderByWithRelationInput = {
 }
 
 export type SupportTicketWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.SupportTicketWhereInput | Prisma.SupportTicketWhereInput[]
   OR?: Prisma.SupportTicketWhereInput[]
   NOT?: Prisma.SupportTicketWhereInput | Prisma.SupportTicketWhereInput[]
-  userId?: Prisma.IntFilter<"SupportTicket"> | number
+  userId?: Prisma.StringFilter<"SupportTicket"> | string
   subject?: Prisma.StringFilter<"SupportTicket"> | string
   description?: Prisma.StringFilter<"SupportTicket"> | string
   status?: Prisma.EnumSupportTicketStatusFilter<"SupportTicket"> | $Enums.SupportTicketStatus
@@ -276,18 +238,16 @@ export type SupportTicketOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SupportTicketCountOrderByAggregateInput
-  _avg?: Prisma.SupportTicketAvgOrderByAggregateInput
   _max?: Prisma.SupportTicketMaxOrderByAggregateInput
   _min?: Prisma.SupportTicketMinOrderByAggregateInput
-  _sum?: Prisma.SupportTicketSumOrderByAggregateInput
 }
 
 export type SupportTicketScalarWhereWithAggregatesInput = {
   AND?: Prisma.SupportTicketScalarWhereWithAggregatesInput | Prisma.SupportTicketScalarWhereWithAggregatesInput[]
   OR?: Prisma.SupportTicketScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SupportTicketScalarWhereWithAggregatesInput | Prisma.SupportTicketScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"SupportTicket"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"SupportTicket"> | number
+  id?: Prisma.StringWithAggregatesFilter<"SupportTicket"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"SupportTicket"> | string
   subject?: Prisma.StringWithAggregatesFilter<"SupportTicket"> | string
   description?: Prisma.StringWithAggregatesFilter<"SupportTicket"> | string
   status?: Prisma.EnumSupportTicketStatusWithAggregatesFilter<"SupportTicket"> | $Enums.SupportTicketStatus
@@ -296,6 +256,7 @@ export type SupportTicketScalarWhereWithAggregatesInput = {
 }
 
 export type SupportTicketCreateInput = {
+  id?: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -306,8 +267,8 @@ export type SupportTicketCreateInput = {
 }
 
 export type SupportTicketUncheckedCreateInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -317,6 +278,7 @@ export type SupportTicketUncheckedCreateInput = {
 }
 
 export type SupportTicketUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -327,8 +289,8 @@ export type SupportTicketUpdateInput = {
 }
 
 export type SupportTicketUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -338,8 +300,8 @@ export type SupportTicketUncheckedUpdateInput = {
 }
 
 export type SupportTicketCreateManyInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -348,6 +310,7 @@ export type SupportTicketCreateManyInput = {
 }
 
 export type SupportTicketUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -356,8 +319,8 @@ export type SupportTicketUpdateManyMutationInput = {
 }
 
 export type SupportTicketUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -373,11 +336,6 @@ export type SupportTicketCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type SupportTicketAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type SupportTicketMaxOrderByAggregateInput = {
@@ -398,11 +356,6 @@ export type SupportTicketMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type SupportTicketSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type SupportTicketScalarRelationFilter = {
@@ -481,6 +434,7 @@ export type SupportTicketUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type SupportTicketCreateWithoutRepliesInput = {
+  id?: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -490,8 +444,8 @@ export type SupportTicketCreateWithoutRepliesInput = {
 }
 
 export type SupportTicketUncheckedCreateWithoutRepliesInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -516,6 +470,7 @@ export type SupportTicketUpdateToOneWithWhereWithoutRepliesInput = {
 }
 
 export type SupportTicketUpdateWithoutRepliesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -525,8 +480,8 @@ export type SupportTicketUpdateWithoutRepliesInput = {
 }
 
 export type SupportTicketUncheckedUpdateWithoutRepliesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -535,6 +490,7 @@ export type SupportTicketUncheckedUpdateWithoutRepliesInput = {
 }
 
 export type SupportTicketCreateWithoutUserInput = {
+  id?: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -544,7 +500,7 @@ export type SupportTicketCreateWithoutUserInput = {
 }
 
 export type SupportTicketUncheckedCreateWithoutUserInput = {
-  id?: number
+  id?: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -583,8 +539,8 @@ export type SupportTicketScalarWhereInput = {
   AND?: Prisma.SupportTicketScalarWhereInput | Prisma.SupportTicketScalarWhereInput[]
   OR?: Prisma.SupportTicketScalarWhereInput[]
   NOT?: Prisma.SupportTicketScalarWhereInput | Prisma.SupportTicketScalarWhereInput[]
-  id?: Prisma.IntFilter<"SupportTicket"> | number
-  userId?: Prisma.IntFilter<"SupportTicket"> | number
+  id?: Prisma.StringFilter<"SupportTicket"> | string
+  userId?: Prisma.StringFilter<"SupportTicket"> | string
   subject?: Prisma.StringFilter<"SupportTicket"> | string
   description?: Prisma.StringFilter<"SupportTicket"> | string
   status?: Prisma.EnumSupportTicketStatusFilter<"SupportTicket"> | $Enums.SupportTicketStatus
@@ -593,7 +549,7 @@ export type SupportTicketScalarWhereInput = {
 }
 
 export type SupportTicketCreateManyUserInput = {
-  id?: number
+  id?: string
   subject: string
   description: string
   status?: $Enums.SupportTicketStatus
@@ -602,6 +558,7 @@ export type SupportTicketCreateManyUserInput = {
 }
 
 export type SupportTicketUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -611,7 +568,7 @@ export type SupportTicketUpdateWithoutUserInput = {
 }
 
 export type SupportTicketUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -621,7 +578,7 @@ export type SupportTicketUncheckedUpdateWithoutUserInput = {
 }
 
 export type SupportTicketUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSupportTicketStatusFieldUpdateOperationsInput | $Enums.SupportTicketStatus
@@ -725,8 +682,8 @@ export type $SupportTicketPayload<ExtArgs extends runtime.Types.Extensions.Inter
     replies: Prisma.$TicketReplyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    userId: number
+    id: string
+    userId: string
     subject: string
     description: string
     status: $Enums.SupportTicketStatus
@@ -1157,8 +1114,8 @@ export interface Prisma__SupportTicketClient<T, Null = never, ExtArgs extends ru
  * Fields of the SupportTicket model
  */
 export interface SupportTicketFieldRefs {
-  readonly id: Prisma.FieldRef<"SupportTicket", 'Int'>
-  readonly userId: Prisma.FieldRef<"SupportTicket", 'Int'>
+  readonly id: Prisma.FieldRef<"SupportTicket", 'String'>
+  readonly userId: Prisma.FieldRef<"SupportTicket", 'String'>
   readonly subject: Prisma.FieldRef<"SupportTicket", 'String'>
   readonly description: Prisma.FieldRef<"SupportTicket", 'String'>
   readonly status: Prisma.FieldRef<"SupportTicket", 'SupportTicketStatus'>

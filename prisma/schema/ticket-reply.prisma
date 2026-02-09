@@ -1,7 +1,7 @@
 model TicketReply {
-  id        Int           @id @default(autoincrement())
-  ticketId  Int
-  userId    Int
+  id        String        @id @default(uuid())
+  ticketId  String
+  userId    String
   message   String
   createdAt DateTime      @default(now())
 

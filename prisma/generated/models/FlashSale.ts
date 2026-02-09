@@ -20,38 +20,26 @@ export type FlashSaleModel = runtime.Types.Result.DefaultSelection<Prisma.$Flash
 
 export type AggregateFlashSale = {
   _count: FlashSaleCountAggregateOutputType | null
-  _avg: FlashSaleAvgAggregateOutputType | null
-  _sum: FlashSaleSumAggregateOutputType | null
   _min: FlashSaleMinAggregateOutputType | null
   _max: FlashSaleMaxAggregateOutputType | null
 }
 
-export type FlashSaleAvgAggregateOutputType = {
-  id: number | null
-  createdBy: number | null
-}
-
-export type FlashSaleSumAggregateOutputType = {
-  id: number | null
-  createdBy: number | null
-}
-
 export type FlashSaleMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   title: string | null
   startTime: Date | null
   endTime: Date | null
-  createdBy: number | null
+  createdBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type FlashSaleMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   title: string | null
   startTime: Date | null
   endTime: Date | null
-  createdBy: number | null
+  createdBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -67,16 +55,6 @@ export type FlashSaleCountAggregateOutputType = {
   _all: number
 }
 
-
-export type FlashSaleAvgAggregateInputType = {
-  id?: true
-  createdBy?: true
-}
-
-export type FlashSaleSumAggregateInputType = {
-  id?: true
-  createdBy?: true
-}
 
 export type FlashSaleMinAggregateInputType = {
   id?: true
@@ -147,18 +125,6 @@ export type FlashSaleAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: FlashSaleAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: FlashSaleSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: FlashSaleMinAggregateInputType
@@ -189,23 +155,19 @@ export type FlashSaleGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: FlashSaleCountAggregateInputType | true
-  _avg?: FlashSaleAvgAggregateInputType
-  _sum?: FlashSaleSumAggregateInputType
   _min?: FlashSaleMinAggregateInputType
   _max?: FlashSaleMaxAggregateInputType
 }
 
 export type FlashSaleGroupByOutputType = {
-  id: number
+  id: string
   title: string
   startTime: Date
   endTime: Date
-  createdBy: number
+  createdBy: string
   createdAt: Date
   updatedAt: Date
   _count: FlashSaleCountAggregateOutputType | null
-  _avg: FlashSaleAvgAggregateOutputType | null
-  _sum: FlashSaleSumAggregateOutputType | null
   _min: FlashSaleMinAggregateOutputType | null
   _max: FlashSaleMaxAggregateOutputType | null
 }
@@ -229,11 +191,11 @@ export type FlashSaleWhereInput = {
   AND?: Prisma.FlashSaleWhereInput | Prisma.FlashSaleWhereInput[]
   OR?: Prisma.FlashSaleWhereInput[]
   NOT?: Prisma.FlashSaleWhereInput | Prisma.FlashSaleWhereInput[]
-  id?: Prisma.IntFilter<"FlashSale"> | number
+  id?: Prisma.StringFilter<"FlashSale"> | string
   title?: Prisma.StringFilter<"FlashSale"> | string
   startTime?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   endTime?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
-  createdBy?: Prisma.IntFilter<"FlashSale"> | number
+  createdBy?: Prisma.StringFilter<"FlashSale"> | string
   createdAt?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -253,14 +215,14 @@ export type FlashSaleOrderByWithRelationInput = {
 }
 
 export type FlashSaleWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.FlashSaleWhereInput | Prisma.FlashSaleWhereInput[]
   OR?: Prisma.FlashSaleWhereInput[]
   NOT?: Prisma.FlashSaleWhereInput | Prisma.FlashSaleWhereInput[]
   title?: Prisma.StringFilter<"FlashSale"> | string
   startTime?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   endTime?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
-  createdBy?: Prisma.IntFilter<"FlashSale"> | number
+  createdBy?: Prisma.StringFilter<"FlashSale"> | string
   createdAt?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -276,26 +238,25 @@ export type FlashSaleOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.FlashSaleCountOrderByAggregateInput
-  _avg?: Prisma.FlashSaleAvgOrderByAggregateInput
   _max?: Prisma.FlashSaleMaxOrderByAggregateInput
   _min?: Prisma.FlashSaleMinOrderByAggregateInput
-  _sum?: Prisma.FlashSaleSumOrderByAggregateInput
 }
 
 export type FlashSaleScalarWhereWithAggregatesInput = {
   AND?: Prisma.FlashSaleScalarWhereWithAggregatesInput | Prisma.FlashSaleScalarWhereWithAggregatesInput[]
   OR?: Prisma.FlashSaleScalarWhereWithAggregatesInput[]
   NOT?: Prisma.FlashSaleScalarWhereWithAggregatesInput | Prisma.FlashSaleScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"FlashSale"> | number
+  id?: Prisma.StringWithAggregatesFilter<"FlashSale"> | string
   title?: Prisma.StringWithAggregatesFilter<"FlashSale"> | string
   startTime?: Prisma.DateTimeWithAggregatesFilter<"FlashSale"> | Date | string
   endTime?: Prisma.DateTimeWithAggregatesFilter<"FlashSale"> | Date | string
-  createdBy?: Prisma.IntWithAggregatesFilter<"FlashSale"> | number
+  createdBy?: Prisma.StringWithAggregatesFilter<"FlashSale"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"FlashSale"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"FlashSale"> | Date | string
 }
 
 export type FlashSaleCreateInput = {
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
@@ -306,17 +267,18 @@ export type FlashSaleCreateInput = {
 }
 
 export type FlashSaleUncheckedCreateInput = {
-  id?: number
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
-  createdBy: number
+  createdBy: string
   createdAt?: Date | string
   updatedAt?: Date | string
   products?: Prisma.FlashSaleProductUncheckedCreateNestedManyWithoutFlashSaleInput
 }
 
 export type FlashSaleUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -327,27 +289,28 @@ export type FlashSaleUpdateInput = {
 }
 
 export type FlashSaleUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.IntFieldUpdateOperationsInput | number
+  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.FlashSaleProductUncheckedUpdateManyWithoutFlashSaleNestedInput
 }
 
 export type FlashSaleCreateManyInput = {
-  id?: number
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
-  createdBy: number
+  createdBy: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type FlashSaleUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -356,11 +319,11 @@ export type FlashSaleUpdateManyMutationInput = {
 }
 
 export type FlashSaleUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.IntFieldUpdateOperationsInput | number
+  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -373,11 +336,6 @@ export type FlashSaleCountOrderByAggregateInput = {
   createdBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type FlashSaleAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
 }
 
 export type FlashSaleMaxOrderByAggregateInput = {
@@ -398,11 +356,6 @@ export type FlashSaleMinOrderByAggregateInput = {
   createdBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type FlashSaleSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
 }
 
 export type FlashSaleScalarRelationFilter = {
@@ -477,6 +430,7 @@ export type FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput = {
 }
 
 export type FlashSaleCreateWithoutProductsInput = {
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
@@ -486,11 +440,11 @@ export type FlashSaleCreateWithoutProductsInput = {
 }
 
 export type FlashSaleUncheckedCreateWithoutProductsInput = {
-  id?: number
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
-  createdBy: number
+  createdBy: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -512,6 +466,7 @@ export type FlashSaleUpdateToOneWithWhereWithoutProductsInput = {
 }
 
 export type FlashSaleUpdateWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -521,16 +476,17 @@ export type FlashSaleUpdateWithoutProductsInput = {
 }
 
 export type FlashSaleUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.IntFieldUpdateOperationsInput | number
+  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FlashSaleCreateWithoutCreatorInput = {
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
@@ -540,7 +496,7 @@ export type FlashSaleCreateWithoutCreatorInput = {
 }
 
 export type FlashSaleUncheckedCreateWithoutCreatorInput = {
-  id?: number
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
@@ -579,17 +535,17 @@ export type FlashSaleScalarWhereInput = {
   AND?: Prisma.FlashSaleScalarWhereInput | Prisma.FlashSaleScalarWhereInput[]
   OR?: Prisma.FlashSaleScalarWhereInput[]
   NOT?: Prisma.FlashSaleScalarWhereInput | Prisma.FlashSaleScalarWhereInput[]
-  id?: Prisma.IntFilter<"FlashSale"> | number
+  id?: Prisma.StringFilter<"FlashSale"> | string
   title?: Prisma.StringFilter<"FlashSale"> | string
   startTime?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   endTime?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
-  createdBy?: Prisma.IntFilter<"FlashSale"> | number
+  createdBy?: Prisma.StringFilter<"FlashSale"> | string
   createdAt?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FlashSale"> | Date | string
 }
 
 export type FlashSaleCreateManyCreatorInput = {
-  id?: number
+  id?: string
   title: string
   startTime: Date | string
   endTime: Date | string
@@ -598,6 +554,7 @@ export type FlashSaleCreateManyCreatorInput = {
 }
 
 export type FlashSaleUpdateWithoutCreatorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -607,7 +564,7 @@ export type FlashSaleUpdateWithoutCreatorInput = {
 }
 
 export type FlashSaleUncheckedUpdateWithoutCreatorInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -617,7 +574,7 @@ export type FlashSaleUncheckedUpdateWithoutCreatorInput = {
 }
 
 export type FlashSaleUncheckedUpdateManyWithoutCreatorInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -721,11 +678,11 @@ export type $FlashSalePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     products: Prisma.$FlashSaleProductPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     title: string
     startTime: Date
     endTime: Date
-    createdBy: number
+    createdBy: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["flashSale"]>
@@ -1153,11 +1110,11 @@ export interface Prisma__FlashSaleClient<T, Null = never, ExtArgs extends runtim
  * Fields of the FlashSale model
  */
 export interface FlashSaleFieldRefs {
-  readonly id: Prisma.FieldRef<"FlashSale", 'Int'>
+  readonly id: Prisma.FieldRef<"FlashSale", 'String'>
   readonly title: Prisma.FieldRef<"FlashSale", 'String'>
   readonly startTime: Prisma.FieldRef<"FlashSale", 'DateTime'>
   readonly endTime: Prisma.FieldRef<"FlashSale", 'DateTime'>
-  readonly createdBy: Prisma.FieldRef<"FlashSale", 'Int'>
+  readonly createdBy: Prisma.FieldRef<"FlashSale", 'String'>
   readonly createdAt: Prisma.FieldRef<"FlashSale", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"FlashSale", 'DateTime'>
 }

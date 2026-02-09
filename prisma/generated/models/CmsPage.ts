@@ -20,22 +20,12 @@ export type CmsPageModel = runtime.Types.Result.DefaultSelection<Prisma.$CmsPage
 
 export type AggregateCmsPage = {
   _count: CmsPageCountAggregateOutputType | null
-  _avg: CmsPageAvgAggregateOutputType | null
-  _sum: CmsPageSumAggregateOutputType | null
   _min: CmsPageMinAggregateOutputType | null
   _max: CmsPageMaxAggregateOutputType | null
 }
 
-export type CmsPageAvgAggregateOutputType = {
-  id: number | null
-}
-
-export type CmsPageSumAggregateOutputType = {
-  id: number | null
-}
-
 export type CmsPageMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   slug: string | null
   title: string | null
   content: string | null
@@ -45,7 +35,7 @@ export type CmsPageMinAggregateOutputType = {
 }
 
 export type CmsPageMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   slug: string | null
   title: string | null
   content: string | null
@@ -65,14 +55,6 @@ export type CmsPageCountAggregateOutputType = {
   _all: number
 }
 
-
-export type CmsPageAvgAggregateInputType = {
-  id?: true
-}
-
-export type CmsPageSumAggregateInputType = {
-  id?: true
-}
 
 export type CmsPageMinAggregateInputType = {
   id?: true
@@ -143,18 +125,6 @@ export type CmsPageAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: CmsPageAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: CmsPageSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: CmsPageMinAggregateInputType
@@ -185,14 +155,12 @@ export type CmsPageGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: CmsPageCountAggregateInputType | true
-  _avg?: CmsPageAvgAggregateInputType
-  _sum?: CmsPageSumAggregateInputType
   _min?: CmsPageMinAggregateInputType
   _max?: CmsPageMaxAggregateInputType
 }
 
 export type CmsPageGroupByOutputType = {
-  id: number
+  id: string
   slug: string
   title: string
   content: string
@@ -200,8 +168,6 @@ export type CmsPageGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   _count: CmsPageCountAggregateOutputType | null
-  _avg: CmsPageAvgAggregateOutputType | null
-  _sum: CmsPageSumAggregateOutputType | null
   _min: CmsPageMinAggregateOutputType | null
   _max: CmsPageMaxAggregateOutputType | null
 }
@@ -225,7 +191,7 @@ export type CmsPageWhereInput = {
   AND?: Prisma.CmsPageWhereInput | Prisma.CmsPageWhereInput[]
   OR?: Prisma.CmsPageWhereInput[]
   NOT?: Prisma.CmsPageWhereInput | Prisma.CmsPageWhereInput[]
-  id?: Prisma.IntFilter<"CmsPage"> | number
+  id?: Prisma.StringFilter<"CmsPage"> | string
   slug?: Prisma.StringFilter<"CmsPage"> | string
   title?: Prisma.StringFilter<"CmsPage"> | string
   content?: Prisma.StringFilter<"CmsPage"> | string
@@ -245,7 +211,7 @@ export type CmsPageOrderByWithRelationInput = {
 }
 
 export type CmsPageWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   slug?: string
   AND?: Prisma.CmsPageWhereInput | Prisma.CmsPageWhereInput[]
   OR?: Prisma.CmsPageWhereInput[]
@@ -266,17 +232,15 @@ export type CmsPageOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CmsPageCountOrderByAggregateInput
-  _avg?: Prisma.CmsPageAvgOrderByAggregateInput
   _max?: Prisma.CmsPageMaxOrderByAggregateInput
   _min?: Prisma.CmsPageMinOrderByAggregateInput
-  _sum?: Prisma.CmsPageSumOrderByAggregateInput
 }
 
 export type CmsPageScalarWhereWithAggregatesInput = {
   AND?: Prisma.CmsPageScalarWhereWithAggregatesInput | Prisma.CmsPageScalarWhereWithAggregatesInput[]
   OR?: Prisma.CmsPageScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CmsPageScalarWhereWithAggregatesInput | Prisma.CmsPageScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"CmsPage"> | number
+  id?: Prisma.StringWithAggregatesFilter<"CmsPage"> | string
   slug?: Prisma.StringWithAggregatesFilter<"CmsPage"> | string
   title?: Prisma.StringWithAggregatesFilter<"CmsPage"> | string
   content?: Prisma.StringWithAggregatesFilter<"CmsPage"> | string
@@ -286,6 +250,7 @@ export type CmsPageScalarWhereWithAggregatesInput = {
 }
 
 export type CmsPageCreateInput = {
+  id?: string
   slug: string
   title: string
   content: string
@@ -295,7 +260,7 @@ export type CmsPageCreateInput = {
 }
 
 export type CmsPageUncheckedCreateInput = {
-  id?: number
+  id?: string
   slug: string
   title: string
   content: string
@@ -305,6 +270,7 @@ export type CmsPageUncheckedCreateInput = {
 }
 
 export type CmsPageUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -314,7 +280,7 @@ export type CmsPageUpdateInput = {
 }
 
 export type CmsPageUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -324,7 +290,7 @@ export type CmsPageUncheckedUpdateInput = {
 }
 
 export type CmsPageCreateManyInput = {
-  id?: number
+  id?: string
   slug: string
   title: string
   content: string
@@ -334,6 +300,7 @@ export type CmsPageCreateManyInput = {
 }
 
 export type CmsPageUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -343,7 +310,7 @@ export type CmsPageUpdateManyMutationInput = {
 }
 
 export type CmsPageUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -360,10 +327,6 @@ export type CmsPageCountOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type CmsPageAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
 }
 
 export type CmsPageMaxOrderByAggregateInput = {
@@ -384,10 +347,6 @@ export type CmsPageMinOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type CmsPageSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
 }
 
 
@@ -438,7 +397,7 @@ export type $CmsPagePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "CmsPage"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     slug: string
     title: string
     content: string
@@ -868,7 +827,7 @@ export interface Prisma__CmsPageClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the CmsPage model
  */
 export interface CmsPageFieldRefs {
-  readonly id: Prisma.FieldRef<"CmsPage", 'Int'>
+  readonly id: Prisma.FieldRef<"CmsPage", 'String'>
   readonly slug: Prisma.FieldRef<"CmsPage", 'String'>
   readonly title: Prisma.FieldRef<"CmsPage", 'String'>
   readonly content: Prisma.FieldRef<"CmsPage", 'String'>

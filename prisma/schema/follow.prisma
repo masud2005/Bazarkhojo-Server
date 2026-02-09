@@ -1,7 +1,7 @@
 model Follow {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  sellerId  Int
+  id        String   @id @default(uuid())
+  userId    String
+  sellerId  String
   createdAt DateTime @default(now())
 
   user      User     @relation(fields: [userId],   references: [id], onDelete: Cascade)

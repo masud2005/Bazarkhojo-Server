@@ -1,5 +1,5 @@
 model Banner {
-  id        Int           @id @default(autoincrement())
+  id        String        @id @default(uuid())
   imageUrl  String
   link      String?
   position  BannerPosition

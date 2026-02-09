@@ -20,35 +20,23 @@ export type OutboxEventModel = runtime.Types.Result.DefaultSelection<Prisma.$Out
 
 export type AggregateOutboxEvent = {
   _count: OutboxEventCountAggregateOutputType | null
-  _avg: OutboxEventAvgAggregateOutputType | null
-  _sum: OutboxEventSumAggregateOutputType | null
   _min: OutboxEventMinAggregateOutputType | null
   _max: OutboxEventMaxAggregateOutputType | null
 }
 
-export type OutboxEventAvgAggregateOutputType = {
-  id: number | null
-  aggregateId: number | null
-}
-
-export type OutboxEventSumAggregateOutputType = {
-  id: number | null
-  aggregateId: number | null
-}
-
 export type OutboxEventMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   aggregateType: string | null
-  aggregateId: number | null
+  aggregateId: string | null
   eventType: string | null
   processed: boolean | null
   createdAt: Date | null
 }
 
 export type OutboxEventMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   aggregateType: string | null
-  aggregateId: number | null
+  aggregateId: string | null
   eventType: string | null
   processed: boolean | null
   createdAt: Date | null
@@ -65,16 +53,6 @@ export type OutboxEventCountAggregateOutputType = {
   _all: number
 }
 
-
-export type OutboxEventAvgAggregateInputType = {
-  id?: true
-  aggregateId?: true
-}
-
-export type OutboxEventSumAggregateInputType = {
-  id?: true
-  aggregateId?: true
-}
 
 export type OutboxEventMinAggregateInputType = {
   id?: true
@@ -143,18 +121,6 @@ export type OutboxEventAggregateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: OutboxEventAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: OutboxEventSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: OutboxEventMinAggregateInputType
@@ -185,23 +151,19 @@ export type OutboxEventGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   _count?: OutboxEventCountAggregateInputType | true
-  _avg?: OutboxEventAvgAggregateInputType
-  _sum?: OutboxEventSumAggregateInputType
   _min?: OutboxEventMinAggregateInputType
   _max?: OutboxEventMaxAggregateInputType
 }
 
 export type OutboxEventGroupByOutputType = {
-  id: number
+  id: string
   aggregateType: string
-  aggregateId: number
+  aggregateId: string
   eventType: string
   payload: runtime.JsonValue
   processed: boolean
   createdAt: Date
   _count: OutboxEventCountAggregateOutputType | null
-  _avg: OutboxEventAvgAggregateOutputType | null
-  _sum: OutboxEventSumAggregateOutputType | null
   _min: OutboxEventMinAggregateOutputType | null
   _max: OutboxEventMaxAggregateOutputType | null
 }
@@ -225,9 +187,9 @@ export type OutboxEventWhereInput = {
   AND?: Prisma.OutboxEventWhereInput | Prisma.OutboxEventWhereInput[]
   OR?: Prisma.OutboxEventWhereInput[]
   NOT?: Prisma.OutboxEventWhereInput | Prisma.OutboxEventWhereInput[]
-  id?: Prisma.IntFilter<"OutboxEvent"> | number
+  id?: Prisma.StringFilter<"OutboxEvent"> | string
   aggregateType?: Prisma.StringFilter<"OutboxEvent"> | string
-  aggregateId?: Prisma.IntFilter<"OutboxEvent"> | number
+  aggregateId?: Prisma.StringFilter<"OutboxEvent"> | string
   eventType?: Prisma.StringFilter<"OutboxEvent"> | string
   payload?: Prisma.JsonFilter<"OutboxEvent">
   processed?: Prisma.BoolFilter<"OutboxEvent"> | boolean
@@ -245,12 +207,12 @@ export type OutboxEventOrderByWithRelationInput = {
 }
 
 export type OutboxEventWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.OutboxEventWhereInput | Prisma.OutboxEventWhereInput[]
   OR?: Prisma.OutboxEventWhereInput[]
   NOT?: Prisma.OutboxEventWhereInput | Prisma.OutboxEventWhereInput[]
   aggregateType?: Prisma.StringFilter<"OutboxEvent"> | string
-  aggregateId?: Prisma.IntFilter<"OutboxEvent"> | number
+  aggregateId?: Prisma.StringFilter<"OutboxEvent"> | string
   eventType?: Prisma.StringFilter<"OutboxEvent"> | string
   payload?: Prisma.JsonFilter<"OutboxEvent">
   processed?: Prisma.BoolFilter<"OutboxEvent"> | boolean
@@ -266,19 +228,17 @@ export type OutboxEventOrderByWithAggregationInput = {
   processed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.OutboxEventCountOrderByAggregateInput
-  _avg?: Prisma.OutboxEventAvgOrderByAggregateInput
   _max?: Prisma.OutboxEventMaxOrderByAggregateInput
   _min?: Prisma.OutboxEventMinOrderByAggregateInput
-  _sum?: Prisma.OutboxEventSumOrderByAggregateInput
 }
 
 export type OutboxEventScalarWhereWithAggregatesInput = {
   AND?: Prisma.OutboxEventScalarWhereWithAggregatesInput | Prisma.OutboxEventScalarWhereWithAggregatesInput[]
   OR?: Prisma.OutboxEventScalarWhereWithAggregatesInput[]
   NOT?: Prisma.OutboxEventScalarWhereWithAggregatesInput | Prisma.OutboxEventScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"OutboxEvent"> | number
+  id?: Prisma.StringWithAggregatesFilter<"OutboxEvent"> | string
   aggregateType?: Prisma.StringWithAggregatesFilter<"OutboxEvent"> | string
-  aggregateId?: Prisma.IntWithAggregatesFilter<"OutboxEvent"> | number
+  aggregateId?: Prisma.StringWithAggregatesFilter<"OutboxEvent"> | string
   eventType?: Prisma.StringWithAggregatesFilter<"OutboxEvent"> | string
   payload?: Prisma.JsonWithAggregatesFilter<"OutboxEvent">
   processed?: Prisma.BoolWithAggregatesFilter<"OutboxEvent"> | boolean
@@ -286,8 +246,9 @@ export type OutboxEventScalarWhereWithAggregatesInput = {
 }
 
 export type OutboxEventCreateInput = {
+  id?: string
   aggregateType: string
-  aggregateId: number
+  aggregateId: string
   eventType: string
   payload: Prisma.JsonNullValueInput | runtime.InputJsonValue
   processed: boolean
@@ -295,9 +256,9 @@ export type OutboxEventCreateInput = {
 }
 
 export type OutboxEventUncheckedCreateInput = {
-  id?: number
+  id?: string
   aggregateType: string
-  aggregateId: number
+  aggregateId: string
   eventType: string
   payload: Prisma.JsonNullValueInput | runtime.InputJsonValue
   processed: boolean
@@ -305,8 +266,9 @@ export type OutboxEventUncheckedCreateInput = {
 }
 
 export type OutboxEventUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   aggregateType?: Prisma.StringFieldUpdateOperationsInput | string
-  aggregateId?: Prisma.IntFieldUpdateOperationsInput | number
+  aggregateId?: Prisma.StringFieldUpdateOperationsInput | string
   eventType?: Prisma.StringFieldUpdateOperationsInput | string
   payload?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   processed?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -314,9 +276,9 @@ export type OutboxEventUpdateInput = {
 }
 
 export type OutboxEventUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   aggregateType?: Prisma.StringFieldUpdateOperationsInput | string
-  aggregateId?: Prisma.IntFieldUpdateOperationsInput | number
+  aggregateId?: Prisma.StringFieldUpdateOperationsInput | string
   eventType?: Prisma.StringFieldUpdateOperationsInput | string
   payload?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   processed?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -324,9 +286,9 @@ export type OutboxEventUncheckedUpdateInput = {
 }
 
 export type OutboxEventCreateManyInput = {
-  id?: number
+  id?: string
   aggregateType: string
-  aggregateId: number
+  aggregateId: string
   eventType: string
   payload: Prisma.JsonNullValueInput | runtime.InputJsonValue
   processed: boolean
@@ -334,8 +296,9 @@ export type OutboxEventCreateManyInput = {
 }
 
 export type OutboxEventUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   aggregateType?: Prisma.StringFieldUpdateOperationsInput | string
-  aggregateId?: Prisma.IntFieldUpdateOperationsInput | number
+  aggregateId?: Prisma.StringFieldUpdateOperationsInput | string
   eventType?: Prisma.StringFieldUpdateOperationsInput | string
   payload?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   processed?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -343,9 +306,9 @@ export type OutboxEventUpdateManyMutationInput = {
 }
 
 export type OutboxEventUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   aggregateType?: Prisma.StringFieldUpdateOperationsInput | string
-  aggregateId?: Prisma.IntFieldUpdateOperationsInput | number
+  aggregateId?: Prisma.StringFieldUpdateOperationsInput | string
   eventType?: Prisma.StringFieldUpdateOperationsInput | string
   payload?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   processed?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -360,11 +323,6 @@ export type OutboxEventCountOrderByAggregateInput = {
   payload?: Prisma.SortOrder
   processed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type OutboxEventAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  aggregateId?: Prisma.SortOrder
 }
 
 export type OutboxEventMaxOrderByAggregateInput = {
@@ -383,11 +341,6 @@ export type OutboxEventMinOrderByAggregateInput = {
   eventType?: Prisma.SortOrder
   processed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type OutboxEventSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  aggregateId?: Prisma.SortOrder
 }
 
 
@@ -438,9 +391,9 @@ export type $OutboxEventPayload<ExtArgs extends runtime.Types.Extensions.Interna
   name: "OutboxEvent"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     aggregateType: string
-    aggregateId: number
+    aggregateId: string
     eventType: string
     payload: runtime.JsonValue
     processed: boolean
@@ -868,9 +821,9 @@ export interface Prisma__OutboxEventClient<T, Null = never, ExtArgs extends runt
  * Fields of the OutboxEvent model
  */
 export interface OutboxEventFieldRefs {
-  readonly id: Prisma.FieldRef<"OutboxEvent", 'Int'>
+  readonly id: Prisma.FieldRef<"OutboxEvent", 'String'>
   readonly aggregateType: Prisma.FieldRef<"OutboxEvent", 'String'>
-  readonly aggregateId: Prisma.FieldRef<"OutboxEvent", 'Int'>
+  readonly aggregateId: Prisma.FieldRef<"OutboxEvent", 'String'>
   readonly eventType: Prisma.FieldRef<"OutboxEvent", 'String'>
   readonly payload: Prisma.FieldRef<"OutboxEvent", 'Json'>
   readonly processed: Prisma.FieldRef<"OutboxEvent", 'Boolean'>

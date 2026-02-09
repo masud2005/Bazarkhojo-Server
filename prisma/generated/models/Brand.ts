@@ -20,22 +20,12 @@ export type BrandModel = runtime.Types.Result.DefaultSelection<Prisma.$BrandPayl
 
 export type AggregateBrand = {
   _count: BrandCountAggregateOutputType | null
-  _avg: BrandAvgAggregateOutputType | null
-  _sum: BrandSumAggregateOutputType | null
   _min: BrandMinAggregateOutputType | null
   _max: BrandMaxAggregateOutputType | null
 }
 
-export type BrandAvgAggregateOutputType = {
-  id: number | null
-}
-
-export type BrandSumAggregateOutputType = {
-  id: number | null
-}
-
 export type BrandMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   name: string | null
   slug: string | null
   logo: string | null
@@ -46,7 +36,7 @@ export type BrandMinAggregateOutputType = {
 }
 
 export type BrandMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   name: string | null
   slug: string | null
   logo: string | null
@@ -68,14 +58,6 @@ export type BrandCountAggregateOutputType = {
   _all: number
 }
 
-
-export type BrandAvgAggregateInputType = {
-  id?: true
-}
-
-export type BrandSumAggregateInputType = {
-  id?: true
-}
 
 export type BrandMinAggregateInputType = {
   id?: true
@@ -149,18 +131,6 @@ export type BrandAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: BrandAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: BrandSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: BrandMinAggregateInputType
@@ -191,14 +161,12 @@ export type BrandGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: BrandCountAggregateInputType | true
-  _avg?: BrandAvgAggregateInputType
-  _sum?: BrandSumAggregateInputType
   _min?: BrandMinAggregateInputType
   _max?: BrandMaxAggregateInputType
 }
 
 export type BrandGroupByOutputType = {
-  id: number
+  id: string
   name: string
   slug: string
   logo: string | null
@@ -207,8 +175,6 @@ export type BrandGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   _count: BrandCountAggregateOutputType | null
-  _avg: BrandAvgAggregateOutputType | null
-  _sum: BrandSumAggregateOutputType | null
   _min: BrandMinAggregateOutputType | null
   _max: BrandMaxAggregateOutputType | null
 }
@@ -232,7 +198,7 @@ export type BrandWhereInput = {
   AND?: Prisma.BrandWhereInput | Prisma.BrandWhereInput[]
   OR?: Prisma.BrandWhereInput[]
   NOT?: Prisma.BrandWhereInput | Prisma.BrandWhereInput[]
-  id?: Prisma.IntFilter<"Brand"> | number
+  id?: Prisma.StringFilter<"Brand"> | string
   name?: Prisma.StringFilter<"Brand"> | string
   slug?: Prisma.StringFilter<"Brand"> | string
   logo?: Prisma.StringNullableFilter<"Brand"> | string | null
@@ -256,7 +222,7 @@ export type BrandOrderByWithRelationInput = {
 }
 
 export type BrandWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   slug?: string
   AND?: Prisma.BrandWhereInput | Prisma.BrandWhereInput[]
   OR?: Prisma.BrandWhereInput[]
@@ -280,17 +246,15 @@ export type BrandOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BrandCountOrderByAggregateInput
-  _avg?: Prisma.BrandAvgOrderByAggregateInput
   _max?: Prisma.BrandMaxOrderByAggregateInput
   _min?: Prisma.BrandMinOrderByAggregateInput
-  _sum?: Prisma.BrandSumOrderByAggregateInput
 }
 
 export type BrandScalarWhereWithAggregatesInput = {
   AND?: Prisma.BrandScalarWhereWithAggregatesInput | Prisma.BrandScalarWhereWithAggregatesInput[]
   OR?: Prisma.BrandScalarWhereWithAggregatesInput[]
   NOT?: Prisma.BrandScalarWhereWithAggregatesInput | Prisma.BrandScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Brand"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Brand"> | string
   name?: Prisma.StringWithAggregatesFilter<"Brand"> | string
   slug?: Prisma.StringWithAggregatesFilter<"Brand"> | string
   logo?: Prisma.StringNullableWithAggregatesFilter<"Brand"> | string | null
@@ -301,6 +265,7 @@ export type BrandScalarWhereWithAggregatesInput = {
 }
 
 export type BrandCreateInput = {
+  id?: string
   name: string
   slug: string
   logo?: string | null
@@ -312,7 +277,7 @@ export type BrandCreateInput = {
 }
 
 export type BrandUncheckedCreateInput = {
-  id?: number
+  id?: string
   name: string
   slug: string
   logo?: string | null
@@ -324,6 +289,7 @@ export type BrandUncheckedCreateInput = {
 }
 
 export type BrandUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -335,7 +301,7 @@ export type BrandUpdateInput = {
 }
 
 export type BrandUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -347,7 +313,7 @@ export type BrandUncheckedUpdateInput = {
 }
 
 export type BrandCreateManyInput = {
-  id?: number
+  id?: string
   name: string
   slug: string
   logo?: string | null
@@ -358,6 +324,7 @@ export type BrandCreateManyInput = {
 }
 
 export type BrandUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -368,7 +335,7 @@ export type BrandUpdateManyMutationInput = {
 }
 
 export type BrandUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -387,10 +354,6 @@ export type BrandCountOrderByAggregateInput = {
   isApproved?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type BrandAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
 }
 
 export type BrandMaxOrderByAggregateInput = {
@@ -415,10 +378,6 @@ export type BrandMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type BrandSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-}
-
 export type BrandNullableScalarRelationFilter = {
   is?: Prisma.BrandWhereInput | null
   isNot?: Prisma.BrandWhereInput | null
@@ -441,6 +400,7 @@ export type BrandUpdateOneWithoutProductsNestedInput = {
 }
 
 export type BrandCreateWithoutProductsInput = {
+  id?: string
   name: string
   slug: string
   logo?: string | null
@@ -451,7 +411,7 @@ export type BrandCreateWithoutProductsInput = {
 }
 
 export type BrandUncheckedCreateWithoutProductsInput = {
-  id?: number
+  id?: string
   name: string
   slug: string
   logo?: string | null
@@ -478,6 +438,7 @@ export type BrandUpdateToOneWithWhereWithoutProductsInput = {
 }
 
 export type BrandUpdateWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -488,7 +449,7 @@ export type BrandUpdateWithoutProductsInput = {
 }
 
 export type BrandUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -589,7 +550,7 @@ export type $BrandPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     products: Prisma.$ProductPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     name: string
     slug: string
     logo: string | null
@@ -1021,7 +982,7 @@ export interface Prisma__BrandClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the Brand model
  */
 export interface BrandFieldRefs {
-  readonly id: Prisma.FieldRef<"Brand", 'Int'>
+  readonly id: Prisma.FieldRef<"Brand", 'String'>
   readonly name: Prisma.FieldRef<"Brand", 'String'>
   readonly slug: Prisma.FieldRef<"Brand", 'String'>
   readonly logo: Prisma.FieldRef<"Brand", 'String'>

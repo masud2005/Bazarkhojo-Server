@@ -1,8 +1,8 @@
 model Review {
-  id           Int      @id @default(autoincrement())
-  productId    Int
-  userId       Int
-  orderItemId  Int? @unique
+  id           String   @id @default(uuid())
+  productId    String
+  userId       String
+  orderItemId  String? @unique
   rating       Int
   comment      String?
   isApproved   Boolean  @default(true)

@@ -20,22 +20,12 @@ export type BannerModel = runtime.Types.Result.DefaultSelection<Prisma.$BannerPa
 
 export type AggregateBanner = {
   _count: BannerCountAggregateOutputType | null
-  _avg: BannerAvgAggregateOutputType | null
-  _sum: BannerSumAggregateOutputType | null
   _min: BannerMinAggregateOutputType | null
   _max: BannerMaxAggregateOutputType | null
 }
 
-export type BannerAvgAggregateOutputType = {
-  id: number | null
-}
-
-export type BannerSumAggregateOutputType = {
-  id: number | null
-}
-
 export type BannerMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   imageUrl: string | null
   link: string | null
   position: $Enums.BannerPosition | null
@@ -47,7 +37,7 @@ export type BannerMinAggregateOutputType = {
 }
 
 export type BannerMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   imageUrl: string | null
   link: string | null
   position: $Enums.BannerPosition | null
@@ -71,14 +61,6 @@ export type BannerCountAggregateOutputType = {
   _all: number
 }
 
-
-export type BannerAvgAggregateInputType = {
-  id?: true
-}
-
-export type BannerSumAggregateInputType = {
-  id?: true
-}
 
 export type BannerMinAggregateInputType = {
   id?: true
@@ -155,18 +137,6 @@ export type BannerAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: BannerAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: BannerSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: BannerMinAggregateInputType
@@ -197,14 +167,12 @@ export type BannerGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: BannerCountAggregateInputType | true
-  _avg?: BannerAvgAggregateInputType
-  _sum?: BannerSumAggregateInputType
   _min?: BannerMinAggregateInputType
   _max?: BannerMaxAggregateInputType
 }
 
 export type BannerGroupByOutputType = {
-  id: number
+  id: string
   imageUrl: string
   link: string | null
   position: $Enums.BannerPosition
@@ -214,8 +182,6 @@ export type BannerGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   _count: BannerCountAggregateOutputType | null
-  _avg: BannerAvgAggregateOutputType | null
-  _sum: BannerSumAggregateOutputType | null
   _min: BannerMinAggregateOutputType | null
   _max: BannerMaxAggregateOutputType | null
 }
@@ -239,7 +205,7 @@ export type BannerWhereInput = {
   AND?: Prisma.BannerWhereInput | Prisma.BannerWhereInput[]
   OR?: Prisma.BannerWhereInput[]
   NOT?: Prisma.BannerWhereInput | Prisma.BannerWhereInput[]
-  id?: Prisma.IntFilter<"Banner"> | number
+  id?: Prisma.StringFilter<"Banner"> | string
   imageUrl?: Prisma.StringFilter<"Banner"> | string
   link?: Prisma.StringNullableFilter<"Banner"> | string | null
   position?: Prisma.EnumBannerPositionFilter<"Banner"> | $Enums.BannerPosition
@@ -263,7 +229,7 @@ export type BannerOrderByWithRelationInput = {
 }
 
 export type BannerWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.BannerWhereInput | Prisma.BannerWhereInput[]
   OR?: Prisma.BannerWhereInput[]
   NOT?: Prisma.BannerWhereInput | Prisma.BannerWhereInput[]
@@ -288,17 +254,15 @@ export type BannerOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BannerCountOrderByAggregateInput
-  _avg?: Prisma.BannerAvgOrderByAggregateInput
   _max?: Prisma.BannerMaxOrderByAggregateInput
   _min?: Prisma.BannerMinOrderByAggregateInput
-  _sum?: Prisma.BannerSumOrderByAggregateInput
 }
 
 export type BannerScalarWhereWithAggregatesInput = {
   AND?: Prisma.BannerScalarWhereWithAggregatesInput | Prisma.BannerScalarWhereWithAggregatesInput[]
   OR?: Prisma.BannerScalarWhereWithAggregatesInput[]
   NOT?: Prisma.BannerScalarWhereWithAggregatesInput | Prisma.BannerScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Banner"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Banner"> | string
   imageUrl?: Prisma.StringWithAggregatesFilter<"Banner"> | string
   link?: Prisma.StringNullableWithAggregatesFilter<"Banner"> | string | null
   position?: Prisma.EnumBannerPositionWithAggregatesFilter<"Banner"> | $Enums.BannerPosition
@@ -310,6 +274,7 @@ export type BannerScalarWhereWithAggregatesInput = {
 }
 
 export type BannerCreateInput = {
+  id?: string
   imageUrl: string
   link?: string | null
   position: $Enums.BannerPosition
@@ -321,7 +286,7 @@ export type BannerCreateInput = {
 }
 
 export type BannerUncheckedCreateInput = {
-  id?: number
+  id?: string
   imageUrl: string
   link?: string | null
   position: $Enums.BannerPosition
@@ -333,6 +298,7 @@ export type BannerUncheckedCreateInput = {
 }
 
 export type BannerUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.EnumBannerPositionFieldUpdateOperationsInput | $Enums.BannerPosition
@@ -344,7 +310,7 @@ export type BannerUpdateInput = {
 }
 
 export type BannerUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.EnumBannerPositionFieldUpdateOperationsInput | $Enums.BannerPosition
@@ -356,7 +322,7 @@ export type BannerUncheckedUpdateInput = {
 }
 
 export type BannerCreateManyInput = {
-  id?: number
+  id?: string
   imageUrl: string
   link?: string | null
   position: $Enums.BannerPosition
@@ -368,6 +334,7 @@ export type BannerCreateManyInput = {
 }
 
 export type BannerUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.EnumBannerPositionFieldUpdateOperationsInput | $Enums.BannerPosition
@@ -379,7 +346,7 @@ export type BannerUpdateManyMutationInput = {
 }
 
 export type BannerUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.EnumBannerPositionFieldUpdateOperationsInput | $Enums.BannerPosition
@@ -400,10 +367,6 @@ export type BannerCountOrderByAggregateInput = {
   endDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type BannerAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
 }
 
 export type BannerMaxOrderByAggregateInput = {
@@ -428,10 +391,6 @@ export type BannerMinOrderByAggregateInput = {
   endDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type BannerSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
 }
 
 export type EnumBannerPositionFieldUpdateOperationsInput = {
@@ -498,7 +457,7 @@ export type $BannerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Banner"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     imageUrl: string
     link: string | null
     position: $Enums.BannerPosition
@@ -930,7 +889,7 @@ export interface Prisma__BannerClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Banner model
  */
 export interface BannerFieldRefs {
-  readonly id: Prisma.FieldRef<"Banner", 'Int'>
+  readonly id: Prisma.FieldRef<"Banner", 'String'>
   readonly imageUrl: Prisma.FieldRef<"Banner", 'String'>
   readonly link: Prisma.FieldRef<"Banner", 'String'>
   readonly position: Prisma.FieldRef<"Banner", 'BannerPosition'>

@@ -20,36 +20,22 @@ export type TicketReplyModel = runtime.Types.Result.DefaultSelection<Prisma.$Tic
 
 export type AggregateTicketReply = {
   _count: TicketReplyCountAggregateOutputType | null
-  _avg: TicketReplyAvgAggregateOutputType | null
-  _sum: TicketReplySumAggregateOutputType | null
   _min: TicketReplyMinAggregateOutputType | null
   _max: TicketReplyMaxAggregateOutputType | null
 }
 
-export type TicketReplyAvgAggregateOutputType = {
-  id: number | null
-  ticketId: number | null
-  userId: number | null
-}
-
-export type TicketReplySumAggregateOutputType = {
-  id: number | null
-  ticketId: number | null
-  userId: number | null
-}
-
 export type TicketReplyMinAggregateOutputType = {
-  id: number | null
-  ticketId: number | null
-  userId: number | null
+  id: string | null
+  ticketId: string | null
+  userId: string | null
   message: string | null
   createdAt: Date | null
 }
 
 export type TicketReplyMaxAggregateOutputType = {
-  id: number | null
-  ticketId: number | null
-  userId: number | null
+  id: string | null
+  ticketId: string | null
+  userId: string | null
   message: string | null
   createdAt: Date | null
 }
@@ -63,18 +49,6 @@ export type TicketReplyCountAggregateOutputType = {
   _all: number
 }
 
-
-export type TicketReplyAvgAggregateInputType = {
-  id?: true
-  ticketId?: true
-  userId?: true
-}
-
-export type TicketReplySumAggregateInputType = {
-  id?: true
-  ticketId?: true
-  userId?: true
-}
 
 export type TicketReplyMinAggregateInputType = {
   id?: true
@@ -139,18 +113,6 @@ export type TicketReplyAggregateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: TicketReplyAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: TicketReplySumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: TicketReplyMinAggregateInputType
@@ -181,21 +143,17 @@ export type TicketReplyGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   _count?: TicketReplyCountAggregateInputType | true
-  _avg?: TicketReplyAvgAggregateInputType
-  _sum?: TicketReplySumAggregateInputType
   _min?: TicketReplyMinAggregateInputType
   _max?: TicketReplyMaxAggregateInputType
 }
 
 export type TicketReplyGroupByOutputType = {
-  id: number
-  ticketId: number
-  userId: number
+  id: string
+  ticketId: string
+  userId: string
   message: string
   createdAt: Date
   _count: TicketReplyCountAggregateOutputType | null
-  _avg: TicketReplyAvgAggregateOutputType | null
-  _sum: TicketReplySumAggregateOutputType | null
   _min: TicketReplyMinAggregateOutputType | null
   _max: TicketReplyMaxAggregateOutputType | null
 }
@@ -219,9 +177,9 @@ export type TicketReplyWhereInput = {
   AND?: Prisma.TicketReplyWhereInput | Prisma.TicketReplyWhereInput[]
   OR?: Prisma.TicketReplyWhereInput[]
   NOT?: Prisma.TicketReplyWhereInput | Prisma.TicketReplyWhereInput[]
-  id?: Prisma.IntFilter<"TicketReply"> | number
-  ticketId?: Prisma.IntFilter<"TicketReply"> | number
-  userId?: Prisma.IntFilter<"TicketReply"> | number
+  id?: Prisma.StringFilter<"TicketReply"> | string
+  ticketId?: Prisma.StringFilter<"TicketReply"> | string
+  userId?: Prisma.StringFilter<"TicketReply"> | string
   message?: Prisma.StringFilter<"TicketReply"> | string
   createdAt?: Prisma.DateTimeFilter<"TicketReply"> | Date | string
   ticket?: Prisma.XOR<Prisma.SupportTicketScalarRelationFilter, Prisma.SupportTicketWhereInput>
@@ -239,12 +197,12 @@ export type TicketReplyOrderByWithRelationInput = {
 }
 
 export type TicketReplyWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.TicketReplyWhereInput | Prisma.TicketReplyWhereInput[]
   OR?: Prisma.TicketReplyWhereInput[]
   NOT?: Prisma.TicketReplyWhereInput | Prisma.TicketReplyWhereInput[]
-  ticketId?: Prisma.IntFilter<"TicketReply"> | number
-  userId?: Prisma.IntFilter<"TicketReply"> | number
+  ticketId?: Prisma.StringFilter<"TicketReply"> | string
+  userId?: Prisma.StringFilter<"TicketReply"> | string
   message?: Prisma.StringFilter<"TicketReply"> | string
   createdAt?: Prisma.DateTimeFilter<"TicketReply"> | Date | string
   ticket?: Prisma.XOR<Prisma.SupportTicketScalarRelationFilter, Prisma.SupportTicketWhereInput>
@@ -258,24 +216,23 @@ export type TicketReplyOrderByWithAggregationInput = {
   message?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.TicketReplyCountOrderByAggregateInput
-  _avg?: Prisma.TicketReplyAvgOrderByAggregateInput
   _max?: Prisma.TicketReplyMaxOrderByAggregateInput
   _min?: Prisma.TicketReplyMinOrderByAggregateInput
-  _sum?: Prisma.TicketReplySumOrderByAggregateInput
 }
 
 export type TicketReplyScalarWhereWithAggregatesInput = {
   AND?: Prisma.TicketReplyScalarWhereWithAggregatesInput | Prisma.TicketReplyScalarWhereWithAggregatesInput[]
   OR?: Prisma.TicketReplyScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TicketReplyScalarWhereWithAggregatesInput | Prisma.TicketReplyScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"TicketReply"> | number
-  ticketId?: Prisma.IntWithAggregatesFilter<"TicketReply"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"TicketReply"> | number
+  id?: Prisma.StringWithAggregatesFilter<"TicketReply"> | string
+  ticketId?: Prisma.StringWithAggregatesFilter<"TicketReply"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"TicketReply"> | string
   message?: Prisma.StringWithAggregatesFilter<"TicketReply"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TicketReply"> | Date | string
 }
 
 export type TicketReplyCreateInput = {
+  id?: string
   message: string
   createdAt?: Date | string
   ticket: Prisma.SupportTicketCreateNestedOneWithoutRepliesInput
@@ -283,14 +240,15 @@ export type TicketReplyCreateInput = {
 }
 
 export type TicketReplyUncheckedCreateInput = {
-  id?: number
-  ticketId: number
-  userId: number
+  id?: string
+  ticketId: string
+  userId: string
   message: string
   createdAt?: Date | string
 }
 
 export type TicketReplyUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticket?: Prisma.SupportTicketUpdateOneRequiredWithoutRepliesNestedInput
@@ -298,30 +256,31 @@ export type TicketReplyUpdateInput = {
 }
 
 export type TicketReplyUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ticketId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TicketReplyCreateManyInput = {
-  id?: number
-  ticketId: number
-  userId: number
+  id?: string
+  ticketId: string
+  userId: string
   message: string
   createdAt?: Date | string
 }
 
 export type TicketReplyUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TicketReplyUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ticketId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -344,12 +303,6 @@ export type TicketReplyCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
-export type TicketReplyAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  ticketId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-}
-
 export type TicketReplyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
@@ -364,12 +317,6 @@ export type TicketReplyMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   message?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type TicketReplySumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  ticketId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type TicketReplyCreateNestedManyWithoutTicketInput = {
@@ -457,14 +404,15 @@ export type TicketReplyUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type TicketReplyCreateWithoutTicketInput = {
+  id?: string
   message: string
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTicketRepliesInput
 }
 
 export type TicketReplyUncheckedCreateWithoutTicketInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   message: string
   createdAt?: Date | string
 }
@@ -499,22 +447,23 @@ export type TicketReplyScalarWhereInput = {
   AND?: Prisma.TicketReplyScalarWhereInput | Prisma.TicketReplyScalarWhereInput[]
   OR?: Prisma.TicketReplyScalarWhereInput[]
   NOT?: Prisma.TicketReplyScalarWhereInput | Prisma.TicketReplyScalarWhereInput[]
-  id?: Prisma.IntFilter<"TicketReply"> | number
-  ticketId?: Prisma.IntFilter<"TicketReply"> | number
-  userId?: Prisma.IntFilter<"TicketReply"> | number
+  id?: Prisma.StringFilter<"TicketReply"> | string
+  ticketId?: Prisma.StringFilter<"TicketReply"> | string
+  userId?: Prisma.StringFilter<"TicketReply"> | string
   message?: Prisma.StringFilter<"TicketReply"> | string
   createdAt?: Prisma.DateTimeFilter<"TicketReply"> | Date | string
 }
 
 export type TicketReplyCreateWithoutUserInput = {
+  id?: string
   message: string
   createdAt?: Date | string
   ticket: Prisma.SupportTicketCreateNestedOneWithoutRepliesInput
 }
 
 export type TicketReplyUncheckedCreateWithoutUserInput = {
-  id?: number
-  ticketId: number
+  id?: string
+  ticketId: string
   message: string
   createdAt?: Date | string
 }
@@ -546,55 +495,57 @@ export type TicketReplyUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type TicketReplyCreateManyTicketInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   message: string
   createdAt?: Date | string
 }
 
 export type TicketReplyUpdateWithoutTicketInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTicketRepliesNestedInput
 }
 
 export type TicketReplyUncheckedUpdateWithoutTicketInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TicketReplyUncheckedUpdateManyWithoutTicketInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TicketReplyCreateManyUserInput = {
-  id?: number
-  ticketId: number
+  id?: string
+  ticketId: string
   message: string
   createdAt?: Date | string
 }
 
 export type TicketReplyUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticket?: Prisma.SupportTicketUpdateOneRequiredWithoutRepliesNestedInput
 }
 
 export type TicketReplyUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ticketId?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TicketReplyUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ticketId?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -660,9 +611,9 @@ export type $TicketReplyPayload<ExtArgs extends runtime.Types.Extensions.Interna
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    ticketId: number
-    userId: number
+    id: string
+    ticketId: string
+    userId: string
     message: string
     createdAt: Date
   }, ExtArgs["result"]["ticketReply"]>
@@ -1090,9 +1041,9 @@ export interface Prisma__TicketReplyClient<T, Null = never, ExtArgs extends runt
  * Fields of the TicketReply model
  */
 export interface TicketReplyFieldRefs {
-  readonly id: Prisma.FieldRef<"TicketReply", 'Int'>
-  readonly ticketId: Prisma.FieldRef<"TicketReply", 'Int'>
-  readonly userId: Prisma.FieldRef<"TicketReply", 'Int'>
+  readonly id: Prisma.FieldRef<"TicketReply", 'String'>
+  readonly ticketId: Prisma.FieldRef<"TicketReply", 'String'>
+  readonly userId: Prisma.FieldRef<"TicketReply", 'String'>
   readonly message: Prisma.FieldRef<"TicketReply", 'String'>
   readonly createdAt: Prisma.FieldRef<"TicketReply", 'DateTime'>
 }

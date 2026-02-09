@@ -1,6 +1,6 @@
 model Order {
-  id              Int          @id @default(autoincrement())
-  userId          Int
+  id              String       @id @default(uuid())
+  userId          String
   orderNumber     String       @unique
   totalAmount     Decimal      @db.Decimal(12, 2)
   status          String       @default("PENDING")
@@ -12,8 +12,8 @@ model Order {
   orderStatus     OrderStatus  @default(PENDING)
   shippingAddress Json?
   trackingNumber  String?
-  riderId         Int?
-  couponId        Int?
+  riderId         String?
+  couponId        String?
   notes           String?
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt

@@ -1,7 +1,7 @@
 model Conversation {
-  id            Int           @id @default(autoincrement())
-  user1Id        Int
-  user2Id        Int
+  id            String        @id @default(uuid())
+  user1Id        String
+  user2Id        String
   lastMessageAt DateTime?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -14,9 +14,9 @@ model Conversation {
 }
 
 model Message {
-  id             Int          @id @default(autoincrement())
-  conversationId Int
-  senderId       Int
+  id             String       @id @default(uuid())
+  conversationId String
+  senderId       String
   message        String
   createdAt      DateTime     @default(now())
 

@@ -1,7 +1,7 @@
 model CartItem {
-  id        Int      @id @default(autoincrement())
-  cartId    Int
-  productVariantId Int
+  id        String   @id @default(uuid())
+  cartId    String
+  productVariantId String
   quantity  Int
   variant   Json?
   createdAt DateTime @default(now())

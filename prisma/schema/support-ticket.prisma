@@ -1,6 +1,6 @@
 model SupportTicket {
-  id          Int                @id @default(autoincrement())
-  userId      Int
+  id          String             @id @default(uuid())
+  userId      String
   subject     String
   description String
   status      SupportTicketStatus @default(OPEN)

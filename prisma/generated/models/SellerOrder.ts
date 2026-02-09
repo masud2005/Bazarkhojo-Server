@@ -27,31 +27,25 @@ export type AggregateSellerOrder = {
 }
 
 export type SellerOrderAvgAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  sellerId: number | null
   subtotal: runtime.Decimal | null
 }
 
 export type SellerOrderSumAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  sellerId: number | null
   subtotal: runtime.Decimal | null
 }
 
 export type SellerOrderMinAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  sellerId: number | null
+  id: string | null
+  orderId: string | null
+  sellerId: string | null
   subtotal: runtime.Decimal | null
   status: string | null
 }
 
 export type SellerOrderMaxAggregateOutputType = {
-  id: number | null
-  orderId: number | null
-  sellerId: number | null
+  id: string | null
+  orderId: string | null
+  sellerId: string | null
   subtotal: runtime.Decimal | null
   status: string | null
 }
@@ -67,16 +61,10 @@ export type SellerOrderCountAggregateOutputType = {
 
 
 export type SellerOrderAvgAggregateInputType = {
-  id?: true
-  orderId?: true
-  sellerId?: true
   subtotal?: true
 }
 
 export type SellerOrderSumAggregateInputType = {
-  id?: true
-  orderId?: true
-  sellerId?: true
   subtotal?: true
 }
 
@@ -192,9 +180,9 @@ export type SellerOrderGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type SellerOrderGroupByOutputType = {
-  id: number
-  orderId: number
-  sellerId: number
+  id: string
+  orderId: string
+  sellerId: string
   subtotal: runtime.Decimal
   status: string
   _count: SellerOrderCountAggregateOutputType | null
@@ -223,9 +211,9 @@ export type SellerOrderWhereInput = {
   AND?: Prisma.SellerOrderWhereInput | Prisma.SellerOrderWhereInput[]
   OR?: Prisma.SellerOrderWhereInput[]
   NOT?: Prisma.SellerOrderWhereInput | Prisma.SellerOrderWhereInput[]
-  id?: Prisma.IntFilter<"SellerOrder"> | number
-  orderId?: Prisma.IntFilter<"SellerOrder"> | number
-  sellerId?: Prisma.IntFilter<"SellerOrder"> | number
+  id?: Prisma.StringFilter<"SellerOrder"> | string
+  orderId?: Prisma.StringFilter<"SellerOrder"> | string
+  sellerId?: Prisma.StringFilter<"SellerOrder"> | string
   subtotal?: Prisma.DecimalFilter<"SellerOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFilter<"SellerOrder"> | string
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
@@ -245,12 +233,12 @@ export type SellerOrderOrderByWithRelationInput = {
 }
 
 export type SellerOrderWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.SellerOrderWhereInput | Prisma.SellerOrderWhereInput[]
   OR?: Prisma.SellerOrderWhereInput[]
   NOT?: Prisma.SellerOrderWhereInput | Prisma.SellerOrderWhereInput[]
-  orderId?: Prisma.IntFilter<"SellerOrder"> | number
-  sellerId?: Prisma.IntFilter<"SellerOrder"> | number
+  orderId?: Prisma.StringFilter<"SellerOrder"> | string
+  sellerId?: Prisma.StringFilter<"SellerOrder"> | string
   subtotal?: Prisma.DecimalFilter<"SellerOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFilter<"SellerOrder"> | string
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
@@ -275,14 +263,15 @@ export type SellerOrderScalarWhereWithAggregatesInput = {
   AND?: Prisma.SellerOrderScalarWhereWithAggregatesInput | Prisma.SellerOrderScalarWhereWithAggregatesInput[]
   OR?: Prisma.SellerOrderScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SellerOrderScalarWhereWithAggregatesInput | Prisma.SellerOrderScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"SellerOrder"> | number
-  orderId?: Prisma.IntWithAggregatesFilter<"SellerOrder"> | number
-  sellerId?: Prisma.IntWithAggregatesFilter<"SellerOrder"> | number
+  id?: Prisma.StringWithAggregatesFilter<"SellerOrder"> | string
+  orderId?: Prisma.StringWithAggregatesFilter<"SellerOrder"> | string
+  sellerId?: Prisma.StringWithAggregatesFilter<"SellerOrder"> | string
   subtotal?: Prisma.DecimalWithAggregatesFilter<"SellerOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringWithAggregatesFilter<"SellerOrder"> | string
 }
 
 export type SellerOrderCreateInput = {
+  id?: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
   order: Prisma.OrderCreateNestedOneWithoutSellerOrdersInput
@@ -291,15 +280,16 @@ export type SellerOrderCreateInput = {
 }
 
 export type SellerOrderUncheckedCreateInput = {
-  id?: number
-  orderId: number
-  sellerId: number
+  id?: string
+  orderId: string
+  sellerId: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutSellerOrderInput
 }
 
 export type SellerOrderUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.OrderUpdateOneRequiredWithoutSellerOrdersNestedInput
@@ -308,31 +298,32 @@ export type SellerOrderUpdateInput = {
 }
 
 export type SellerOrderUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutSellerOrderNestedInput
 }
 
 export type SellerOrderCreateManyInput = {
-  id?: number
-  orderId: number
-  sellerId: number
+  id?: string
+  orderId: string
+  sellerId: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
 }
 
 export type SellerOrderUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SellerOrderUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -361,9 +352,6 @@ export type SellerOrderCountOrderByAggregateInput = {
 }
 
 export type SellerOrderAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
 
@@ -384,9 +372,6 @@ export type SellerOrderMinOrderByAggregateInput = {
 }
 
 export type SellerOrderSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
 
@@ -489,6 +474,7 @@ export type SellerOrderUncheckedUpdateManyWithoutSellerNestedInput = {
 }
 
 export type SellerOrderCreateWithoutOrderItemsInput = {
+  id?: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
   order: Prisma.OrderCreateNestedOneWithoutSellerOrdersInput
@@ -496,9 +482,9 @@ export type SellerOrderCreateWithoutOrderItemsInput = {
 }
 
 export type SellerOrderUncheckedCreateWithoutOrderItemsInput = {
-  id?: number
-  orderId: number
-  sellerId: number
+  id?: string
+  orderId: string
+  sellerId: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
 }
@@ -520,6 +506,7 @@ export type SellerOrderUpdateToOneWithWhereWithoutOrderItemsInput = {
 }
 
 export type SellerOrderUpdateWithoutOrderItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.OrderUpdateOneRequiredWithoutSellerOrdersNestedInput
@@ -527,14 +514,15 @@ export type SellerOrderUpdateWithoutOrderItemsInput = {
 }
 
 export type SellerOrderUncheckedUpdateWithoutOrderItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SellerOrderCreateWithoutOrderInput = {
+  id?: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
   seller: Prisma.SellerCreateNestedOneWithoutSellerOrdersInput
@@ -542,8 +530,8 @@ export type SellerOrderCreateWithoutOrderInput = {
 }
 
 export type SellerOrderUncheckedCreateWithoutOrderInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutSellerOrderInput
@@ -579,14 +567,15 @@ export type SellerOrderScalarWhereInput = {
   AND?: Prisma.SellerOrderScalarWhereInput | Prisma.SellerOrderScalarWhereInput[]
   OR?: Prisma.SellerOrderScalarWhereInput[]
   NOT?: Prisma.SellerOrderScalarWhereInput | Prisma.SellerOrderScalarWhereInput[]
-  id?: Prisma.IntFilter<"SellerOrder"> | number
-  orderId?: Prisma.IntFilter<"SellerOrder"> | number
-  sellerId?: Prisma.IntFilter<"SellerOrder"> | number
+  id?: Prisma.StringFilter<"SellerOrder"> | string
+  orderId?: Prisma.StringFilter<"SellerOrder"> | string
+  sellerId?: Prisma.StringFilter<"SellerOrder"> | string
   subtotal?: Prisma.DecimalFilter<"SellerOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFilter<"SellerOrder"> | string
 }
 
 export type SellerOrderCreateWithoutSellerInput = {
+  id?: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
   order: Prisma.OrderCreateNestedOneWithoutSellerOrdersInput
@@ -594,8 +583,8 @@ export type SellerOrderCreateWithoutSellerInput = {
 }
 
 export type SellerOrderUncheckedCreateWithoutSellerInput = {
-  id?: number
-  orderId: number
+  id?: string
+  orderId: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutSellerOrderInput
@@ -628,13 +617,14 @@ export type SellerOrderUpdateManyWithWhereWithoutSellerInput = {
 }
 
 export type SellerOrderCreateManyOrderInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
 }
 
 export type SellerOrderUpdateWithoutOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   seller?: Prisma.SellerUpdateOneRequiredWithoutSellerOrdersNestedInput
@@ -642,28 +632,29 @@ export type SellerOrderUpdateWithoutOrderInput = {
 }
 
 export type SellerOrderUncheckedUpdateWithoutOrderInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutSellerOrderNestedInput
 }
 
 export type SellerOrderUncheckedUpdateManyWithoutOrderInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SellerOrderCreateManySellerInput = {
-  id?: number
-  orderId: number
+  id?: string
+  orderId: string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: string
 }
 
 export type SellerOrderUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.OrderUpdateOneRequiredWithoutSellerOrdersNestedInput
@@ -671,16 +662,16 @@ export type SellerOrderUpdateWithoutSellerInput = {
 }
 
 export type SellerOrderUncheckedUpdateWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutSellerOrderNestedInput
 }
 
 export type SellerOrderUncheckedUpdateManyWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  orderId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -780,9 +771,9 @@ export type $SellerOrderPayload<ExtArgs extends runtime.Types.Extensions.Interna
     orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    orderId: number
-    sellerId: number
+    id: string
+    orderId: string
+    sellerId: string
     subtotal: runtime.Decimal
     status: string
   }, ExtArgs["result"]["sellerOrder"]>
@@ -1211,9 +1202,9 @@ export interface Prisma__SellerOrderClient<T, Null = never, ExtArgs extends runt
  * Fields of the SellerOrder model
  */
 export interface SellerOrderFieldRefs {
-  readonly id: Prisma.FieldRef<"SellerOrder", 'Int'>
-  readonly orderId: Prisma.FieldRef<"SellerOrder", 'Int'>
-  readonly sellerId: Prisma.FieldRef<"SellerOrder", 'Int'>
+  readonly id: Prisma.FieldRef<"SellerOrder", 'String'>
+  readonly orderId: Prisma.FieldRef<"SellerOrder", 'String'>
+  readonly sellerId: Prisma.FieldRef<"SellerOrder", 'String'>
   readonly subtotal: Prisma.FieldRef<"SellerOrder", 'Decimal'>
   readonly status: Prisma.FieldRef<"SellerOrder", 'String'>
 }

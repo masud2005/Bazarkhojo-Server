@@ -20,36 +20,22 @@ export type ReviewReplyModel = runtime.Types.Result.DefaultSelection<Prisma.$Rev
 
 export type AggregateReviewReply = {
   _count: ReviewReplyCountAggregateOutputType | null
-  _avg: ReviewReplyAvgAggregateOutputType | null
-  _sum: ReviewReplySumAggregateOutputType | null
   _min: ReviewReplyMinAggregateOutputType | null
   _max: ReviewReplyMaxAggregateOutputType | null
 }
 
-export type ReviewReplyAvgAggregateOutputType = {
-  id: number | null
-  reviewId: number | null
-  sellerId: number | null
-}
-
-export type ReviewReplySumAggregateOutputType = {
-  id: number | null
-  reviewId: number | null
-  sellerId: number | null
-}
-
 export type ReviewReplyMinAggregateOutputType = {
-  id: number | null
-  reviewId: number | null
-  sellerId: number | null
+  id: string | null
+  reviewId: string | null
+  sellerId: string | null
   reply: string | null
   createdAt: Date | null
 }
 
 export type ReviewReplyMaxAggregateOutputType = {
-  id: number | null
-  reviewId: number | null
-  sellerId: number | null
+  id: string | null
+  reviewId: string | null
+  sellerId: string | null
   reply: string | null
   createdAt: Date | null
 }
@@ -63,18 +49,6 @@ export type ReviewReplyCountAggregateOutputType = {
   _all: number
 }
 
-
-export type ReviewReplyAvgAggregateInputType = {
-  id?: true
-  reviewId?: true
-  sellerId?: true
-}
-
-export type ReviewReplySumAggregateInputType = {
-  id?: true
-  reviewId?: true
-  sellerId?: true
-}
 
 export type ReviewReplyMinAggregateInputType = {
   id?: true
@@ -139,18 +113,6 @@ export type ReviewReplyAggregateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: ReviewReplyAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: ReviewReplySumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: ReviewReplyMinAggregateInputType
@@ -181,21 +143,17 @@ export type ReviewReplyGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   _count?: ReviewReplyCountAggregateInputType | true
-  _avg?: ReviewReplyAvgAggregateInputType
-  _sum?: ReviewReplySumAggregateInputType
   _min?: ReviewReplyMinAggregateInputType
   _max?: ReviewReplyMaxAggregateInputType
 }
 
 export type ReviewReplyGroupByOutputType = {
-  id: number
-  reviewId: number
-  sellerId: number
+  id: string
+  reviewId: string
+  sellerId: string
   reply: string
   createdAt: Date
   _count: ReviewReplyCountAggregateOutputType | null
-  _avg: ReviewReplyAvgAggregateOutputType | null
-  _sum: ReviewReplySumAggregateOutputType | null
   _min: ReviewReplyMinAggregateOutputType | null
   _max: ReviewReplyMaxAggregateOutputType | null
 }
@@ -219,9 +177,9 @@ export type ReviewReplyWhereInput = {
   AND?: Prisma.ReviewReplyWhereInput | Prisma.ReviewReplyWhereInput[]
   OR?: Prisma.ReviewReplyWhereInput[]
   NOT?: Prisma.ReviewReplyWhereInput | Prisma.ReviewReplyWhereInput[]
-  id?: Prisma.IntFilter<"ReviewReply"> | number
-  reviewId?: Prisma.IntFilter<"ReviewReply"> | number
-  sellerId?: Prisma.IntFilter<"ReviewReply"> | number
+  id?: Prisma.StringFilter<"ReviewReply"> | string
+  reviewId?: Prisma.StringFilter<"ReviewReply"> | string
+  sellerId?: Prisma.StringFilter<"ReviewReply"> | string
   reply?: Prisma.StringFilter<"ReviewReply"> | string
   createdAt?: Prisma.DateTimeFilter<"ReviewReply"> | Date | string
   review?: Prisma.XOR<Prisma.ReviewScalarRelationFilter, Prisma.ReviewWhereInput>
@@ -239,12 +197,12 @@ export type ReviewReplyOrderByWithRelationInput = {
 }
 
 export type ReviewReplyWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.ReviewReplyWhereInput | Prisma.ReviewReplyWhereInput[]
   OR?: Prisma.ReviewReplyWhereInput[]
   NOT?: Prisma.ReviewReplyWhereInput | Prisma.ReviewReplyWhereInput[]
-  reviewId?: Prisma.IntFilter<"ReviewReply"> | number
-  sellerId?: Prisma.IntFilter<"ReviewReply"> | number
+  reviewId?: Prisma.StringFilter<"ReviewReply"> | string
+  sellerId?: Prisma.StringFilter<"ReviewReply"> | string
   reply?: Prisma.StringFilter<"ReviewReply"> | string
   createdAt?: Prisma.DateTimeFilter<"ReviewReply"> | Date | string
   review?: Prisma.XOR<Prisma.ReviewScalarRelationFilter, Prisma.ReviewWhereInput>
@@ -258,24 +216,23 @@ export type ReviewReplyOrderByWithAggregationInput = {
   reply?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ReviewReplyCountOrderByAggregateInput
-  _avg?: Prisma.ReviewReplyAvgOrderByAggregateInput
   _max?: Prisma.ReviewReplyMaxOrderByAggregateInput
   _min?: Prisma.ReviewReplyMinOrderByAggregateInput
-  _sum?: Prisma.ReviewReplySumOrderByAggregateInput
 }
 
 export type ReviewReplyScalarWhereWithAggregatesInput = {
   AND?: Prisma.ReviewReplyScalarWhereWithAggregatesInput | Prisma.ReviewReplyScalarWhereWithAggregatesInput[]
   OR?: Prisma.ReviewReplyScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ReviewReplyScalarWhereWithAggregatesInput | Prisma.ReviewReplyScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"ReviewReply"> | number
-  reviewId?: Prisma.IntWithAggregatesFilter<"ReviewReply"> | number
-  sellerId?: Prisma.IntWithAggregatesFilter<"ReviewReply"> | number
+  id?: Prisma.StringWithAggregatesFilter<"ReviewReply"> | string
+  reviewId?: Prisma.StringWithAggregatesFilter<"ReviewReply"> | string
+  sellerId?: Prisma.StringWithAggregatesFilter<"ReviewReply"> | string
   reply?: Prisma.StringWithAggregatesFilter<"ReviewReply"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ReviewReply"> | Date | string
 }
 
 export type ReviewReplyCreateInput = {
+  id?: string
   reply: string
   createdAt?: Date | string
   review: Prisma.ReviewCreateNestedOneWithoutRepliesInput
@@ -283,14 +240,15 @@ export type ReviewReplyCreateInput = {
 }
 
 export type ReviewReplyUncheckedCreateInput = {
-  id?: number
-  reviewId: number
-  sellerId: number
+  id?: string
+  reviewId: string
+  sellerId: string
   reply: string
   createdAt?: Date | string
 }
 
 export type ReviewReplyUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   review?: Prisma.ReviewUpdateOneRequiredWithoutRepliesNestedInput
@@ -298,30 +256,31 @@ export type ReviewReplyUpdateInput = {
 }
 
 export type ReviewReplyUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  reviewId?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ReviewReplyCreateManyInput = {
-  id?: number
-  reviewId: number
-  sellerId: number
+  id?: string
+  reviewId: string
+  sellerId: string
   reply: string
   createdAt?: Date | string
 }
 
 export type ReviewReplyUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ReviewReplyUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  reviewId?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -332,12 +291,6 @@ export type ReviewReplyCountOrderByAggregateInput = {
   sellerId?: Prisma.SortOrder
   reply?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type ReviewReplyAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  reviewId?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
 }
 
 export type ReviewReplyMaxOrderByAggregateInput = {
@@ -354,12 +307,6 @@ export type ReviewReplyMinOrderByAggregateInput = {
   sellerId?: Prisma.SortOrder
   reply?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type ReviewReplySumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  reviewId?: Prisma.SortOrder
-  sellerId?: Prisma.SortOrder
 }
 
 export type ReviewReplyListRelationFilter = {
@@ -457,14 +404,15 @@ export type ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput = {
 }
 
 export type ReviewReplyCreateWithoutReviewInput = {
+  id?: string
   reply: string
   createdAt?: Date | string
   seller: Prisma.SellerCreateNestedOneWithoutReviewRepliesInput
 }
 
 export type ReviewReplyUncheckedCreateWithoutReviewInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   reply: string
   createdAt?: Date | string
 }
@@ -499,22 +447,23 @@ export type ReviewReplyScalarWhereInput = {
   AND?: Prisma.ReviewReplyScalarWhereInput | Prisma.ReviewReplyScalarWhereInput[]
   OR?: Prisma.ReviewReplyScalarWhereInput[]
   NOT?: Prisma.ReviewReplyScalarWhereInput | Prisma.ReviewReplyScalarWhereInput[]
-  id?: Prisma.IntFilter<"ReviewReply"> | number
-  reviewId?: Prisma.IntFilter<"ReviewReply"> | number
-  sellerId?: Prisma.IntFilter<"ReviewReply"> | number
+  id?: Prisma.StringFilter<"ReviewReply"> | string
+  reviewId?: Prisma.StringFilter<"ReviewReply"> | string
+  sellerId?: Prisma.StringFilter<"ReviewReply"> | string
   reply?: Prisma.StringFilter<"ReviewReply"> | string
   createdAt?: Prisma.DateTimeFilter<"ReviewReply"> | Date | string
 }
 
 export type ReviewReplyCreateWithoutSellerInput = {
+  id?: string
   reply: string
   createdAt?: Date | string
   review: Prisma.ReviewCreateNestedOneWithoutRepliesInput
 }
 
 export type ReviewReplyUncheckedCreateWithoutSellerInput = {
-  id?: number
-  reviewId: number
+  id?: string
+  reviewId: string
   reply: string
   createdAt?: Date | string
 }
@@ -546,55 +495,57 @@ export type ReviewReplyUpdateManyWithWhereWithoutSellerInput = {
 }
 
 export type ReviewReplyCreateManyReviewInput = {
-  id?: number
-  sellerId: number
+  id?: string
+  sellerId: string
   reply: string
   createdAt?: Date | string
 }
 
 export type ReviewReplyUpdateWithoutReviewInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   seller?: Prisma.SellerUpdateOneRequiredWithoutReviewRepliesNestedInput
 }
 
 export type ReviewReplyUncheckedUpdateWithoutReviewInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ReviewReplyUncheckedUpdateManyWithoutReviewInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  sellerId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ReviewReplyCreateManySellerInput = {
-  id?: number
-  reviewId: number
+  id?: string
+  reviewId: string
   reply: string
   createdAt?: Date | string
 }
 
 export type ReviewReplyUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   review?: Prisma.ReviewUpdateOneRequiredWithoutRepliesNestedInput
 }
 
 export type ReviewReplyUncheckedUpdateWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  reviewId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewId?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ReviewReplyUncheckedUpdateManyWithoutSellerInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  reviewId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewId?: Prisma.StringFieldUpdateOperationsInput | string
   reply?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -660,9 +611,9 @@ export type $ReviewReplyPayload<ExtArgs extends runtime.Types.Extensions.Interna
     seller: Prisma.$SellerPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    reviewId: number
-    sellerId: number
+    id: string
+    reviewId: string
+    sellerId: string
     reply: string
     createdAt: Date
   }, ExtArgs["result"]["reviewReply"]>
@@ -1090,9 +1041,9 @@ export interface Prisma__ReviewReplyClient<T, Null = never, ExtArgs extends runt
  * Fields of the ReviewReply model
  */
 export interface ReviewReplyFieldRefs {
-  readonly id: Prisma.FieldRef<"ReviewReply", 'Int'>
-  readonly reviewId: Prisma.FieldRef<"ReviewReply", 'Int'>
-  readonly sellerId: Prisma.FieldRef<"ReviewReply", 'Int'>
+  readonly id: Prisma.FieldRef<"ReviewReply", 'String'>
+  readonly reviewId: Prisma.FieldRef<"ReviewReply", 'String'>
+  readonly sellerId: Prisma.FieldRef<"ReviewReply", 'String'>
   readonly reply: Prisma.FieldRef<"ReviewReply", 'String'>
   readonly createdAt: Prisma.FieldRef<"ReviewReply", 'DateTime'>
 }

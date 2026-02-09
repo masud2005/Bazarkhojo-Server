@@ -20,25 +20,13 @@ export type NotificationPreferenceModel = runtime.Types.Result.DefaultSelection<
 
 export type AggregateNotificationPreference = {
   _count: NotificationPreferenceCountAggregateOutputType | null
-  _avg: NotificationPreferenceAvgAggregateOutputType | null
-  _sum: NotificationPreferenceSumAggregateOutputType | null
   _min: NotificationPreferenceMinAggregateOutputType | null
   _max: NotificationPreferenceMaxAggregateOutputType | null
 }
 
-export type NotificationPreferenceAvgAggregateOutputType = {
-  id: number | null
-  userId: number | null
-}
-
-export type NotificationPreferenceSumAggregateOutputType = {
-  id: number | null
-  userId: number | null
-}
-
 export type NotificationPreferenceMinAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   orderUpdates: boolean | null
   promotions: boolean | null
   messages: boolean | null
@@ -47,8 +35,8 @@ export type NotificationPreferenceMinAggregateOutputType = {
 }
 
 export type NotificationPreferenceMaxAggregateOutputType = {
-  id: number | null
-  userId: number | null
+  id: string | null
+  userId: string | null
   orderUpdates: boolean | null
   promotions: boolean | null
   messages: boolean | null
@@ -67,16 +55,6 @@ export type NotificationPreferenceCountAggregateOutputType = {
   _all: number
 }
 
-
-export type NotificationPreferenceAvgAggregateInputType = {
-  id?: true
-  userId?: true
-}
-
-export type NotificationPreferenceSumAggregateInputType = {
-  id?: true
-  userId?: true
-}
 
 export type NotificationPreferenceMinAggregateInputType = {
   id?: true
@@ -147,18 +125,6 @@ export type NotificationPreferenceAggregateArgs<ExtArgs extends runtime.Types.Ex
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: NotificationPreferenceAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: NotificationPreferenceSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: NotificationPreferenceMinAggregateInputType
@@ -189,23 +155,19 @@ export type NotificationPreferenceGroupByArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   _count?: NotificationPreferenceCountAggregateInputType | true
-  _avg?: NotificationPreferenceAvgAggregateInputType
-  _sum?: NotificationPreferenceSumAggregateInputType
   _min?: NotificationPreferenceMinAggregateInputType
   _max?: NotificationPreferenceMaxAggregateInputType
 }
 
 export type NotificationPreferenceGroupByOutputType = {
-  id: number
-  userId: number
+  id: string
+  userId: string
   orderUpdates: boolean
   promotions: boolean
   messages: boolean
   payouts: boolean
   updatedAt: Date
   _count: NotificationPreferenceCountAggregateOutputType | null
-  _avg: NotificationPreferenceAvgAggregateOutputType | null
-  _sum: NotificationPreferenceSumAggregateOutputType | null
   _min: NotificationPreferenceMinAggregateOutputType | null
   _max: NotificationPreferenceMaxAggregateOutputType | null
 }
@@ -229,8 +191,8 @@ export type NotificationPreferenceWhereInput = {
   AND?: Prisma.NotificationPreferenceWhereInput | Prisma.NotificationPreferenceWhereInput[]
   OR?: Prisma.NotificationPreferenceWhereInput[]
   NOT?: Prisma.NotificationPreferenceWhereInput | Prisma.NotificationPreferenceWhereInput[]
-  id?: Prisma.IntFilter<"NotificationPreference"> | number
-  userId?: Prisma.IntFilter<"NotificationPreference"> | number
+  id?: Prisma.StringFilter<"NotificationPreference"> | string
+  userId?: Prisma.StringFilter<"NotificationPreference"> | string
   orderUpdates?: Prisma.BoolFilter<"NotificationPreference"> | boolean
   promotions?: Prisma.BoolFilter<"NotificationPreference"> | boolean
   messages?: Prisma.BoolFilter<"NotificationPreference"> | boolean
@@ -251,8 +213,8 @@ export type NotificationPreferenceOrderByWithRelationInput = {
 }
 
 export type NotificationPreferenceWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
-  userId?: number
+  id?: string
+  userId?: string
   AND?: Prisma.NotificationPreferenceWhereInput | Prisma.NotificationPreferenceWhereInput[]
   OR?: Prisma.NotificationPreferenceWhereInput[]
   NOT?: Prisma.NotificationPreferenceWhereInput | Prisma.NotificationPreferenceWhereInput[]
@@ -273,18 +235,16 @@ export type NotificationPreferenceOrderByWithAggregationInput = {
   payouts?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.NotificationPreferenceCountOrderByAggregateInput
-  _avg?: Prisma.NotificationPreferenceAvgOrderByAggregateInput
   _max?: Prisma.NotificationPreferenceMaxOrderByAggregateInput
   _min?: Prisma.NotificationPreferenceMinOrderByAggregateInput
-  _sum?: Prisma.NotificationPreferenceSumOrderByAggregateInput
 }
 
 export type NotificationPreferenceScalarWhereWithAggregatesInput = {
   AND?: Prisma.NotificationPreferenceScalarWhereWithAggregatesInput | Prisma.NotificationPreferenceScalarWhereWithAggregatesInput[]
   OR?: Prisma.NotificationPreferenceScalarWhereWithAggregatesInput[]
   NOT?: Prisma.NotificationPreferenceScalarWhereWithAggregatesInput | Prisma.NotificationPreferenceScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"NotificationPreference"> | number
-  userId?: Prisma.IntWithAggregatesFilter<"NotificationPreference"> | number
+  id?: Prisma.StringWithAggregatesFilter<"NotificationPreference"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"NotificationPreference"> | string
   orderUpdates?: Prisma.BoolWithAggregatesFilter<"NotificationPreference"> | boolean
   promotions?: Prisma.BoolWithAggregatesFilter<"NotificationPreference"> | boolean
   messages?: Prisma.BoolWithAggregatesFilter<"NotificationPreference"> | boolean
@@ -293,6 +253,7 @@ export type NotificationPreferenceScalarWhereWithAggregatesInput = {
 }
 
 export type NotificationPreferenceCreateInput = {
+  id?: string
   orderUpdates?: boolean
   promotions?: boolean
   messages?: boolean
@@ -302,8 +263,8 @@ export type NotificationPreferenceCreateInput = {
 }
 
 export type NotificationPreferenceUncheckedCreateInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   orderUpdates?: boolean
   promotions?: boolean
   messages?: boolean
@@ -312,6 +273,7 @@ export type NotificationPreferenceUncheckedCreateInput = {
 }
 
 export type NotificationPreferenceUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   orderUpdates?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promotions?: Prisma.BoolFieldUpdateOperationsInput | boolean
   messages?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -321,8 +283,8 @@ export type NotificationPreferenceUpdateInput = {
 }
 
 export type NotificationPreferenceUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   orderUpdates?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promotions?: Prisma.BoolFieldUpdateOperationsInput | boolean
   messages?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -331,8 +293,8 @@ export type NotificationPreferenceUncheckedUpdateInput = {
 }
 
 export type NotificationPreferenceCreateManyInput = {
-  id?: number
-  userId: number
+  id?: string
+  userId: string
   orderUpdates?: boolean
   promotions?: boolean
   messages?: boolean
@@ -341,6 +303,7 @@ export type NotificationPreferenceCreateManyInput = {
 }
 
 export type NotificationPreferenceUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   orderUpdates?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promotions?: Prisma.BoolFieldUpdateOperationsInput | boolean
   messages?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -349,8 +312,8 @@ export type NotificationPreferenceUpdateManyMutationInput = {
 }
 
 export type NotificationPreferenceUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   orderUpdates?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promotions?: Prisma.BoolFieldUpdateOperationsInput | boolean
   messages?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -366,11 +329,6 @@ export type NotificationPreferenceCountOrderByAggregateInput = {
   messages?: Prisma.SortOrder
   payouts?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type NotificationPreferenceAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type NotificationPreferenceMaxOrderByAggregateInput = {
@@ -391,11 +349,6 @@ export type NotificationPreferenceMinOrderByAggregateInput = {
   messages?: Prisma.SortOrder
   payouts?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type NotificationPreferenceSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type NotificationPreferenceNullableScalarRelationFilter = {
@@ -436,6 +389,7 @@ export type NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput = {
 }
 
 export type NotificationPreferenceCreateWithoutUserInput = {
+  id?: string
   orderUpdates?: boolean
   promotions?: boolean
   messages?: boolean
@@ -444,7 +398,7 @@ export type NotificationPreferenceCreateWithoutUserInput = {
 }
 
 export type NotificationPreferenceUncheckedCreateWithoutUserInput = {
-  id?: number
+  id?: string
   orderUpdates?: boolean
   promotions?: boolean
   messages?: boolean
@@ -469,6 +423,7 @@ export type NotificationPreferenceUpdateToOneWithWhereWithoutUserInput = {
 }
 
 export type NotificationPreferenceUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   orderUpdates?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promotions?: Prisma.BoolFieldUpdateOperationsInput | boolean
   messages?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -477,7 +432,7 @@ export type NotificationPreferenceUpdateWithoutUserInput = {
 }
 
 export type NotificationPreferenceUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   orderUpdates?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promotions?: Prisma.BoolFieldUpdateOperationsInput | boolean
   messages?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -547,8 +502,8 @@ export type $NotificationPreferencePayload<ExtArgs extends runtime.Types.Extensi
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
-    userId: number
+    id: string
+    userId: string
     orderUpdates: boolean
     promotions: boolean
     messages: boolean
@@ -978,8 +933,8 @@ export interface Prisma__NotificationPreferenceClient<T, Null = never, ExtArgs e
  * Fields of the NotificationPreference model
  */
 export interface NotificationPreferenceFieldRefs {
-  readonly id: Prisma.FieldRef<"NotificationPreference", 'Int'>
-  readonly userId: Prisma.FieldRef<"NotificationPreference", 'Int'>
+  readonly id: Prisma.FieldRef<"NotificationPreference", 'String'>
+  readonly userId: Prisma.FieldRef<"NotificationPreference", 'String'>
   readonly orderUpdates: Prisma.FieldRef<"NotificationPreference", 'Boolean'>
   readonly promotions: Prisma.FieldRef<"NotificationPreference", 'Boolean'>
   readonly messages: Prisma.FieldRef<"NotificationPreference", 'Boolean'>
