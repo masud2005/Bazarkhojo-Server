@@ -3,6 +3,10 @@ model WalletTransaction {
   walletId    Int
   type        TransactionType
   amount      Decimal          @db.Decimal(12, 2)
+  balanceBefore Decimal         @db.Decimal(12, 2)
+  balanceAfter Decimal          @db.Decimal(12, 2)
+  reference   String?
+  idempotencyKey String         @unique
   description String?
   orderId     Int?
   referenceId String?

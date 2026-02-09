@@ -53,6 +53,7 @@ export type UserMinAggregateOutputType = {
   referredBy: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -72,6 +73,7 @@ export type UserMaxAggregateOutputType = {
   referredBy: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -91,6 +93,7 @@ export type UserCountAggregateOutputType = {
   referredBy: number
   createdAt: number
   updatedAt: number
+  deletedAt: number
   _all: number
 }
 
@@ -122,6 +125,7 @@ export type UserMinAggregateInputType = {
   referredBy?: true
   createdAt?: true
   updatedAt?: true
+  deletedAt?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -141,6 +145,7 @@ export type UserMaxAggregateInputType = {
   referredBy?: true
   createdAt?: true
   updatedAt?: true
+  deletedAt?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -160,6 +165,7 @@ export type UserCountAggregateInputType = {
   referredBy?: true
   createdAt?: true
   updatedAt?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -266,6 +272,7 @@ export type UserGroupByOutputType = {
   referredBy: number | null
   createdAt: Date
   updatedAt: Date
+  deletedAt: Date | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -308,6 +315,7 @@ export type UserWhereInput = {
   referredBy?: Prisma.IntNullableFilter<"User"> | number | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   referredByUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   referredUsers?: Prisma.UserListRelationFilter
   seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
@@ -321,16 +329,16 @@ export type UserWhereInput = {
   cart?: Prisma.XOR<Prisma.CartNullableScalarRelationFilter, Prisma.CartWhereInput> | null
   reviews?: Prisma.ReviewListRelationFilter
   couponUsages?: Prisma.CouponUsageListRelationFilter
-  conversationsAsP1?: Prisma.ConversationListRelationFilter
-  conversationsAsP2?: Prisma.ConversationListRelationFilter
-  chatMessages?: Prisma.ChatMessageListRelationFilter
+  conversationsAsUser1?: Prisma.ConversationListRelationFilter
+  conversationsAsUser2?: Prisma.ConversationListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   notificationPref?: Prisma.XOR<Prisma.NotificationPreferenceNullableScalarRelationFilter, Prisma.NotificationPreferenceWhereInput> | null
   supportTickets?: Prisma.SupportTicketListRelationFilter
   ticketReplies?: Prisma.TicketReplyListRelationFilter
   blogs?: Prisma.BlogListRelationFilter
   flashSales?: Prisma.FlashSaleListRelationFilter
-  logs?: Prisma.LogListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -350,6 +358,7 @@ export type UserOrderByWithRelationInput = {
   referredBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   referredByUser?: Prisma.UserOrderByWithRelationInput
   referredUsers?: Prisma.UserOrderByRelationAggregateInput
   seller?: Prisma.SellerOrderByWithRelationInput
@@ -363,16 +372,16 @@ export type UserOrderByWithRelationInput = {
   cart?: Prisma.CartOrderByWithRelationInput
   reviews?: Prisma.ReviewOrderByRelationAggregateInput
   couponUsages?: Prisma.CouponUsageOrderByRelationAggregateInput
-  conversationsAsP1?: Prisma.ConversationOrderByRelationAggregateInput
-  conversationsAsP2?: Prisma.ConversationOrderByRelationAggregateInput
-  chatMessages?: Prisma.ChatMessageOrderByRelationAggregateInput
+  conversationsAsUser1?: Prisma.ConversationOrderByRelationAggregateInput
+  conversationsAsUser2?: Prisma.ConversationOrderByRelationAggregateInput
+  messages?: Prisma.MessageOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   notificationPref?: Prisma.NotificationPreferenceOrderByWithRelationInput
   supportTickets?: Prisma.SupportTicketOrderByRelationAggregateInput
   ticketReplies?: Prisma.TicketReplyOrderByRelationAggregateInput
   blogs?: Prisma.BlogOrderByRelationAggregateInput
   flashSales?: Prisma.FlashSaleOrderByRelationAggregateInput
-  logs?: Prisma.LogOrderByRelationAggregateInput
+  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -395,6 +404,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   referredBy?: Prisma.IntNullableFilter<"User"> | number | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   referredByUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   referredUsers?: Prisma.UserListRelationFilter
   seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
@@ -408,16 +418,16 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   cart?: Prisma.XOR<Prisma.CartNullableScalarRelationFilter, Prisma.CartWhereInput> | null
   reviews?: Prisma.ReviewListRelationFilter
   couponUsages?: Prisma.CouponUsageListRelationFilter
-  conversationsAsP1?: Prisma.ConversationListRelationFilter
-  conversationsAsP2?: Prisma.ConversationListRelationFilter
-  chatMessages?: Prisma.ChatMessageListRelationFilter
+  conversationsAsUser1?: Prisma.ConversationListRelationFilter
+  conversationsAsUser2?: Prisma.ConversationListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   notificationPref?: Prisma.XOR<Prisma.NotificationPreferenceNullableScalarRelationFilter, Prisma.NotificationPreferenceWhereInput> | null
   supportTickets?: Prisma.SupportTicketListRelationFilter
   ticketReplies?: Prisma.TicketReplyListRelationFilter
   blogs?: Prisma.BlogListRelationFilter
   flashSales?: Prisma.FlashSaleListRelationFilter
-  logs?: Prisma.LogListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }, "id" | "email" | "referralCode">
 
 export type UserOrderByWithAggregationInput = {
@@ -437,6 +447,7 @@ export type UserOrderByWithAggregationInput = {
   referredBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -464,6 +475,7 @@ export type UserScalarWhereWithAggregatesInput = {
   referredBy?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
 
 export type UserCreateInput = {
@@ -481,6 +493,7 @@ export type UserCreateInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -494,16 +507,16 @@ export type UserCreateInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -523,6 +536,7 @@ export type UserUncheckedCreateInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -535,16 +549,16 @@ export type UserUncheckedCreateInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -562,6 +576,7 @@ export type UserUpdateInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -575,16 +590,16 @@ export type UserUpdateInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -604,6 +619,7 @@ export type UserUncheckedUpdateInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -616,16 +632,16 @@ export type UserUncheckedUpdateInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -645,6 +661,7 @@ export type UserCreateManyInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -662,6 +679,7 @@ export type UserUpdateManyMutationInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -681,6 +699,7 @@ export type UserUncheckedUpdateManyInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserScalarRelationFilter = {
@@ -720,6 +739,7 @@ export type UserCountOrderByAggregateInput = {
   referredBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -744,6 +764,7 @@ export type UserMaxOrderByAggregateInput = {
   referredBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -763,6 +784,7 @@ export type UserMinOrderByAggregateInput = {
   referredBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -812,46 +834,46 @@ export type UserUpdateOneRequiredWithoutCartNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCartInput, Prisma.UserUpdateWithoutCartInput>, Prisma.UserUncheckedUpdateWithoutCartInput>
 }
 
-export type UserCreateNestedOneWithoutConversationsAsP1Input = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP1Input, Prisma.UserUncheckedCreateWithoutConversationsAsP1Input>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsP1Input
+export type UserCreateNestedOneWithoutConversationsAsUser1Input = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser1Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser1Input>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsUser1Input
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserCreateNestedOneWithoutConversationsAsP2Input = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP2Input, Prisma.UserUncheckedCreateWithoutConversationsAsP2Input>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsP2Input
+export type UserCreateNestedOneWithoutConversationsAsUser2Input = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser2Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser2Input>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsUser2Input
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutConversationsAsP1NestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP1Input, Prisma.UserUncheckedCreateWithoutConversationsAsP1Input>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsP1Input
-  upsert?: Prisma.UserUpsertWithoutConversationsAsP1Input
+export type UserUpdateOneRequiredWithoutConversationsAsUser1NestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser1Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser1Input>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsUser1Input
+  upsert?: Prisma.UserUpsertWithoutConversationsAsUser1Input
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutConversationsAsP1Input, Prisma.UserUpdateWithoutConversationsAsP1Input>, Prisma.UserUncheckedUpdateWithoutConversationsAsP1Input>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutConversationsAsUser1Input, Prisma.UserUpdateWithoutConversationsAsUser1Input>, Prisma.UserUncheckedUpdateWithoutConversationsAsUser1Input>
 }
 
-export type UserUpdateOneRequiredWithoutConversationsAsP2NestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP2Input, Prisma.UserUncheckedCreateWithoutConversationsAsP2Input>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsP2Input
-  upsert?: Prisma.UserUpsertWithoutConversationsAsP2Input
+export type UserUpdateOneRequiredWithoutConversationsAsUser2NestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser2Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser2Input>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsAsUser2Input
+  upsert?: Prisma.UserUpsertWithoutConversationsAsUser2Input
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutConversationsAsP2Input, Prisma.UserUpdateWithoutConversationsAsP2Input>, Prisma.UserUncheckedUpdateWithoutConversationsAsP2Input>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutConversationsAsUser2Input, Prisma.UserUpdateWithoutConversationsAsUser2Input>, Prisma.UserUncheckedUpdateWithoutConversationsAsUser2Input>
 }
 
-export type UserCreateNestedOneWithoutChatMessagesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutChatMessagesInput, Prisma.UserUncheckedCreateWithoutChatMessagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatMessagesInput
+export type UserCreateNestedOneWithoutMessagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesInput, Prisma.UserUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutChatMessagesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutChatMessagesInput, Prisma.UserUncheckedCreateWithoutChatMessagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatMessagesInput
-  upsert?: Prisma.UserUpsertWithoutChatMessagesInput
+export type UserUpdateOneRequiredWithoutMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesInput, Prisma.UserUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesInput
+  upsert?: Prisma.UserUpsertWithoutMessagesInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutChatMessagesInput, Prisma.UserUpdateWithoutChatMessagesInput>, Prisma.UserUncheckedUpdateWithoutChatMessagesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMessagesInput, Prisma.UserUpdateWithoutMessagesInput>, Prisma.UserUncheckedUpdateWithoutMessagesInput>
 }
 
 export type UserCreateNestedOneWithoutCouponUsagesInput = {
@@ -896,20 +918,20 @@ export type UserUpdateOneRequiredWithoutFollowsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFollowsInput, Prisma.UserUpdateWithoutFollowsInput>, Prisma.UserUncheckedUpdateWithoutFollowsInput>
 }
 
-export type UserCreateNestedOneWithoutLogsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLogsInput, Prisma.UserUncheckedCreateWithoutLogsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLogsInput
+export type UserCreateNestedOneWithoutAuditLogsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutLogsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLogsInput, Prisma.UserUncheckedCreateWithoutLogsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLogsInput
-  upsert?: Prisma.UserUpsertWithoutLogsInput
+export type UserUpdateOneWithoutAuditLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  upsert?: Prisma.UserUpsertWithoutAuditLogsInput
   disconnect?: Prisma.UserWhereInput | boolean
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLogsInput, Prisma.UserUpdateWithoutLogsInput>, Prisma.UserUncheckedUpdateWithoutLogsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
 }
 
 export type UserCreateNestedOneWithoutNotificationsInput = {
@@ -1143,6 +1165,7 @@ export type UserCreateWithoutAddressesInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -1155,16 +1178,16 @@ export type UserCreateWithoutAddressesInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAddressesInput = {
@@ -1184,6 +1207,7 @@ export type UserUncheckedCreateWithoutAddressesInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -1195,16 +1219,16 @@ export type UserUncheckedCreateWithoutAddressesInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAddressesInput = {
@@ -1238,6 +1262,7 @@ export type UserUpdateWithoutAddressesInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -1250,16 +1275,16 @@ export type UserUpdateWithoutAddressesInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAddressesInput = {
@@ -1279,6 +1304,7 @@ export type UserUncheckedUpdateWithoutAddressesInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -1290,16 +1316,16 @@ export type UserUncheckedUpdateWithoutAddressesInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBlogsInput = {
@@ -1317,6 +1343,7 @@ export type UserCreateWithoutBlogsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -1330,15 +1357,15 @@ export type UserCreateWithoutBlogsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBlogsInput = {
@@ -1358,6 +1385,7 @@ export type UserUncheckedCreateWithoutBlogsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -1370,15 +1398,15 @@ export type UserUncheckedCreateWithoutBlogsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBlogsInput = {
@@ -1412,6 +1440,7 @@ export type UserUpdateWithoutBlogsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -1425,15 +1454,15 @@ export type UserUpdateWithoutBlogsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlogsInput = {
@@ -1453,6 +1482,7 @@ export type UserUncheckedUpdateWithoutBlogsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -1465,15 +1495,15 @@ export type UserUncheckedUpdateWithoutBlogsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCartInput = {
@@ -1491,6 +1521,7 @@ export type UserCreateWithoutCartInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -1503,16 +1534,16 @@ export type UserCreateWithoutCartInput = {
   wishlists?: Prisma.WishlistCreateNestedManyWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCartInput = {
@@ -1532,6 +1563,7 @@ export type UserUncheckedCreateWithoutCartInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -1543,16 +1575,16 @@ export type UserUncheckedCreateWithoutCartInput = {
   wishlists?: Prisma.WishlistUncheckedCreateNestedManyWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCartInput = {
@@ -1586,6 +1618,7 @@ export type UserUpdateWithoutCartInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -1598,16 +1631,16 @@ export type UserUpdateWithoutCartInput = {
   wishlists?: Prisma.WishlistUpdateManyWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCartInput = {
@@ -1627,6 +1660,7 @@ export type UserUncheckedUpdateWithoutCartInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -1638,19 +1672,19 @@ export type UserUncheckedUpdateWithoutCartInput = {
   wishlists?: Prisma.WishlistUncheckedUpdateManyWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutConversationsAsP1Input = {
+export type UserCreateWithoutConversationsAsUser1Input = {
   email: string
   password: string
   firstName?: string | null
@@ -1665,6 +1699,7 @@ export type UserCreateWithoutConversationsAsP1Input = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -1678,18 +1713,18 @@ export type UserCreateWithoutConversationsAsP1Input = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutConversationsAsP1Input = {
+export type UserUncheckedCreateWithoutConversationsAsUser1Input = {
   id?: number
   email: string
   password: string
@@ -1706,6 +1741,7 @@ export type UserUncheckedCreateWithoutConversationsAsP1Input = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -1718,23 +1754,23 @@ export type UserUncheckedCreateWithoutConversationsAsP1Input = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutConversationsAsP1Input = {
+export type UserCreateOrConnectWithoutConversationsAsUser1Input = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP1Input, Prisma.UserUncheckedCreateWithoutConversationsAsP1Input>
+  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser1Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser1Input>
 }
 
-export type UserCreateWithoutConversationsAsP2Input = {
+export type UserCreateWithoutConversationsAsUser2Input = {
   email: string
   password: string
   firstName?: string | null
@@ -1749,6 +1785,7 @@ export type UserCreateWithoutConversationsAsP2Input = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -1762,18 +1799,18 @@ export type UserCreateWithoutConversationsAsP2Input = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutConversationsAsP2Input = {
+export type UserUncheckedCreateWithoutConversationsAsUser2Input = {
   id?: number
   email: string
   password: string
@@ -1790,6 +1827,7 @@ export type UserUncheckedCreateWithoutConversationsAsP2Input = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -1802,34 +1840,34 @@ export type UserUncheckedCreateWithoutConversationsAsP2Input = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutConversationsAsP2Input = {
+export type UserCreateOrConnectWithoutConversationsAsUser2Input = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP2Input, Prisma.UserUncheckedCreateWithoutConversationsAsP2Input>
+  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser2Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser2Input>
 }
 
-export type UserUpsertWithoutConversationsAsP1Input = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsP1Input, Prisma.UserUncheckedUpdateWithoutConversationsAsP1Input>
-  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP1Input, Prisma.UserUncheckedCreateWithoutConversationsAsP1Input>
+export type UserUpsertWithoutConversationsAsUser1Input = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsUser1Input, Prisma.UserUncheckedUpdateWithoutConversationsAsUser1Input>
+  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser1Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser1Input>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutConversationsAsP1Input = {
+export type UserUpdateToOneWithWhereWithoutConversationsAsUser1Input = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsP1Input, Prisma.UserUncheckedUpdateWithoutConversationsAsP1Input>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsUser1Input, Prisma.UserUncheckedUpdateWithoutConversationsAsUser1Input>
 }
 
-export type UserUpdateWithoutConversationsAsP1Input = {
+export type UserUpdateWithoutConversationsAsUser1Input = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1844,6 +1882,7 @@ export type UserUpdateWithoutConversationsAsP1Input = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -1857,18 +1896,18 @@ export type UserUpdateWithoutConversationsAsP1Input = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutConversationsAsP1Input = {
+export type UserUncheckedUpdateWithoutConversationsAsUser1Input = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1885,6 +1924,7 @@ export type UserUncheckedUpdateWithoutConversationsAsP1Input = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -1897,29 +1937,29 @@ export type UserUncheckedUpdateWithoutConversationsAsP1Input = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserUpsertWithoutConversationsAsP2Input = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsP2Input, Prisma.UserUncheckedUpdateWithoutConversationsAsP2Input>
-  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsP2Input, Prisma.UserUncheckedCreateWithoutConversationsAsP2Input>
+export type UserUpsertWithoutConversationsAsUser2Input = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsUser2Input, Prisma.UserUncheckedUpdateWithoutConversationsAsUser2Input>
+  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsAsUser2Input, Prisma.UserUncheckedCreateWithoutConversationsAsUser2Input>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutConversationsAsP2Input = {
+export type UserUpdateToOneWithWhereWithoutConversationsAsUser2Input = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsP2Input, Prisma.UserUncheckedUpdateWithoutConversationsAsP2Input>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutConversationsAsUser2Input, Prisma.UserUncheckedUpdateWithoutConversationsAsUser2Input>
 }
 
-export type UserUpdateWithoutConversationsAsP2Input = {
+export type UserUpdateWithoutConversationsAsUser2Input = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1934,6 +1974,7 @@ export type UserUpdateWithoutConversationsAsP2Input = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -1947,18 +1988,18 @@ export type UserUpdateWithoutConversationsAsP2Input = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutConversationsAsP2Input = {
+export type UserUncheckedUpdateWithoutConversationsAsUser2Input = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1975,6 +2016,7 @@ export type UserUncheckedUpdateWithoutConversationsAsP2Input = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -1987,18 +2029,18 @@ export type UserUncheckedUpdateWithoutConversationsAsP2Input = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutChatMessagesInput = {
+export type UserCreateWithoutMessagesInput = {
   email: string
   password: string
   firstName?: string | null
@@ -2013,6 +2055,7 @@ export type UserCreateWithoutChatMessagesInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -2026,18 +2069,18 @@ export type UserCreateWithoutChatMessagesInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutChatMessagesInput = {
+export type UserUncheckedCreateWithoutMessagesInput = {
   id?: number
   email: string
   password: string
@@ -2054,6 +2097,7 @@ export type UserUncheckedCreateWithoutChatMessagesInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -2066,34 +2110,34 @@ export type UserUncheckedCreateWithoutChatMessagesInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutChatMessagesInput = {
+export type UserCreateOrConnectWithoutMessagesInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutChatMessagesInput, Prisma.UserUncheckedCreateWithoutChatMessagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMessagesInput, Prisma.UserUncheckedCreateWithoutMessagesInput>
 }
 
-export type UserUpsertWithoutChatMessagesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutChatMessagesInput, Prisma.UserUncheckedUpdateWithoutChatMessagesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutChatMessagesInput, Prisma.UserUncheckedCreateWithoutChatMessagesInput>
+export type UserUpsertWithoutMessagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMessagesInput, Prisma.UserUncheckedUpdateWithoutMessagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMessagesInput, Prisma.UserUncheckedCreateWithoutMessagesInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutChatMessagesInput = {
+export type UserUpdateToOneWithWhereWithoutMessagesInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutChatMessagesInput, Prisma.UserUncheckedUpdateWithoutChatMessagesInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMessagesInput, Prisma.UserUncheckedUpdateWithoutMessagesInput>
 }
 
-export type UserUpdateWithoutChatMessagesInput = {
+export type UserUpdateWithoutMessagesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2108,6 +2152,7 @@ export type UserUpdateWithoutChatMessagesInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -2121,18 +2166,18 @@ export type UserUpdateWithoutChatMessagesInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutChatMessagesInput = {
+export type UserUncheckedUpdateWithoutMessagesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2149,6 +2194,7 @@ export type UserUncheckedUpdateWithoutChatMessagesInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -2161,15 +2207,15 @@ export type UserUncheckedUpdateWithoutChatMessagesInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCouponUsagesInput = {
@@ -2187,6 +2233,7 @@ export type UserCreateWithoutCouponUsagesInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -2199,16 +2246,16 @@ export type UserCreateWithoutCouponUsagesInput = {
   wishlists?: Prisma.WishlistCreateNestedManyWithoutUserInput
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCouponUsagesInput = {
@@ -2228,6 +2275,7 @@ export type UserUncheckedCreateWithoutCouponUsagesInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -2239,16 +2287,16 @@ export type UserUncheckedCreateWithoutCouponUsagesInput = {
   wishlists?: Prisma.WishlistUncheckedCreateNestedManyWithoutUserInput
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCouponUsagesInput = {
@@ -2282,6 +2330,7 @@ export type UserUpdateWithoutCouponUsagesInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -2294,16 +2343,16 @@ export type UserUpdateWithoutCouponUsagesInput = {
   wishlists?: Prisma.WishlistUpdateManyWithoutUserNestedInput
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCouponUsagesInput = {
@@ -2323,6 +2372,7 @@ export type UserUncheckedUpdateWithoutCouponUsagesInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -2334,16 +2384,16 @@ export type UserUncheckedUpdateWithoutCouponUsagesInput = {
   wishlists?: Prisma.WishlistUncheckedUpdateManyWithoutUserNestedInput
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFlashSalesInput = {
@@ -2361,6 +2411,7 @@ export type UserCreateWithoutFlashSalesInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -2374,15 +2425,15 @@ export type UserCreateWithoutFlashSalesInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFlashSalesInput = {
@@ -2402,6 +2453,7 @@ export type UserUncheckedCreateWithoutFlashSalesInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -2414,15 +2466,15 @@ export type UserUncheckedCreateWithoutFlashSalesInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFlashSalesInput = {
@@ -2456,6 +2508,7 @@ export type UserUpdateWithoutFlashSalesInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -2469,15 +2522,15 @@ export type UserUpdateWithoutFlashSalesInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFlashSalesInput = {
@@ -2497,6 +2550,7 @@ export type UserUncheckedUpdateWithoutFlashSalesInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -2509,15 +2563,15 @@ export type UserUncheckedUpdateWithoutFlashSalesInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFollowsInput = {
@@ -2535,6 +2589,7 @@ export type UserCreateWithoutFollowsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -2547,16 +2602,16 @@ export type UserCreateWithoutFollowsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFollowsInput = {
@@ -2576,6 +2631,7 @@ export type UserUncheckedCreateWithoutFollowsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -2587,16 +2643,16 @@ export type UserUncheckedCreateWithoutFollowsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFollowsInput = {
@@ -2630,6 +2686,7 @@ export type UserUpdateWithoutFollowsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -2642,16 +2699,16 @@ export type UserUpdateWithoutFollowsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowsInput = {
@@ -2671,6 +2728,7 @@ export type UserUncheckedUpdateWithoutFollowsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -2682,19 +2740,19 @@ export type UserUncheckedUpdateWithoutFollowsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutLogsInput = {
+export type UserCreateWithoutAuditLogsInput = {
   email: string
   password: string
   firstName?: string | null
@@ -2709,6 +2767,7 @@ export type UserCreateWithoutLogsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -2722,9 +2781,9 @@ export type UserCreateWithoutLogsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
@@ -2733,7 +2792,7 @@ export type UserCreateWithoutLogsInput = {
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
 }
 
-export type UserUncheckedCreateWithoutLogsInput = {
+export type UserUncheckedCreateWithoutAuditLogsInput = {
   id?: number
   email: string
   password: string
@@ -2750,6 +2809,7 @@ export type UserUncheckedCreateWithoutLogsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -2762,9 +2822,9 @@ export type UserUncheckedCreateWithoutLogsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
@@ -2773,23 +2833,23 @@ export type UserUncheckedCreateWithoutLogsInput = {
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
 }
 
-export type UserCreateOrConnectWithoutLogsInput = {
+export type UserCreateOrConnectWithoutAuditLogsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLogsInput, Prisma.UserUncheckedCreateWithoutLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
 }
 
-export type UserUpsertWithoutLogsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLogsInput, Prisma.UserUncheckedUpdateWithoutLogsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLogsInput, Prisma.UserUncheckedCreateWithoutLogsInput>
+export type UserUpsertWithoutAuditLogsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutLogsInput = {
+export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLogsInput, Prisma.UserUncheckedUpdateWithoutLogsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
 }
 
-export type UserUpdateWithoutLogsInput = {
+export type UserUpdateWithoutAuditLogsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2804,6 +2864,7 @@ export type UserUpdateWithoutLogsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -2817,9 +2878,9 @@ export type UserUpdateWithoutLogsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
@@ -2828,7 +2889,7 @@ export type UserUpdateWithoutLogsInput = {
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
 }
 
-export type UserUncheckedUpdateWithoutLogsInput = {
+export type UserUncheckedUpdateWithoutAuditLogsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2845,6 +2906,7 @@ export type UserUncheckedUpdateWithoutLogsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -2857,9 +2919,9 @@ export type UserUncheckedUpdateWithoutLogsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
@@ -2883,6 +2945,7 @@ export type UserCreateWithoutNotificationsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -2896,15 +2959,15 @@ export type UserCreateWithoutNotificationsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2924,6 +2987,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -2936,15 +3000,15 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2978,6 +3042,7 @@ export type UserUpdateWithoutNotificationsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -2991,15 +3056,15 @@ export type UserUpdateWithoutNotificationsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -3019,6 +3084,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -3031,15 +3097,15 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationPrefInput = {
@@ -3057,6 +3123,7 @@ export type UserCreateWithoutNotificationPrefInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -3070,15 +3137,15 @@ export type UserCreateWithoutNotificationPrefInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationPrefInput = {
@@ -3098,6 +3165,7 @@ export type UserUncheckedCreateWithoutNotificationPrefInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -3110,15 +3178,15 @@ export type UserUncheckedCreateWithoutNotificationPrefInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationPrefInput = {
@@ -3152,6 +3220,7 @@ export type UserUpdateWithoutNotificationPrefInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -3165,15 +3234,15 @@ export type UserUpdateWithoutNotificationPrefInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationPrefInput = {
@@ -3193,6 +3262,7 @@ export type UserUncheckedUpdateWithoutNotificationPrefInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -3205,15 +3275,15 @@ export type UserUncheckedUpdateWithoutNotificationPrefInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -3231,6 +3301,7 @@ export type UserCreateWithoutOrdersInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -3243,16 +3314,16 @@ export type UserCreateWithoutOrdersInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -3272,6 +3343,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -3283,16 +3355,16 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -3326,6 +3398,7 @@ export type UserUpdateWithoutOrdersInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -3338,16 +3411,16 @@ export type UserUpdateWithoutOrdersInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -3367,6 +3440,7 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -3378,16 +3452,16 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReturnsInput = {
@@ -3405,6 +3479,7 @@ export type UserCreateWithoutReturnsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -3417,16 +3492,16 @@ export type UserCreateWithoutReturnsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReturnsInput = {
@@ -3446,6 +3521,7 @@ export type UserUncheckedCreateWithoutReturnsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -3457,16 +3533,16 @@ export type UserUncheckedCreateWithoutReturnsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReturnsInput = {
@@ -3500,6 +3576,7 @@ export type UserUpdateWithoutReturnsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -3512,16 +3589,16 @@ export type UserUpdateWithoutReturnsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReturnsInput = {
@@ -3541,6 +3618,7 @@ export type UserUncheckedUpdateWithoutReturnsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -3552,16 +3630,16 @@ export type UserUncheckedUpdateWithoutReturnsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewsInput = {
@@ -3579,6 +3657,7 @@ export type UserCreateWithoutReviewsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -3591,16 +3670,16 @@ export type UserCreateWithoutReviewsInput = {
   wishlists?: Prisma.WishlistCreateNestedManyWithoutUserInput
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewsInput = {
@@ -3620,6 +3699,7 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -3631,16 +3711,16 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   wishlists?: Prisma.WishlistUncheckedCreateNestedManyWithoutUserInput
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewsInput = {
@@ -3674,6 +3754,7 @@ export type UserUpdateWithoutReviewsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -3686,16 +3767,16 @@ export type UserUpdateWithoutReviewsInput = {
   wishlists?: Prisma.WishlistUpdateManyWithoutUserNestedInput
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -3715,6 +3796,7 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -3726,16 +3808,16 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   wishlists?: Prisma.WishlistUncheckedUpdateManyWithoutUserNestedInput
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRiderInput = {
@@ -3753,6 +3835,7 @@ export type UserCreateWithoutRiderInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -3765,16 +3848,16 @@ export type UserCreateWithoutRiderInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRiderInput = {
@@ -3794,6 +3877,7 @@ export type UserUncheckedCreateWithoutRiderInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
@@ -3805,16 +3889,16 @@ export type UserUncheckedCreateWithoutRiderInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRiderInput = {
@@ -3848,6 +3932,7 @@ export type UserUpdateWithoutRiderInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -3860,16 +3945,16 @@ export type UserUpdateWithoutRiderInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRiderInput = {
@@ -3889,6 +3974,7 @@ export type UserUncheckedUpdateWithoutRiderInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
@@ -3900,16 +3986,16 @@ export type UserUncheckedUpdateWithoutRiderInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSellerInput = {
@@ -3927,6 +4013,7 @@ export type UserCreateWithoutSellerInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   rider?: Prisma.RiderCreateNestedOneWithoutUserInput
@@ -3939,16 +4026,16 @@ export type UserCreateWithoutSellerInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSellerInput = {
@@ -3968,6 +4055,7 @@ export type UserUncheckedCreateWithoutSellerInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
@@ -3979,16 +4067,16 @@ export type UserUncheckedCreateWithoutSellerInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSellerInput = {
@@ -4022,6 +4110,7 @@ export type UserUpdateWithoutSellerInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
@@ -4034,16 +4123,16 @@ export type UserUpdateWithoutSellerInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSellerInput = {
@@ -4063,6 +4152,7 @@ export type UserUncheckedUpdateWithoutSellerInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
@@ -4074,16 +4164,16 @@ export type UserUncheckedUpdateWithoutSellerInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSupportTicketsInput = {
@@ -4101,6 +4191,7 @@ export type UserCreateWithoutSupportTicketsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -4114,15 +4205,15 @@ export type UserCreateWithoutSupportTicketsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSupportTicketsInput = {
@@ -4142,6 +4233,7 @@ export type UserUncheckedCreateWithoutSupportTicketsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -4154,15 +4246,15 @@ export type UserUncheckedCreateWithoutSupportTicketsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSupportTicketsInput = {
@@ -4196,6 +4288,7 @@ export type UserUpdateWithoutSupportTicketsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -4209,15 +4302,15 @@ export type UserUpdateWithoutSupportTicketsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSupportTicketsInput = {
@@ -4237,6 +4330,7 @@ export type UserUncheckedUpdateWithoutSupportTicketsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -4249,15 +4343,15 @@ export type UserUncheckedUpdateWithoutSupportTicketsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTicketRepliesInput = {
@@ -4275,6 +4369,7 @@ export type UserCreateWithoutTicketRepliesInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -4288,15 +4383,15 @@ export type UserCreateWithoutTicketRepliesInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTicketRepliesInput = {
@@ -4316,6 +4411,7 @@ export type UserUncheckedCreateWithoutTicketRepliesInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -4328,15 +4424,15 @@ export type UserUncheckedCreateWithoutTicketRepliesInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTicketRepliesInput = {
@@ -4370,6 +4466,7 @@ export type UserUpdateWithoutTicketRepliesInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -4383,15 +4480,15 @@ export type UserUpdateWithoutTicketRepliesInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketRepliesInput = {
@@ -4411,6 +4508,7 @@ export type UserUncheckedUpdateWithoutTicketRepliesInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -4423,15 +4521,15 @@ export type UserUncheckedUpdateWithoutTicketRepliesInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReferredUsersInput = {
@@ -4449,6 +4547,7 @@ export type UserCreateWithoutReferredUsersInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderCreateNestedOneWithoutUserInput
@@ -4461,16 +4560,16 @@ export type UserCreateWithoutReferredUsersInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReferredUsersInput = {
@@ -4490,6 +4589,7 @@ export type UserUncheckedCreateWithoutReferredUsersInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
@@ -4501,16 +4601,16 @@ export type UserUncheckedCreateWithoutReferredUsersInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReferredUsersInput = {
@@ -4533,6 +4633,7 @@ export type UserCreateWithoutReferredByUserInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderCreateNestedOneWithoutUserInput
@@ -4545,16 +4646,16 @@ export type UserCreateWithoutReferredByUserInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReferredByUserInput = {
@@ -4573,6 +4674,7 @@ export type UserUncheckedCreateWithoutReferredByUserInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -4585,16 +4687,16 @@ export type UserUncheckedCreateWithoutReferredByUserInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReferredByUserInput = {
@@ -4633,6 +4735,7 @@ export type UserUpdateWithoutReferredUsersInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
@@ -4645,16 +4748,16 @@ export type UserUpdateWithoutReferredUsersInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferredUsersInput = {
@@ -4674,6 +4777,7 @@ export type UserUncheckedUpdateWithoutReferredUsersInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
@@ -4685,16 +4789,16 @@ export type UserUncheckedUpdateWithoutReferredUsersInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutReferredByUserInput = {
@@ -4733,6 +4837,7 @@ export type UserScalarWhereInput = {
   referredBy?: Prisma.IntNullableFilter<"User"> | number | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
 }
 
 export type UserCreateWithoutWalletInput = {
@@ -4750,6 +4855,7 @@ export type UserCreateWithoutWalletInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -4762,16 +4868,16 @@ export type UserCreateWithoutWalletInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWalletInput = {
@@ -4791,6 +4897,7 @@ export type UserUncheckedCreateWithoutWalletInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -4802,16 +4909,16 @@ export type UserUncheckedCreateWithoutWalletInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWalletInput = {
@@ -4845,6 +4952,7 @@ export type UserUpdateWithoutWalletInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -4857,16 +4965,16 @@ export type UserUpdateWithoutWalletInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWalletInput = {
@@ -4886,6 +4994,7 @@ export type UserUncheckedUpdateWithoutWalletInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -4897,16 +5006,16 @@ export type UserUncheckedUpdateWithoutWalletInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWishlistsInput = {
@@ -4924,6 +5033,7 @@ export type UserCreateWithoutWishlistsInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
   referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerCreateNestedOneWithoutUserInput
@@ -4936,16 +5046,16 @@ export type UserCreateWithoutWishlistsInput = {
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWishlistsInput = {
@@ -4965,6 +5075,7 @@ export type UserUncheckedCreateWithoutWishlistsInput = {
   referredBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
   seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
@@ -4976,16 +5087,16 @@ export type UserUncheckedCreateWithoutWishlistsInput = {
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
-  conversationsAsP1?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant1Input
-  conversationsAsP2?: Prisma.ConversationUncheckedCreateNestedManyWithoutParticipant2Input
-  chatMessages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
-  logs?: Prisma.LogUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWishlistsInput = {
@@ -5019,6 +5130,7 @@ export type UserUpdateWithoutWishlistsInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
@@ -5031,16 +5143,16 @@ export type UserUpdateWithoutWishlistsInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWishlistsInput = {
@@ -5060,6 +5172,7 @@ export type UserUncheckedUpdateWithoutWishlistsInput = {
   referredBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -5071,16 +5184,16 @@ export type UserUncheckedUpdateWithoutWishlistsInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyReferredByUserInput = {
@@ -5099,6 +5212,7 @@ export type UserCreateManyReferredByUserInput = {
   referralCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
 }
 
 export type UserUpdateWithoutReferredByUserInput = {
@@ -5116,6 +5230,7 @@ export type UserUpdateWithoutReferredByUserInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
@@ -5128,16 +5243,16 @@ export type UserUpdateWithoutReferredByUserInput = {
   cart?: Prisma.CartUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferredByUserInput = {
@@ -5156,6 +5271,7 @@ export type UserUncheckedUpdateWithoutReferredByUserInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
   seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
@@ -5168,16 +5284,16 @@ export type UserUncheckedUpdateWithoutReferredByUserInput = {
   cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
-  conversationsAsP1?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant1NestedInput
-  conversationsAsP2?: Prisma.ConversationUncheckedUpdateManyWithoutParticipant2NestedInput
-  chatMessages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
-  logs?: Prisma.LogUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutReferredByUserInput = {
@@ -5196,6 +5312,7 @@ export type UserUncheckedUpdateManyWithoutReferredByUserInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -5212,15 +5329,15 @@ export type UserCountOutputType = {
   wishlists: number
   reviews: number
   couponUsages: number
-  conversationsAsP1: number
-  conversationsAsP2: number
-  chatMessages: number
+  conversationsAsUser1: number
+  conversationsAsUser2: number
+  messages: number
   notifications: number
   supportTickets: number
   ticketReplies: number
   blogs: number
   flashSales: number
-  logs: number
+  auditLogs: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5232,15 +5349,15 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   wishlists?: boolean | UserCountOutputTypeCountWishlistsArgs
   reviews?: boolean | UserCountOutputTypeCountReviewsArgs
   couponUsages?: boolean | UserCountOutputTypeCountCouponUsagesArgs
-  conversationsAsP1?: boolean | UserCountOutputTypeCountConversationsAsP1Args
-  conversationsAsP2?: boolean | UserCountOutputTypeCountConversationsAsP2Args
-  chatMessages?: boolean | UserCountOutputTypeCountChatMessagesArgs
+  conversationsAsUser1?: boolean | UserCountOutputTypeCountConversationsAsUser1Args
+  conversationsAsUser2?: boolean | UserCountOutputTypeCountConversationsAsUser2Args
+  messages?: boolean | UserCountOutputTypeCountMessagesArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   supportTickets?: boolean | UserCountOutputTypeCountSupportTicketsArgs
   ticketReplies?: boolean | UserCountOutputTypeCountTicketRepliesArgs
   blogs?: boolean | UserCountOutputTypeCountBlogsArgs
   flashSales?: boolean | UserCountOutputTypeCountFlashSalesArgs
-  logs?: boolean | UserCountOutputTypeCountLogsArgs
+  auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
 }
 
 /**
@@ -5312,22 +5429,22 @@ export type UserCountOutputTypeCountCouponUsagesArgs<ExtArgs extends runtime.Typ
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountConversationsAsP1Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeCountConversationsAsUser1Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ConversationWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountConversationsAsP2Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeCountConversationsAsUser2Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ConversationWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountChatMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ChatMessageWhereInput
+export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessageWhereInput
 }
 
 /**
@@ -5368,8 +5485,8 @@ export type UserCountOutputTypeCountFlashSalesArgs<ExtArgs extends runtime.Types
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LogWhereInput
+export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AuditLogWhereInput
 }
 
 
@@ -5390,6 +5507,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   referredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
   referredByUser?: boolean | Prisma.User$referredByUserArgs<ExtArgs>
   referredUsers?: boolean | Prisma.User$referredUsersArgs<ExtArgs>
   seller?: boolean | Prisma.User$sellerArgs<ExtArgs>
@@ -5403,16 +5521,16 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   cart?: boolean | Prisma.User$cartArgs<ExtArgs>
   reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
   couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
-  conversationsAsP1?: boolean | Prisma.User$conversationsAsP1Args<ExtArgs>
-  conversationsAsP2?: boolean | Prisma.User$conversationsAsP2Args<ExtArgs>
-  chatMessages?: boolean | Prisma.User$chatMessagesArgs<ExtArgs>
+  conversationsAsUser1?: boolean | Prisma.User$conversationsAsUser1Args<ExtArgs>
+  conversationsAsUser2?: boolean | Prisma.User$conversationsAsUser2Args<ExtArgs>
+  messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   notificationPref?: boolean | Prisma.User$notificationPrefArgs<ExtArgs>
   supportTickets?: boolean | Prisma.User$supportTicketsArgs<ExtArgs>
   ticketReplies?: boolean | Prisma.User$ticketRepliesArgs<ExtArgs>
   blogs?: boolean | Prisma.User$blogsArgs<ExtArgs>
   flashSales?: boolean | Prisma.User$flashSalesArgs<ExtArgs>
-  logs?: boolean | Prisma.User$logsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5433,6 +5551,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   referredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
   referredByUser?: boolean | Prisma.User$referredByUserArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5453,6 +5572,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   referredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
   referredByUser?: boolean | Prisma.User$referredByUserArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5473,9 +5593,10 @@ export type UserSelectScalar = {
   referredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "phone" | "role" | "isActive" | "isVerified" | "twoFactorEnabled" | "twoFactorSecret" | "lastLogin" | "referralCode" | "referredBy" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "phone" | "role" | "isActive" | "isVerified" | "twoFactorEnabled" | "twoFactorSecret" | "lastLogin" | "referralCode" | "referredBy" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   referredByUser?: boolean | Prisma.User$referredByUserArgs<ExtArgs>
   referredUsers?: boolean | Prisma.User$referredUsersArgs<ExtArgs>
@@ -5490,16 +5611,16 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   cart?: boolean | Prisma.User$cartArgs<ExtArgs>
   reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
   couponUsages?: boolean | Prisma.User$couponUsagesArgs<ExtArgs>
-  conversationsAsP1?: boolean | Prisma.User$conversationsAsP1Args<ExtArgs>
-  conversationsAsP2?: boolean | Prisma.User$conversationsAsP2Args<ExtArgs>
-  chatMessages?: boolean | Prisma.User$chatMessagesArgs<ExtArgs>
+  conversationsAsUser1?: boolean | Prisma.User$conversationsAsUser1Args<ExtArgs>
+  conversationsAsUser2?: boolean | Prisma.User$conversationsAsUser2Args<ExtArgs>
+  messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   notificationPref?: boolean | Prisma.User$notificationPrefArgs<ExtArgs>
   supportTickets?: boolean | Prisma.User$supportTicketsArgs<ExtArgs>
   ticketReplies?: boolean | Prisma.User$ticketRepliesArgs<ExtArgs>
   blogs?: boolean | Prisma.User$blogsArgs<ExtArgs>
   flashSales?: boolean | Prisma.User$flashSalesArgs<ExtArgs>
-  logs?: boolean | Prisma.User$logsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5525,16 +5646,16 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     cart: Prisma.$CartPayload<ExtArgs> | null
     reviews: Prisma.$ReviewPayload<ExtArgs>[]
     couponUsages: Prisma.$CouponUsagePayload<ExtArgs>[]
-    conversationsAsP1: Prisma.$ConversationPayload<ExtArgs>[]
-    conversationsAsP2: Prisma.$ConversationPayload<ExtArgs>[]
-    chatMessages: Prisma.$ChatMessagePayload<ExtArgs>[]
+    conversationsAsUser1: Prisma.$ConversationPayload<ExtArgs>[]
+    conversationsAsUser2: Prisma.$ConversationPayload<ExtArgs>[]
+    messages: Prisma.$MessagePayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     notificationPref: Prisma.$NotificationPreferencePayload<ExtArgs> | null
     supportTickets: Prisma.$SupportTicketPayload<ExtArgs>[]
     ticketReplies: Prisma.$TicketReplyPayload<ExtArgs>[]
     blogs: Prisma.$BlogPayload<ExtArgs>[]
     flashSales: Prisma.$FlashSalePayload<ExtArgs>[]
-    logs: Prisma.$LogPayload<ExtArgs>[]
+    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -5553,6 +5674,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     referredBy: number | null
     createdAt: Date
     updatedAt: Date
+    deletedAt: Date | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -5960,16 +6082,16 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   cart<T extends Prisma.User$cartArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cartArgs<ExtArgs>>): Prisma.Prisma__CartClient<runtime.Types.Result.GetResult<Prisma.$CartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   couponUsages<T extends Prisma.User$couponUsagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$couponUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  conversationsAsP1<T extends Prisma.User$conversationsAsP1Args<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$conversationsAsP1Args<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  conversationsAsP2<T extends Prisma.User$conversationsAsP2Args<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$conversationsAsP2Args<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  chatMessages<T extends Prisma.User$chatMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  conversationsAsUser1<T extends Prisma.User$conversationsAsUser1Args<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$conversationsAsUser1Args<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  conversationsAsUser2<T extends Prisma.User$conversationsAsUser2Args<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$conversationsAsUser2Args<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notificationPref<T extends Prisma.User$notificationPrefArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationPrefArgs<ExtArgs>>): Prisma.Prisma__NotificationPreferenceClient<runtime.Types.Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   supportTickets<T extends Prisma.User$supportTicketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$supportTicketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupportTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ticketReplies<T extends Prisma.User$ticketRepliesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ticketRepliesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   blogs<T extends Prisma.User$blogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   flashSales<T extends Prisma.User$flashSalesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$flashSalesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  logs<T extends Prisma.User$logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6015,6 +6137,7 @@ export interface UserFieldRefs {
   readonly referredBy: Prisma.FieldRef<"User", 'Int'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
@@ -6698,9 +6821,9 @@ export type User$couponUsagesArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * User.conversationsAsP1
+ * User.conversationsAsUser1
  */
-export type User$conversationsAsP1Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$conversationsAsUser1Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Conversation
    */
@@ -6722,9 +6845,9 @@ export type User$conversationsAsP1Args<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * User.conversationsAsP2
+ * User.conversationsAsUser2
  */
-export type User$conversationsAsP2Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$conversationsAsUser2Args<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Conversation
    */
@@ -6746,27 +6869,27 @@ export type User$conversationsAsP2Args<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * User.chatMessages
+ * User.messages
  */
-export type User$chatMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ChatMessage
+   * Select specific fields to fetch from the Message
    */
-  select?: Prisma.ChatMessageSelect<ExtArgs> | null
+  select?: Prisma.MessageSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ChatMessage
+   * Omit specific fields from the Message
    */
-  omit?: Prisma.ChatMessageOmit<ExtArgs> | null
+  omit?: Prisma.MessageOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ChatMessageInclude<ExtArgs> | null
-  where?: Prisma.ChatMessageWhereInput
-  orderBy?: Prisma.ChatMessageOrderByWithRelationInput | Prisma.ChatMessageOrderByWithRelationInput[]
-  cursor?: Prisma.ChatMessageWhereUniqueInput
+  include?: Prisma.MessageInclude<ExtArgs> | null
+  where?: Prisma.MessageWhereInput
+  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
+  cursor?: Prisma.MessageWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ChatMessageScalarFieldEnum | Prisma.ChatMessageScalarFieldEnum[]
+  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
 }
 
 /**
@@ -6909,27 +7032,27 @@ export type User$flashSalesArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * User.logs
+ * User.auditLogs
  */
-export type User$logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Log
+   * Select specific fields to fetch from the AuditLog
    */
-  select?: Prisma.LogSelect<ExtArgs> | null
+  select?: Prisma.AuditLogSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Log
+   * Omit specific fields from the AuditLog
    */
-  omit?: Prisma.LogOmit<ExtArgs> | null
+  omit?: Prisma.AuditLogOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LogInclude<ExtArgs> | null
-  where?: Prisma.LogWhereInput
-  orderBy?: Prisma.LogOrderByWithRelationInput | Prisma.LogOrderByWithRelationInput[]
-  cursor?: Prisma.LogWhereUniqueInput
+  include?: Prisma.AuditLogInclude<ExtArgs> | null
+  where?: Prisma.AuditLogWhereInput
+  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
+  cursor?: Prisma.AuditLogWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.LogScalarFieldEnum | Prisma.LogScalarFieldEnum[]
+  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**

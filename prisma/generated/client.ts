@@ -83,10 +83,10 @@ export type CmsPage = Prisma.CmsPageModel
  */
 export type Conversation = Prisma.ConversationModel
 /**
- * Model ChatMessage
+ * Model Message
  * 
  */
-export type ChatMessage = Prisma.ChatMessageModel
+export type Message = Prisma.MessageModel
 /**
  * Model CouponUsage
  * 
@@ -118,10 +118,15 @@ export type FlashSaleProduct = Prisma.FlashSaleProductModel
  */
 export type Follow = Prisma.FollowModel
 /**
- * Model Log
+ * Model AuditLog
  * 
  */
-export type Log = Prisma.LogModel
+export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model OutboxEvent
+ * 
+ */
+export type OutboxEvent = Prisma.OutboxEventModel
 /**
  * Model Notification
  * 
@@ -153,6 +158,11 @@ export type Payment = Prisma.PaymentModel
  */
 export type Payout = Prisma.PayoutModel
 /**
+ * Model ProductVariant
+ * 
+ */
+export type ProductVariant = Prisma.ProductVariantModel
+/**
  * Model Product
  * 
  */
@@ -177,6 +187,11 @@ export type Review = Prisma.ReviewModel
  * 
  */
 export type Rider = Prisma.RiderModel
+/**
+ * Model SellerOrder
+ * 
+ */
+export type SellerOrder = Prisma.SellerOrderModel
 /**
  * Model Seller
  * 

@@ -26,19 +26,6 @@ export const DiscountType = {
 export type DiscountType = (typeof DiscountType)[keyof typeof DiscountType]
 
 
-export const NotificationType = {
-  ORDER_UPDATE: 'ORDER_UPDATE',
-  OFFER: 'OFFER',
-  MESSAGE: 'MESSAGE',
-  PAYOUT: 'PAYOUT',
-  REVIEW: 'REVIEW',
-  RETURN: 'RETURN',
-  ALERT: 'ALERT'
-} as const
-
-export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
-
-
 export const OrderStatus = {
   PENDING: 'PENDING',
   PROCESSING: 'PROCESSING',

@@ -1,10 +1,19 @@
-model Log {
+model AuditLog {
   id        Int      @id @default(autoincrement())
   userId    Int?
   action    String
-  ipAddress String?
-  details   Json?
+  ip        String?
   createdAt DateTime @default(now())
 
   user      User?    @relation(fields: [userId], references: [id])
+}
+
+model OutboxEvent {
+  id            Int      @id @default(autoincrement())
+  aggregateType String
+  aggregateId   Int
+  eventType     String
+  payload       Json
+  processed     Boolean
+  createdAt     DateTime @default(now())
 }

@@ -1,0 +1,11 @@
+model SellerOrder {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  sellerId  Int
+  subtotal  Decimal @db.Decimal(12, 2)
+  status    String
+
+  order     Order   @relation(fields: [orderId], references: [id])
+  seller    Seller  @relation(fields: [sellerId], references: [id])
+  orderItems OrderItem[]
+}

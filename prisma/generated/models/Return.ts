@@ -558,6 +558,10 @@ export type ReturnUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.ReturnScalarWhereInput | Prisma.ReturnScalarWhereInput[]
 }
 
+export type EnumReturnStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ReturnStatus
+}
+
 export type ReturnCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.ReturnCreateWithoutUserInput, Prisma.ReturnUncheckedCreateWithoutUserInput> | Prisma.ReturnCreateWithoutUserInput[] | Prisma.ReturnUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.ReturnCreateOrConnectWithoutUserInput | Prisma.ReturnCreateOrConnectWithoutUserInput[]

@@ -16,6 +16,7 @@ model Seller {
   isApproved          Boolean   @default(false)
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
+  deletedAt           DateTime?
 
   user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   products            Product[]
@@ -23,7 +24,7 @@ model Seller {
   follows             Follow[]
   payouts             Payout[]
   coupons             Coupon[]
-  orderItems          OrderItem[]
+  sellerOrders        SellerOrder[]
   reviewReplies       ReviewReply[]
 }
 

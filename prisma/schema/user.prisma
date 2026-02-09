@@ -15,6 +15,7 @@ model User {
   referredBy        Int?      
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
 
   referredByUser    User?     @relation("Referral", fields: [referredBy], references: [id])
   referredUsers     User[]    @relation("Referral")
@@ -29,16 +30,16 @@ model User {
   cart              Cart?
   reviews           Review[]
   couponUsages      CouponUsage[]
-  conversationsAsP1 Conversation[] @relation("Participant1")
-  conversationsAsP2 Conversation[] @relation("Participant2")
-  chatMessages      ChatMessage[]
+  conversationsAsUser1 Conversation[] @relation("User1Conversations")
+  conversationsAsUser2 Conversation[] @relation("User2Conversations")
+  messages          Message[]
   notifications     Notification[]
   notificationPref  NotificationPreference?
   supportTickets    SupportTicket[]
   ticketReplies     TicketReply[]
   blogs             Blog[]
   flashSales        FlashSale[]
-  logs              Log[]
+  auditLogs         AuditLog[]
 }
 
 enum UserRole {
