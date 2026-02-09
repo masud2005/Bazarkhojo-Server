@@ -1,0 +1,13 @@
+model Follow {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  sellerId  Int
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId],   references: [id], onDelete: Cascade)
+  seller    Seller   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, sellerId])
+  @@index([userId])
+  @@index([sellerId])
+}

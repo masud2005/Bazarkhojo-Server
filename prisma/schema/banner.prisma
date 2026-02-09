@@ -1,0 +1,17 @@
+model Banner {
+  id        Int           @id @default(autoincrement())
+  imageUrl  String
+  link      String?
+  position  BannerPosition
+  isActive  Boolean       @default(true)
+  startDate DateTime?
+  endDate   DateTime?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+enum BannerPosition {
+  HOMEPAGE_TOP
+  HOMEPAGE_MIDDLE
+  SIDEBAR
+}

@@ -51,7 +51,42 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  Address: 'Address',
+  Banner: 'Banner',
+  Blog: 'Blog',
+  Brand: 'Brand',
+  CartItem: 'CartItem',
+  Cart: 'Cart',
+  Category: 'Category',
+  CmsPage: 'CmsPage',
+  Conversation: 'Conversation',
+  ChatMessage: 'ChatMessage',
+  CouponUsage: 'CouponUsage',
+  Coupon: 'Coupon',
+  Discount: 'Discount',
+  FlashSale: 'FlashSale',
+  FlashSaleProduct: 'FlashSaleProduct',
+  Follow: 'Follow',
+  Log: 'Log',
+  Notification: 'Notification',
+  NotificationPreference: 'NotificationPreference',
+  OrderItem: 'OrderItem',
+  Order: 'Order',
+  Payment: 'Payment',
+  Payout: 'Payout',
+  Product: 'Product',
+  Return: 'Return',
+  ReviewReply: 'ReviewReply',
+  Review: 'Review',
+  Rider: 'Rider',
+  Seller: 'Seller',
+  Setting: 'Setting',
+  SupportTicket: 'SupportTicket',
+  TicketReply: 'TicketReply',
+  User: 'User',
+  WalletTransaction: 'WalletTransaction',
+  Wallet: 'Wallet',
+  Wishlist: 'Wishlist'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,15 +105,527 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AddressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  addressLine1: 'addressLine1',
+  addressLine2: 'addressLine2',
+  city: 'city',
+  state: 'state',
+  postalCode: 'postalCode',
+  country: 'country',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
+
+
+export const BannerScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  link: 'link',
+  position: 'position',
+  isActive: 'isActive',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BannerScalarFieldEnum = (typeof BannerScalarFieldEnum)[keyof typeof BannerScalarFieldEnum]
+
+
+export const BlogScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  content: 'content',
+  image: 'image',
+  authorId: 'authorId',
+  isPublished: 'isPublished',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum]
+
+
+export const BrandScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  logo: 'logo',
+  description: 'description',
+  isApproved: 'isApproved',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum]
+
+
+export const CartItemScalarFieldEnum = {
+  id: 'id',
+  cartId: 'cartId',
+  productId: 'productId',
+  quantity: 'quantity',
+  variant: 'variant',
+  createdAt: 'createdAt'
+} as const
+
+export type CartItemScalarFieldEnum = (typeof CartItemScalarFieldEnum)[keyof typeof CartItemScalarFieldEnum]
+
+
+export const CartScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CartScalarFieldEnum = (typeof CartScalarFieldEnum)[keyof typeof CartScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  parentId: 'parentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const CmsPageScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  content: 'content',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CmsPageScalarFieldEnum = (typeof CmsPageScalarFieldEnum)[keyof typeof CmsPageScalarFieldEnum]
+
+
+export const ConversationScalarFieldEnum = {
+  id: 'id',
+  participant1Id: 'participant1Id',
+  participant2Id: 'participant2Id',
+  lastMessageAt: 'lastMessageAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ConversationScalarFieldEnum = (typeof ConversationScalarFieldEnum)[keyof typeof ConversationScalarFieldEnum]
+
+
+export const ChatMessageScalarFieldEnum = {
+  id: 'id',
+  conversationId: 'conversationId',
+  senderId: 'senderId',
+  message: 'message',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+} as const
+
+export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
+
+
+export const CouponUsageScalarFieldEnum = {
+  id: 'id',
+  couponId: 'couponId',
+  orderId: 'orderId',
+  userId: 'userId',
+  discountAmount: 'discountAmount',
+  createdAt: 'createdAt'
+} as const
+
+export type CouponUsageScalarFieldEnum = (typeof CouponUsageScalarFieldEnum)[keyof typeof CouponUsageScalarFieldEnum]
+
+
+export const CouponScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  type: 'type',
+  value: 'value',
+  minOrderAmount: 'minOrderAmount',
+  maxDiscount: 'maxDiscount',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  usageLimit: 'usageLimit',
+  usedCount: 'usedCount',
+  sellerId: 'sellerId',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CouponScalarFieldEnum = (typeof CouponScalarFieldEnum)[keyof typeof CouponScalarFieldEnum]
+
+
+export const DiscountScalarFieldEnum = {
+  id: 'id',
+  sellerId: 'sellerId',
+  productId: 'productId',
+  type: 'type',
+  value: 'value',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  minPurchaseAmount: 'minPurchaseAmount',
+  usageLimit: 'usageLimit',
+  usedCount: 'usedCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DiscountScalarFieldEnum = (typeof DiscountScalarFieldEnum)[keyof typeof DiscountScalarFieldEnum]
+
+
+export const FlashSaleScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FlashSaleScalarFieldEnum = (typeof FlashSaleScalarFieldEnum)[keyof typeof FlashSaleScalarFieldEnum]
+
+
+export const FlashSaleProductScalarFieldEnum = {
+  id: 'id',
+  flashSaleId: 'flashSaleId',
+  productId: 'productId',
+  discountPrice: 'discountPrice'
+} as const
+
+export type FlashSaleProductScalarFieldEnum = (typeof FlashSaleProductScalarFieldEnum)[keyof typeof FlashSaleProductScalarFieldEnum]
+
+
+export const FollowScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sellerId: 'sellerId',
+  createdAt: 'createdAt'
+} as const
+
+export type FollowScalarFieldEnum = (typeof FollowScalarFieldEnum)[keyof typeof FollowScalarFieldEnum]
+
+
+export const LogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  ipAddress: 'ipAddress',
+  details: 'details',
+  createdAt: 'createdAt'
+} as const
+
+export type LogScalarFieldEnum = (typeof LogScalarFieldEnum)[keyof typeof LogScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  isRead: 'isRead',
+  referenceId: 'referenceId',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const NotificationPreferenceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  orderUpdates: 'orderUpdates',
+  promotions: 'promotions',
+  messages: 'messages',
+  payouts: 'payouts',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NotificationPreferenceScalarFieldEnum = (typeof NotificationPreferenceScalarFieldEnum)[keyof typeof NotificationPreferenceScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  sellerId: 'sellerId',
+  quantity: 'quantity',
+  price: 'price',
+  discountPrice: 'discountPrice',
+  variant: 'variant',
+  returnStatus: 'returnStatus',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  orderNumber: 'orderNumber',
+  totalAmount: 'totalAmount',
+  discountAmount: 'discountAmount',
+  taxAmount: 'taxAmount',
+  shippingAmount: 'shippingAmount',
+  paymentMethod: 'paymentMethod',
+  paymentStatus: 'paymentStatus',
+  orderStatus: 'orderStatus',
+  shippingAddress: 'shippingAddress',
+  trackingNumber: 'trackingNumber',
+  riderId: 'riderId',
+  couponId: 'couponId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  transactionId: 'transactionId',
+  amount: 'amount',
+  gateway: 'gateway',
+  status: 'status',
+  refundAmount: 'refundAmount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const PayoutScalarFieldEnum = {
+  id: 'id',
+  sellerId: 'sellerId',
+  amount: 'amount',
+  commissionDeducted: 'commissionDeducted',
+  status: 'status',
+  payoutMethod: 'payoutMethod',
+  transactionId: 'transactionId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PayoutScalarFieldEnum = (typeof PayoutScalarFieldEnum)[keyof typeof PayoutScalarFieldEnum]
+
+
+export const ProductScalarFieldEnum = {
+  id: 'id',
+  sellerId: 'sellerId',
+  categoryId: 'categoryId',
+  brandId: 'brandId',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  price: 'price',
+  discountPrice: 'discountPrice',
+  stock: 'stock',
+  variants: 'variants',
+  images: 'images',
+  seoTitle: 'seoTitle',
+  seoDescription: 'seoDescription',
+  seoKeywords: 'seoKeywords',
+  isApproved: 'isApproved',
+  isFeatured: 'isFeatured',
+  lowStockThreshold: 'lowStockThreshold',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const ReturnScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  orderItemId: 'orderItemId',
+  userId: 'userId',
+  reason: 'reason',
+  status: 'status',
+  refundAmount: 'refundAmount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReturnScalarFieldEnum = (typeof ReturnScalarFieldEnum)[keyof typeof ReturnScalarFieldEnum]
+
+
+export const ReviewReplyScalarFieldEnum = {
+  id: 'id',
+  reviewId: 'reviewId',
+  sellerId: 'sellerId',
+  reply: 'reply',
+  createdAt: 'createdAt'
+} as const
+
+export type ReviewReplyScalarFieldEnum = (typeof ReviewReplyScalarFieldEnum)[keyof typeof ReviewReplyScalarFieldEnum]
+
+
+export const ReviewScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  userId: 'userId',
+  orderItemId: 'orderItemId',
+  rating: 'rating',
+  comment: 'comment',
+  isApproved: 'isApproved',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+export const RiderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  vehicleType: 'vehicleType',
+  licenseNumber: 'licenseNumber',
+  currentLocation: 'currentLocation',
+  isAvailable: 'isAvailable',
+  totalEarnings: 'totalEarnings',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RiderScalarFieldEnum = (typeof RiderScalarFieldEnum)[keyof typeof RiderScalarFieldEnum]
+
+
+export const SellerScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  shopName: 'shopName',
+  shopSlug: 'shopSlug',
+  shopDescription: 'shopDescription',
+  shopLogo: 'shopLogo',
+  shopBanner: 'shopBanner',
+  tradeLicense: 'tradeLicense',
+  nid: 'nid',
+  bankAccount: 'bankAccount',
+  subscriptionType: 'subscriptionType',
+  subscriptionStart: 'subscriptionStart',
+  subscriptionEnd: 'subscriptionEnd',
+  commissionRate: 'commissionRate',
+  isApproved: 'isApproved',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SellerScalarFieldEnum = (typeof SellerScalarFieldEnum)[keyof typeof SellerScalarFieldEnum]
+
+
+export const SettingScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  value: 'value',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
+
+
+export const SupportTicketScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  subject: 'subject',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SupportTicketScalarFieldEnum = (typeof SupportTicketScalarFieldEnum)[keyof typeof SupportTicketScalarFieldEnum]
+
+
+export const TicketReplyScalarFieldEnum = {
+  id: 'id',
+  ticketId: 'ticketId',
+  userId: 'userId',
+  message: 'message',
+  createdAt: 'createdAt'
+} as const
+
+export type TicketReplyScalarFieldEnum = (typeof TicketReplyScalarFieldEnum)[keyof typeof TicketReplyScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  name: 'name',
+  password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
+  role: 'role',
+  isActive: 'isActive',
+  isVerified: 'isVerified',
+  twoFactorEnabled: 'twoFactorEnabled',
+  twoFactorSecret: 'twoFactorSecret',
+  lastLogin: 'lastLogin',
+  referralCode: 'referralCode',
+  referredBy: 'referredBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const WalletTransactionScalarFieldEnum = {
+  id: 'id',
+  walletId: 'walletId',
+  type: 'type',
+  amount: 'amount',
+  description: 'description',
+  orderId: 'orderId',
+  referenceId: 'referenceId',
+  createdAt: 'createdAt'
+} as const
+
+export type WalletTransactionScalarFieldEnum = (typeof WalletTransactionScalarFieldEnum)[keyof typeof WalletTransactionScalarFieldEnum]
+
+
+export const WalletScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  balance: 'balance',
+  rewardPoints: 'rewardPoints',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WalletScalarFieldEnum = (typeof WalletScalarFieldEnum)[keyof typeof WalletScalarFieldEnum]
+
+
+export const WishlistScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  productId: 'productId',
+  createdAt: 'createdAt'
+} as const
+
+export type WishlistScalarFieldEnum = (typeof WishlistScalarFieldEnum)[keyof typeof WishlistScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -87,6 +634,14 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull'
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -103,4 +658,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull',
+  AnyNull: 'AnyNull'
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

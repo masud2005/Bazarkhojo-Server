@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  name      String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
+  "inlineSchema": "model Address {\n  id           Int      @id @default(autoincrement())\n  userId       Int\n  addressLine1 String\n  addressLine2 String?\n  city         String\n  state        String?\n  postalCode   String?\n  country      String   @default(\"BD\")\n  isDefault    Boolean  @default(false)\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id])\n}\n\nmodel Banner {\n  id        Int            @id @default(autoincrement())\n  imageUrl  String\n  link      String?\n  position  BannerPosition\n  isActive  Boolean        @default(true)\n  startDate DateTime?\n  endDate   DateTime?\n  createdAt DateTime       @default(now())\n  updatedAt DateTime       @updatedAt\n}\n\nenum BannerPosition {\n  HOMEPAGE_TOP\n  HOMEPAGE_MIDDLE\n  SIDEBAR\n}\n\nmodel Blog {\n  id          Int       @id @default(autoincrement())\n  title       String\n  slug        String    @unique\n  content     String\n  image       String?\n  authorId    Int\n  isPublished Boolean   @default(false)\n  publishedAt DateTime?\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @updatedAt\n\n  author User @relation(fields: [authorId], references: [id])\n}\n\nmodel Brand {\n  id          Int      @id @default(autoincrement())\n  name        String\n  slug        String   @unique\n  logo        String?\n  description String?\n  isApproved  Boolean  @default(false)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  products Product[]\n}\n\nmodel CartItem {\n  id        Int      @id @default(autoincrement())\n  cartId    Int\n  productId Int\n  quantity  Int\n  variant   Json?\n  createdAt DateTime @default(now())\n\n  cart    Cart    @relation(fields: [cartId], references: [id])\n  product Product @relation(fields: [productId], references: [id])\n}\n\nmodel Cart {\n  id        Int      @id @default(autoincrement())\n  userId    Int      @unique\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user  User       @relation(fields: [userId], references: [id])\n  items CartItem[]\n}\n\nmodel Category {\n  id          Int      @id @default(autoincrement())\n  name        String\n  slug        String   @unique\n  description String?\n  parentId    Int?\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  parent   Category?  @relation(\"CategoryHierarchy\", fields: [parentId], references: [id])\n  children Category[] @relation(\"CategoryHierarchy\")\n  products Product[]\n  coupons  Coupon[]\n}\n\nmodel CmsPage {\n  id        Int      @id @default(autoincrement())\n  slug      String   @unique\n  title     String\n  content   String\n  isActive  Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Conversation {\n  id             Int       @id @default(autoincrement())\n  participant1Id Int\n  participant2Id Int\n  lastMessageAt  DateTime?\n  createdAt      DateTime  @default(now())\n  updatedAt      DateTime  @updatedAt\n\n  participant1 User          @relation(\"Participant1\", fields: [participant1Id], references: [id])\n  participant2 User          @relation(\"Participant2\", fields: [participant2Id], references: [id])\n  messages     ChatMessage[]\n\n  @@unique([participant1Id, participant2Id])\n}\n\nmodel ChatMessage {\n  id             Int      @id @default(autoincrement())\n  conversationId Int\n  senderId       Int\n  message        String\n  isRead         Boolean  @default(false)\n  createdAt      DateTime @default(now())\n\n  conversation Conversation @relation(fields: [conversationId], references: [id])\n  sender       User         @relation(fields: [senderId], references: [id])\n}\n\nmodel CouponUsage {\n  id             Int      @id @default(autoincrement())\n  couponId       Int\n  orderId        Int\n  userId         Int\n  discountAmount Decimal  @db.Decimal(10, 2)\n  createdAt      DateTime @default(now())\n\n  coupon Coupon @relation(fields: [couponId], references: [id])\n  order  Order  @relation(fields: [orderId], references: [id])\n  user   User   @relation(fields: [userId], references: [id])\n}\n\nmodel Coupon {\n  id             Int          @id @default(autoincrement())\n  code           String       @unique\n  type           DiscountType\n  value          Decimal      @db.Decimal(10, 2)\n  minOrderAmount Decimal?     @db.Decimal(10, 2)\n  maxDiscount    Decimal?     @db.Decimal(10, 2)\n  startDate      DateTime?\n  endDate        DateTime?\n  usageLimit     Int?\n  usedCount      Int          @default(0)\n  sellerId       Int?\n  categoryId     Int?\n  createdAt      DateTime     @default(now())\n  updatedAt      DateTime     @updatedAt\n\n  seller       Seller?       @relation(fields: [sellerId], references: [id])\n  category     Category?     @relation(fields: [categoryId], references: [id])\n  orders       Order[]\n  couponUsages CouponUsage[]\n}\n\nmodel Discount {\n  id                Int          @id @default(autoincrement())\n  sellerId          Int\n  productId         Int? // null = shop-wide\n  type              DiscountType\n  value             Decimal      @db.Decimal(10, 2)\n  startDate         DateTime?\n  endDate           DateTime?\n  minPurchaseAmount Decimal?     @db.Decimal(10, 2)\n  usageLimit        Int?\n  usedCount         Int          @default(0)\n  createdAt         DateTime     @default(now())\n  updatedAt         DateTime     @updatedAt\n\n  seller  Seller   @relation(fields: [sellerId], references: [id])\n  product Product? @relation(fields: [productId], references: [id])\n}\n\nenum DiscountType {\n  PERCENTAGE\n  FIXED\n}\n\nmodel FlashSale {\n  id        Int      @id @default(autoincrement())\n  title     String\n  startTime DateTime\n  endTime   DateTime\n  createdBy Int\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  creator  User               @relation(fields: [createdBy], references: [id])\n  products FlashSaleProduct[]\n}\n\nmodel FlashSaleProduct {\n  id            Int     @id @default(autoincrement())\n  flashSaleId   Int\n  productId     Int\n  discountPrice Decimal @db.Decimal(10, 2)\n\n  flashSale FlashSale @relation(fields: [flashSaleId], references: [id])\n  product   Product   @relation(fields: [productId], references: [id])\n\n  @@unique([flashSaleId, productId])\n}\n\nmodel Follow {\n  id        Int      @id @default(autoincrement())\n  userId    Int\n  sellerId  Int\n  createdAt DateTime @default(now())\n\n  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)\n  seller Seller @relation(fields: [sellerId], references: [id], onDelete: Cascade)\n\n  @@unique([userId, sellerId])\n  @@index([userId])\n  @@index([sellerId])\n}\n\nmodel Log {\n  id        Int      @id @default(autoincrement())\n  userId    Int?\n  action    String\n  ipAddress String?\n  details   Json?\n  createdAt DateTime @default(now())\n\n  user User? @relation(fields: [userId], references: [id])\n}\n\nmodel Notification {\n  id          Int              @id @default(autoincrement())\n  userId      Int\n  type        NotificationType\n  title       String?\n  message     String?\n  isRead      Boolean          @default(false)\n  referenceId String?\n  createdAt   DateTime         @default(now())\n\n  user User @relation(fields: [userId], references: [id])\n}\n\nmodel NotificationPreference {\n  id           Int      @id @default(autoincrement())\n  userId       Int      @unique\n  orderUpdates Boolean  @default(true)\n  promotions   Boolean  @default(true)\n  messages     Boolean  @default(true)\n  payouts      Boolean  @default(true)\n  updatedAt    DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id])\n}\n\nenum NotificationType {\n  ORDER_UPDATE\n  OFFER\n  MESSAGE\n  PAYOUT\n  REVIEW\n  RETURN\n  ALERT\n}\n\nmodel OrderItem {\n  id            Int          @id @default(autoincrement())\n  orderId       Int\n  productId     Int\n  sellerId      Int\n  quantity      Int\n  price         Decimal      @db.Decimal(10, 2)\n  discountPrice Decimal?     @db.Decimal(10, 2)\n  variant       Json?\n  returnStatus  ReturnStatus @default(NONE)\n  createdAt     DateTime     @default(now())\n\n  order   Order    @relation(fields: [orderId], references: [id])\n  product Product  @relation(fields: [productId], references: [id])\n  seller  Seller   @relation(fields: [sellerId], references: [id])\n  review  Review?\n  returns Return[]\n}\n\nmodel Order {\n  id              Int            @id @default(autoincrement())\n  userId          Int\n  orderNumber     String         @unique\n  totalAmount     Decimal        @db.Decimal(12, 2)\n  discountAmount  Decimal        @default(0) @db.Decimal(12, 2)\n  taxAmount       Decimal        @default(0) @db.Decimal(12, 2)\n  shippingAmount  Decimal        @default(0) @db.Decimal(12, 2)\n  paymentMethod   PaymentMethod?\n  paymentStatus   PaymentStatus  @default(PENDING)\n  orderStatus     OrderStatus    @default(PENDING)\n  shippingAddress Json?\n  trackingNumber  String?\n  riderId         Int?\n  couponId        Int?\n  notes           String?\n  createdAt       DateTime       @default(now())\n  updatedAt       DateTime       @updatedAt\n\n  user               User                @relation(fields: [userId], references: [id])\n  rider              Rider?              @relation(fields: [riderId], references: [id])\n  coupon             Coupon?             @relation(fields: [couponId], references: [id])\n  orderItems         OrderItem[]\n  walletTransactions WalletTransaction[]\n  payments           Payment[]\n  returns            Return[]\n  couponUsages       CouponUsage[]\n}\n\nenum OrderStatus {\n  PENDING\n  PROCESSING\n  SHIPPED\n  DELIVERED\n  CANCELLED\n  RETURN_REQUESTED\n  RETURNED\n}\n\nenum PaymentMethod {\n  BKASH\n  NAGAD\n  SSLCOMMERZ\n  CARD\n  COD\n}\n\nmodel Payment {\n  id            Int            @id @default(autoincrement())\n  orderId       Int\n  transactionId String         @unique\n  amount        Decimal        @db.Decimal(12, 2)\n  gateway       Gateway?\n  status        PaymentStatus? @default(PENDING)\n  refundAmount  Decimal        @default(0) @db.Decimal(12, 2)\n  createdAt     DateTime       @default(now())\n  updatedAt     DateTime       @updatedAt\n\n  order Order @relation(fields: [orderId], references: [id])\n}\n\nenum PaymentStatus {\n  PENDING\n  PAID\n  FAILED\n  REFUNDED\n}\n\nenum Gateway {\n  BKASH\n  NAGAD\n  SSLCOMMERZ\n  CARD\n}\n\nmodel Payout {\n  id                 Int           @id @default(autoincrement())\n  sellerId           Int\n  amount             Decimal       @db.Decimal(12, 2)\n  commissionDeducted Decimal?      @db.Decimal(12, 2)\n  status             PayoutStatus  @default(PENDING)\n  payoutMethod       PayoutMethod?\n  transactionId      String?\n  createdAt          DateTime      @default(now())\n  updatedAt          DateTime      @updatedAt\n\n  seller Seller @relation(fields: [sellerId], references: [id])\n}\n\nenum PayoutStatus {\n  PENDING\n  PAID\n  FAILED\n}\n\nenum PayoutMethod {\n  BANK\n  MOBILE\n}\n\nmodel Product {\n  id                Int      @id @default(autoincrement())\n  sellerId          Int\n  categoryId        Int\n  brandId           Int?\n  name              String\n  slug              String   @unique\n  description       String?\n  price             Decimal  @db.Decimal(10, 2)\n  discountPrice     Decimal? @db.Decimal(10, 2)\n  stock             Int      @default(0)\n  variants          Json?\n  images            Json?\n  seoTitle          String?\n  seoDescription    String?\n  seoKeywords       String?\n  isApproved        Boolean  @default(false)\n  isFeatured        Boolean  @default(false)\n  lowStockThreshold Int      @default(5)\n  createdAt         DateTime @default(now())\n  updatedAt         DateTime @updatedAt\n\n  seller            Seller             @relation(fields: [sellerId], references: [id])\n  category          Category           @relation(fields: [categoryId], references: [id])\n  brand             Brand?             @relation(fields: [brandId], references: [id])\n  orderItems        OrderItem[]\n  reviews           Review[]\n  wishlists         Wishlist[]\n  cartItems         CartItem[]\n  flashSaleProducts FlashSaleProduct[]\n  discounts         Discount[]\n}\n\nmodel Return {\n  id           Int          @id @default(autoincrement())\n  orderId      Int\n  orderItemId  Int\n  userId       Int\n  reason       String\n  status       ReturnStatus @default(PENDING)\n  refundAmount Decimal?     @db.Decimal(10, 2)\n  createdAt    DateTime     @default(now())\n  updatedAt    DateTime     @updatedAt\n\n  order     Order     @relation(fields: [orderId], references: [id])\n  orderItem OrderItem @relation(fields: [orderItemId], references: [id])\n  user      User      @relation(fields: [userId], references: [id])\n}\n\nenum ReturnStatus {\n  NONE\n  PENDING\n  REQUESTED\n  APPROVED\n  REJECTED\n  COMPLETED\n}\n\nmodel ReviewReply {\n  id        Int      @id @default(autoincrement())\n  reviewId  Int\n  sellerId  Int\n  reply     String\n  createdAt DateTime @default(now())\n\n  review Review @relation(fields: [reviewId], references: [id])\n  seller Seller @relation(fields: [sellerId], references: [id])\n}\n\nmodel Review {\n  id          Int      @id @default(autoincrement())\n  productId   Int\n  userId      Int\n  orderItemId Int?     @unique\n  rating      Int\n  comment     String?\n  isApproved  Boolean  @default(true)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  product   Product       @relation(fields: [productId], references: [id])\n  user      User          @relation(fields: [userId], references: [id])\n  orderItem OrderItem?    @relation(fields: [orderItemId], references: [id])\n  replies   ReviewReply[]\n}\n\nmodel Rider {\n  id              Int      @id @default(autoincrement())\n  userId          Int      @unique\n  vehicleType     String?\n  licenseNumber   String?\n  currentLocation Json?\n  isAvailable     Boolean  @default(true)\n  totalEarnings   Decimal  @default(0.00) @db.Decimal(12, 2)\n  createdAt       DateTime @default(now())\n  updatedAt       DateTime @updatedAt\n\n  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)\n  orders Order[]\n}\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Seller {\n  id                Int              @id @default(autoincrement())\n  userId            Int              @unique\n  shopName          String\n  shopSlug          String           @unique\n  shopDescription   String?\n  shopLogo          String?\n  shopBanner        String?\n  tradeLicense      String?\n  nid               String?\n  bankAccount       Json?\n  subscriptionType  SubscriptionType @default(FREE)\n  subscriptionStart DateTime?\n  subscriptionEnd   DateTime?\n  commissionRate    Decimal          @default(10.00) @db.Decimal(5, 2)\n  isApproved        Boolean          @default(false)\n  createdAt         DateTime         @default(now())\n  updatedAt         DateTime         @updatedAt\n\n  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)\n  products      Product[]\n  discounts     Discount[]\n  follows       Follow[]\n  payouts       Payout[]\n  coupons       Coupon[]\n  orderItems    OrderItem[]\n  reviewReplies ReviewReply[]\n}\n\nenum SubscriptionType {\n  FREE\n  PREMIUM\n}\n\nmodel Setting {\n  id        Int      @id @default(autoincrement())\n  key       String   @unique\n  value     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel SupportTicket {\n  id          Int                 @id @default(autoincrement())\n  userId      Int\n  subject     String\n  description String\n  status      SupportTicketStatus @default(OPEN)\n  createdAt   DateTime            @default(now())\n  updatedAt   DateTime            @updatedAt\n\n  user    User          @relation(fields: [userId], references: [id])\n  replies TicketReply[]\n}\n\nenum SupportTicketStatus {\n  OPEN\n  IN_PROGRESS\n  RESOLVED\n  CLOSED\n}\n\nmodel TicketReply {\n  id        Int      @id @default(autoincrement())\n  ticketId  Int\n  userId    Int\n  message   String\n  createdAt DateTime @default(now())\n\n  ticket SupportTicket @relation(fields: [ticketId], references: [id])\n  user   User          @relation(fields: [userId], references: [id])\n}\n\nmodel User {\n  id               Int       @id @default(autoincrement())\n  email            String    @unique @db.VarChar\n  password         String    @db.VarChar\n  firstName        String?\n  lastName         String?\n  phone            String?\n  role             UserRole  @default(USER)\n  isActive         Boolean   @default(true)\n  isVerified       Boolean   @default(false)\n  twoFactorEnabled Boolean   @default(false)\n  twoFactorSecret  String?\n  lastLogin        DateTime?\n  referralCode     String?   @unique\n  referredBy       Int?\n  createdAt        DateTime  @default(now())\n  updatedAt        DateTime  @updatedAt\n\n  referredByUser    User?                   @relation(\"Referral\", fields: [referredBy], references: [id])\n  referredUsers     User[]                  @relation(\"Referral\")\n  seller            Seller?\n  rider             Rider?\n  wallet            Wallet?\n  addresses         Address[]\n  orders            Order[]\n  returns           Return[]\n  follows           Follow[]\n  wishlists         Wishlist[]\n  cart              Cart?\n  reviews           Review[]\n  couponUsages      CouponUsage[]\n  conversationsAsP1 Conversation[]          @relation(\"Participant1\")\n  conversationsAsP2 Conversation[]          @relation(\"Participant2\")\n  chatMessages      ChatMessage[]\n  notifications     Notification[]\n  notificationPref  NotificationPreference?\n  supportTickets    SupportTicket[]\n  ticketReplies     TicketReply[]\n  blogs             Blog[]\n  flashSales        FlashSale[]\n  logs              Log[]\n}\n\nenum UserRole {\n  USER\n  SELLER\n  ADMIN\n  RIDER\n}\n\nmodel WalletTransaction {\n  id          Int             @id @default(autoincrement())\n  walletId    Int\n  type        TransactionType\n  amount      Decimal         @db.Decimal(12, 2)\n  description String?\n  orderId     Int?\n  referenceId String?\n  createdAt   DateTime        @default(now())\n\n  wallet Wallet @relation(fields: [walletId], references: [id])\n  order  Order? @relation(fields: [orderId], references: [id])\n}\n\nenum TransactionType {\n  CREDIT\n  DEBIT\n  REFUND\n  PAYOUT\n  REWARD\n}\n\nmodel Wallet {\n  id           Int      @id @default(autoincrement())\n  userId       Int      @unique\n  balance      Decimal  @default(0.00) @db.Decimal(12, 2)\n  rewardPoints Int      @default(0)\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n\n  user         User                @relation(fields: [userId], references: [id], onDelete: Cascade)\n  transactions WalletTransaction[]\n}\n\nmodel Wishlist {\n  id        Int      @id @default(autoincrement())\n  userId    Int\n  productId Int\n  createdAt DateTime @default(now())\n\n  user    User    @relation(fields: [userId], references: [id])\n  product Product @relation(fields: [productId], references: [id])\n\n  @@unique([userId, productId])\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Address\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"addressLine1\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"addressLine2\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"postalCode\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isDefault\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AddressToUser\"}],\"dbName\":null},\"Banner\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"imageUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"link\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"position\",\"kind\":\"enum\",\"type\":\"BannerPosition\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"startDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Blog\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"isPublished\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"publishedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"BlogToUser\"}],\"dbName\":null},\"Brand\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"logo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isApproved\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"BrandToProduct\"}],\"dbName\":null},\"CartItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cartId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"productId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"variant\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"cart\",\"kind\":\"object\",\"type\":\"Cart\",\"relationName\":\"CartToCartItem\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"CartItemToProduct\"}],\"dbName\":null},\"Cart\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CartToUser\"},{\"name\":\"items\",\"kind\":\"object\",\"type\":\"CartItem\",\"relationName\":\"CartToCartItem\"}],\"dbName\":null},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"parentId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"parent\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryHierarchy\"},{\"name\":\"children\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryHierarchy\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"CategoryToProduct\"},{\"name\":\"coupons\",\"kind\":\"object\",\"type\":\"Coupon\",\"relationName\":\"CategoryToCoupon\"}],\"dbName\":null},\"CmsPage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Conversation\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"participant1Id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"participant2Id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"lastMessageAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"participant1\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"Participant1\"},{\"name\":\"participant2\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"Participant2\"},{\"name\":\"messages\",\"kind\":\"object\",\"type\":\"ChatMessage\",\"relationName\":\"ChatMessageToConversation\"}],\"dbName\":null},\"ChatMessage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"conversationId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"senderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isRead\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"conversation\",\"kind\":\"object\",\"type\":\"Conversation\",\"relationName\":\"ChatMessageToConversation\"},{\"name\":\"sender\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ChatMessageToUser\"}],\"dbName\":null},\"CouponUsage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"couponId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"discountAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"coupon\",\"kind\":\"object\",\"type\":\"Coupon\",\"relationName\":\"CouponToCouponUsage\"},{\"name\":\"order\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"CouponUsageToOrder\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CouponUsageToUser\"}],\"dbName\":null},\"Coupon\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"DiscountType\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"minOrderAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"maxDiscount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"startDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"usageLimit\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"usedCount\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sellerId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"CouponToSeller\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToCoupon\"},{\"name\":\"orders\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"CouponToOrder\"},{\"name\":\"couponUsages\",\"kind\":\"object\",\"type\":\"CouponUsage\",\"relationName\":\"CouponToCouponUsage\"}],\"dbName\":null},\"Discount\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sellerId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"productId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"DiscountType\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"startDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"minPurchaseAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"usageLimit\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"usedCount\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"DiscountToSeller\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"DiscountToProduct\"}],\"dbName\":null},\"FlashSale\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"startTime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endTime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdBy\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"creator\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"FlashSaleToUser\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"FlashSaleProduct\",\"relationName\":\"FlashSaleToFlashSaleProduct\"}],\"dbName\":null},\"FlashSaleProduct\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"flashSaleId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"productId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"discountPrice\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"flashSale\",\"kind\":\"object\",\"type\":\"FlashSale\",\"relationName\":\"FlashSaleToFlashSaleProduct\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"FlashSaleProductToProduct\"}],\"dbName\":null},\"Follow\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sellerId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"FollowToUser\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"FollowToSeller\"}],\"dbName\":null},\"Log\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"action\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"details\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"LogToUser\"}],\"dbName\":null},\"Notification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"NotificationType\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isRead\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"referenceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"NotificationToUser\"}],\"dbName\":null},\"NotificationPreference\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderUpdates\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"promotions\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"messages\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"payouts\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"NotificationPreferenceToUser\"}],\"dbName\":null},\"OrderItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"productId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sellerId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"discountPrice\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"variant\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"returnStatus\",\"kind\":\"enum\",\"type\":\"ReturnStatus\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"order\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToOrderItem\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"OrderItemToProduct\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"OrderItemToSeller\"},{\"name\":\"review\",\"kind\":\"object\",\"type\":\"Review\",\"relationName\":\"OrderItemToReview\"},{\"name\":\"returns\",\"kind\":\"object\",\"type\":\"Return\",\"relationName\":\"OrderItemToReturn\"}],\"dbName\":null},\"Order\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderNumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"totalAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"discountAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"taxAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"shippingAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"paymentMethod\",\"kind\":\"enum\",\"type\":\"PaymentMethod\"},{\"name\":\"paymentStatus\",\"kind\":\"enum\",\"type\":\"PaymentStatus\"},{\"name\":\"orderStatus\",\"kind\":\"enum\",\"type\":\"OrderStatus\"},{\"name\":\"shippingAddress\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"trackingNumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"riderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"couponId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"notes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"OrderToUser\"},{\"name\":\"rider\",\"kind\":\"object\",\"type\":\"Rider\",\"relationName\":\"OrderToRider\"},{\"name\":\"coupon\",\"kind\":\"object\",\"type\":\"Coupon\",\"relationName\":\"CouponToOrder\"},{\"name\":\"orderItems\",\"kind\":\"object\",\"type\":\"OrderItem\",\"relationName\":\"OrderToOrderItem\"},{\"name\":\"walletTransactions\",\"kind\":\"object\",\"type\":\"WalletTransaction\",\"relationName\":\"OrderToWalletTransaction\"},{\"name\":\"payments\",\"kind\":\"object\",\"type\":\"Payment\",\"relationName\":\"OrderToPayment\"},{\"name\":\"returns\",\"kind\":\"object\",\"type\":\"Return\",\"relationName\":\"OrderToReturn\"},{\"name\":\"couponUsages\",\"kind\":\"object\",\"type\":\"CouponUsage\",\"relationName\":\"CouponUsageToOrder\"}],\"dbName\":null},\"Payment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"transactionId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"gateway\",\"kind\":\"enum\",\"type\":\"Gateway\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"PaymentStatus\"},{\"name\":\"refundAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"order\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToPayment\"}],\"dbName\":null},\"Payout\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sellerId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"commissionDeducted\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"PayoutStatus\"},{\"name\":\"payoutMethod\",\"kind\":\"enum\",\"type\":\"PayoutMethod\"},{\"name\":\"transactionId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"PayoutToSeller\"}],\"dbName\":null},\"Product\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sellerId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"brandId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"discountPrice\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"stock\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"variants\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"images\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"seoTitle\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"seoDescription\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"seoKeywords\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isApproved\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"isFeatured\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"lowStockThreshold\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"ProductToSeller\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToProduct\"},{\"name\":\"brand\",\"kind\":\"object\",\"type\":\"Brand\",\"relationName\":\"BrandToProduct\"},{\"name\":\"orderItems\",\"kind\":\"object\",\"type\":\"OrderItem\",\"relationName\":\"OrderItemToProduct\"},{\"name\":\"reviews\",\"kind\":\"object\",\"type\":\"Review\",\"relationName\":\"ProductToReview\"},{\"name\":\"wishlists\",\"kind\":\"object\",\"type\":\"Wishlist\",\"relationName\":\"ProductToWishlist\"},{\"name\":\"cartItems\",\"kind\":\"object\",\"type\":\"CartItem\",\"relationName\":\"CartItemToProduct\"},{\"name\":\"flashSaleProducts\",\"kind\":\"object\",\"type\":\"FlashSaleProduct\",\"relationName\":\"FlashSaleProductToProduct\"},{\"name\":\"discounts\",\"kind\":\"object\",\"type\":\"Discount\",\"relationName\":\"DiscountToProduct\"}],\"dbName\":null},\"Return\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderItemId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"ReturnStatus\"},{\"name\":\"refundAmount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"order\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToReturn\"},{\"name\":\"orderItem\",\"kind\":\"object\",\"type\":\"OrderItem\",\"relationName\":\"OrderItemToReturn\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ReturnToUser\"}],\"dbName\":null},\"ReviewReply\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"reviewId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sellerId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"reply\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"review\",\"kind\":\"object\",\"type\":\"Review\",\"relationName\":\"ReviewToReviewReply\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"ReviewReplyToSeller\"}],\"dbName\":null},\"Review\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"productId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderItemId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"rating\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"comment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isApproved\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ProductToReview\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ReviewToUser\"},{\"name\":\"orderItem\",\"kind\":\"object\",\"type\":\"OrderItem\",\"relationName\":\"OrderItemToReview\"},{\"name\":\"replies\",\"kind\":\"object\",\"type\":\"ReviewReply\",\"relationName\":\"ReviewToReviewReply\"}],\"dbName\":null},\"Rider\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"vehicleType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"licenseNumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"currentLocation\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"isAvailable\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"totalEarnings\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RiderToUser\"},{\"name\":\"orders\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToRider\"}],\"dbName\":null},\"Seller\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shopName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shopSlug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shopDescription\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shopLogo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shopBanner\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tradeLicense\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bankAccount\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"subscriptionType\",\"kind\":\"enum\",\"type\":\"SubscriptionType\"},{\"name\":\"subscriptionStart\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"subscriptionEnd\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"commissionRate\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"isApproved\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SellerToUser\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ProductToSeller\"},{\"name\":\"discounts\",\"kind\":\"object\",\"type\":\"Discount\",\"relationName\":\"DiscountToSeller\"},{\"name\":\"follows\",\"kind\":\"object\",\"type\":\"Follow\",\"relationName\":\"FollowToSeller\"},{\"name\":\"payouts\",\"kind\":\"object\",\"type\":\"Payout\",\"relationName\":\"PayoutToSeller\"},{\"name\":\"coupons\",\"kind\":\"object\",\"type\":\"Coupon\",\"relationName\":\"CouponToSeller\"},{\"name\":\"orderItems\",\"kind\":\"object\",\"type\":\"OrderItem\",\"relationName\":\"OrderItemToSeller\"},{\"name\":\"reviewReplies\",\"kind\":\"object\",\"type\":\"ReviewReply\",\"relationName\":\"ReviewReplyToSeller\"}],\"dbName\":null},\"Setting\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"key\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"SupportTicket\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"subject\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"SupportTicketStatus\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SupportTicketToUser\"},{\"name\":\"replies\",\"kind\":\"object\",\"type\":\"TicketReply\",\"relationName\":\"SupportTicketToTicketReply\"}],\"dbName\":null},\"TicketReply\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ticketId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ticket\",\"kind\":\"object\",\"type\":\"SupportTicket\",\"relationName\":\"SupportTicketToTicketReply\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TicketReplyToUser\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"UserRole\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"isVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"twoFactorEnabled\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"twoFactorSecret\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastLogin\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"referralCode\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"referredBy\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"referredByUser\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"Referral\"},{\"name\":\"referredUsers\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"Referral\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"SellerToUser\"},{\"name\":\"rider\",\"kind\":\"object\",\"type\":\"Rider\",\"relationName\":\"RiderToUser\"},{\"name\":\"wallet\",\"kind\":\"object\",\"type\":\"Wallet\",\"relationName\":\"UserToWallet\"},{\"name\":\"addresses\",\"kind\":\"object\",\"type\":\"Address\",\"relationName\":\"AddressToUser\"},{\"name\":\"orders\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToUser\"},{\"name\":\"returns\",\"kind\":\"object\",\"type\":\"Return\",\"relationName\":\"ReturnToUser\"},{\"name\":\"follows\",\"kind\":\"object\",\"type\":\"Follow\",\"relationName\":\"FollowToUser\"},{\"name\":\"wishlists\",\"kind\":\"object\",\"type\":\"Wishlist\",\"relationName\":\"UserToWishlist\"},{\"name\":\"cart\",\"kind\":\"object\",\"type\":\"Cart\",\"relationName\":\"CartToUser\"},{\"name\":\"reviews\",\"kind\":\"object\",\"type\":\"Review\",\"relationName\":\"ReviewToUser\"},{\"name\":\"couponUsages\",\"kind\":\"object\",\"type\":\"CouponUsage\",\"relationName\":\"CouponUsageToUser\"},{\"name\":\"conversationsAsP1\",\"kind\":\"object\",\"type\":\"Conversation\",\"relationName\":\"Participant1\"},{\"name\":\"conversationsAsP2\",\"kind\":\"object\",\"type\":\"Conversation\",\"relationName\":\"Participant2\"},{\"name\":\"chatMessages\",\"kind\":\"object\",\"type\":\"ChatMessage\",\"relationName\":\"ChatMessageToUser\"},{\"name\":\"notifications\",\"kind\":\"object\",\"type\":\"Notification\",\"relationName\":\"NotificationToUser\"},{\"name\":\"notificationPref\",\"kind\":\"object\",\"type\":\"NotificationPreference\",\"relationName\":\"NotificationPreferenceToUser\"},{\"name\":\"supportTickets\",\"kind\":\"object\",\"type\":\"SupportTicket\",\"relationName\":\"SupportTicketToUser\"},{\"name\":\"ticketReplies\",\"kind\":\"object\",\"type\":\"TicketReply\",\"relationName\":\"TicketReplyToUser\"},{\"name\":\"blogs\",\"kind\":\"object\",\"type\":\"Blog\",\"relationName\":\"BlogToUser\"},{\"name\":\"flashSales\",\"kind\":\"object\",\"type\":\"FlashSale\",\"relationName\":\"FlashSaleToUser\"},{\"name\":\"logs\",\"kind\":\"object\",\"type\":\"Log\",\"relationName\":\"LogToUser\"}],\"dbName\":null},\"WalletTransaction\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"walletId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"TransactionType\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"referenceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"wallet\",\"kind\":\"object\",\"type\":\"Wallet\",\"relationName\":\"WalletToWalletTransaction\"},{\"name\":\"order\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToWalletTransaction\"}],\"dbName\":null},\"Wallet\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"balance\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"rewardPoints\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToWallet\"},{\"name\":\"transactions\",\"kind\":\"object\",\"type\":\"WalletTransaction\",\"relationName\":\"WalletToWalletTransaction\"}],\"dbName\":null},\"Wishlist\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"productId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToWishlist\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ProductToWishlist\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Addresses
+   * const addresses = await prisma.address.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Addresses
+ * const addresses = await prisma.address.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,6 +175,326 @@ export interface PrismaClient<
   }>>
 
       /**
+   * `prisma.address`: Exposes CRUD operations for the **Address** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Addresses
+    * const addresses = await prisma.address.findMany()
+    * ```
+    */
+  get address(): Prisma.AddressDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.banner`: Exposes CRUD operations for the **Banner** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Banners
+    * const banners = await prisma.banner.findMany()
+    * ```
+    */
+  get banner(): Prisma.BannerDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.blog`: Exposes CRUD operations for the **Blog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Blogs
+    * const blogs = await prisma.blog.findMany()
+    * ```
+    */
+  get blog(): Prisma.BlogDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.brand`: Exposes CRUD operations for the **Brand** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Brands
+    * const brands = await prisma.brand.findMany()
+    * ```
+    */
+  get brand(): Prisma.BrandDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.cartItem`: Exposes CRUD operations for the **CartItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CartItems
+    * const cartItems = await prisma.cartItem.findMany()
+    * ```
+    */
+  get cartItem(): Prisma.CartItemDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.cart`: Exposes CRUD operations for the **Cart** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Carts
+    * const carts = await prisma.cart.findMany()
+    * ```
+    */
+  get cart(): Prisma.CartDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categories
+    * const categories = await prisma.category.findMany()
+    * ```
+    */
+  get category(): Prisma.CategoryDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.cmsPage`: Exposes CRUD operations for the **CmsPage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CmsPages
+    * const cmsPages = await prisma.cmsPage.findMany()
+    * ```
+    */
+  get cmsPage(): Prisma.CmsPageDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.conversation`: Exposes CRUD operations for the **Conversation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Conversations
+    * const conversations = await prisma.conversation.findMany()
+    * ```
+    */
+  get conversation(): Prisma.ConversationDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.chatMessage`: Exposes CRUD operations for the **ChatMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ChatMessages
+    * const chatMessages = await prisma.chatMessage.findMany()
+    * ```
+    */
+  get chatMessage(): Prisma.ChatMessageDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.couponUsage`: Exposes CRUD operations for the **CouponUsage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CouponUsages
+    * const couponUsages = await prisma.couponUsage.findMany()
+    * ```
+    */
+  get couponUsage(): Prisma.CouponUsageDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.coupon`: Exposes CRUD operations for the **Coupon** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Coupons
+    * const coupons = await prisma.coupon.findMany()
+    * ```
+    */
+  get coupon(): Prisma.CouponDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.discount`: Exposes CRUD operations for the **Discount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Discounts
+    * const discounts = await prisma.discount.findMany()
+    * ```
+    */
+  get discount(): Prisma.DiscountDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.flashSale`: Exposes CRUD operations for the **FlashSale** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FlashSales
+    * const flashSales = await prisma.flashSale.findMany()
+    * ```
+    */
+  get flashSale(): Prisma.FlashSaleDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.flashSaleProduct`: Exposes CRUD operations for the **FlashSaleProduct** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FlashSaleProducts
+    * const flashSaleProducts = await prisma.flashSaleProduct.findMany()
+    * ```
+    */
+  get flashSaleProduct(): Prisma.FlashSaleProductDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.follow`: Exposes CRUD operations for the **Follow** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Follows
+    * const follows = await prisma.follow.findMany()
+    * ```
+    */
+  get follow(): Prisma.FollowDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.log`: Exposes CRUD operations for the **Log** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Logs
+    * const logs = await prisma.log.findMany()
+    * ```
+    */
+  get log(): Prisma.LogDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.notificationPreference`: Exposes CRUD operations for the **NotificationPreference** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NotificationPreferences
+    * const notificationPreferences = await prisma.notificationPreference.findMany()
+    * ```
+    */
+  get notificationPreference(): Prisma.NotificationPreferenceDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.orderItem`: Exposes CRUD operations for the **OrderItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OrderItems
+    * const orderItems = await prisma.orderItem.findMany()
+    * ```
+    */
+  get orderItem(): Prisma.OrderItemDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.order`: Exposes CRUD operations for the **Order** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Orders
+    * const orders = await prisma.order.findMany()
+    * ```
+    */
+  get order(): Prisma.OrderDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.payment`: Exposes CRUD operations for the **Payment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Payments
+    * const payments = await prisma.payment.findMany()
+    * ```
+    */
+  get payment(): Prisma.PaymentDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.payout`: Exposes CRUD operations for the **Payout** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Payouts
+    * const payouts = await prisma.payout.findMany()
+    * ```
+    */
+  get payout(): Prisma.PayoutDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.product`: Exposes CRUD operations for the **Product** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Products
+    * const products = await prisma.product.findMany()
+    * ```
+    */
+  get product(): Prisma.ProductDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.return`: Exposes CRUD operations for the **Return** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Returns
+    * const returns = await prisma.return.findMany()
+    * ```
+    */
+  get return(): Prisma.ReturnDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.reviewReply`: Exposes CRUD operations for the **ReviewReply** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ReviewReplies
+    * const reviewReplies = await prisma.reviewReply.findMany()
+    * ```
+    */
+  get reviewReply(): Prisma.ReviewReplyDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.review`: Exposes CRUD operations for the **Review** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Reviews
+    * const reviews = await prisma.review.findMany()
+    * ```
+    */
+  get review(): Prisma.ReviewDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.rider`: Exposes CRUD operations for the **Rider** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Riders
+    * const riders = await prisma.rider.findMany()
+    * ```
+    */
+  get rider(): Prisma.RiderDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.seller`: Exposes CRUD operations for the **Seller** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sellers
+    * const sellers = await prisma.seller.findMany()
+    * ```
+    */
+  get seller(): Prisma.SellerDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.setting`: Exposes CRUD operations for the **Setting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Settings
+    * const settings = await prisma.setting.findMany()
+    * ```
+    */
+  get setting(): Prisma.SettingDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.supportTicket`: Exposes CRUD operations for the **SupportTicket** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SupportTickets
+    * const supportTickets = await prisma.supportTicket.findMany()
+    * ```
+    */
+  get supportTicket(): Prisma.SupportTicketDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.ticketReply`: Exposes CRUD operations for the **TicketReply** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TicketReplies
+    * const ticketReplies = await prisma.ticketReply.findMany()
+    * ```
+    */
+  get ticketReply(): Prisma.TicketReplyDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
@@ -183,6 +503,36 @@ export interface PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.walletTransaction`: Exposes CRUD operations for the **WalletTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WalletTransactions
+    * const walletTransactions = await prisma.walletTransaction.findMany()
+    * ```
+    */
+  get walletTransaction(): Prisma.WalletTransactionDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.wallet`: Exposes CRUD operations for the **Wallet** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Wallets
+    * const wallets = await prisma.wallet.findMany()
+    * ```
+    */
+  get wallet(): Prisma.WalletDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.wishlist`: Exposes CRUD operations for the **Wishlist** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Wishlists
+    * const wishlists = await prisma.wishlist.findMany()
+    * ```
+    */
+  get wishlist(): Prisma.WishlistDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

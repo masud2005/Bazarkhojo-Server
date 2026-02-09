@@ -27,8 +27,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Addresses
+ * const addresses = await prisma.address.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -38,7 +38,182 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
+ * Model Address
+ * 
+ */
+export type Address = Prisma.AddressModel
+/**
+ * Model Banner
+ * 
+ */
+export type Banner = Prisma.BannerModel
+/**
+ * Model Blog
+ * 
+ */
+export type Blog = Prisma.BlogModel
+/**
+ * Model Brand
+ * 
+ */
+export type Brand = Prisma.BrandModel
+/**
+ * Model CartItem
+ * 
+ */
+export type CartItem = Prisma.CartItemModel
+/**
+ * Model Cart
+ * 
+ */
+export type Cart = Prisma.CartModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model CmsPage
+ * 
+ */
+export type CmsPage = Prisma.CmsPageModel
+/**
+ * Model Conversation
+ * 
+ */
+export type Conversation = Prisma.ConversationModel
+/**
+ * Model ChatMessage
+ * 
+ */
+export type ChatMessage = Prisma.ChatMessageModel
+/**
+ * Model CouponUsage
+ * 
+ */
+export type CouponUsage = Prisma.CouponUsageModel
+/**
+ * Model Coupon
+ * 
+ */
+export type Coupon = Prisma.CouponModel
+/**
+ * Model Discount
+ * 
+ */
+export type Discount = Prisma.DiscountModel
+/**
+ * Model FlashSale
+ * 
+ */
+export type FlashSale = Prisma.FlashSaleModel
+/**
+ * Model FlashSaleProduct
+ * 
+ */
+export type FlashSaleProduct = Prisma.FlashSaleProductModel
+/**
+ * Model Follow
+ * 
+ */
+export type Follow = Prisma.FollowModel
+/**
+ * Model Log
+ * 
+ */
+export type Log = Prisma.LogModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model NotificationPreference
+ * 
+ */
+export type NotificationPreference = Prisma.NotificationPreferenceModel
+/**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
+ * Model Payout
+ * 
+ */
+export type Payout = Prisma.PayoutModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel
+/**
+ * Model Return
+ * 
+ */
+export type Return = Prisma.ReturnModel
+/**
+ * Model ReviewReply
+ * 
+ */
+export type ReviewReply = Prisma.ReviewReplyModel
+/**
+ * Model Review
+ * 
+ */
+export type Review = Prisma.ReviewModel
+/**
+ * Model Rider
+ * 
+ */
+export type Rider = Prisma.RiderModel
+/**
+ * Model Seller
+ * 
+ */
+export type Seller = Prisma.SellerModel
+/**
+ * Model Setting
+ * 
+ */
+export type Setting = Prisma.SettingModel
+/**
+ * Model SupportTicket
+ * 
+ */
+export type SupportTicket = Prisma.SupportTicketModel
+/**
+ * Model TicketReply
+ * 
+ */
+export type TicketReply = Prisma.TicketReplyModel
+/**
  * Model User
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model WalletTransaction
+ * 
+ */
+export type WalletTransaction = Prisma.WalletTransactionModel
+/**
+ * Model Wallet
+ * 
+ */
+export type Wallet = Prisma.WalletModel
+/**
+ * Model Wishlist
+ * 
+ */
+export type Wishlist = Prisma.WishlistModel

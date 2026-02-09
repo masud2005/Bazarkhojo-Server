@@ -1,0 +1,24 @@
+model Return {
+  id           Int          @id @default(autoincrement())
+  orderId      Int
+  orderItemId  Int
+  userId       Int
+  reason       String
+  status       ReturnStatus @default(PENDING) 
+  refundAmount Decimal?     @db.Decimal(10, 2)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  order        Order        @relation(fields: [orderId], references: [id])
+  orderItem    OrderItem    @relation(fields: [orderItemId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
+}
+
+enum ReturnStatus {
+  NONE
+  PENDING
+  REQUESTED
+  APPROVED
+  REJECTED
+  COMPLETED
+}

@@ -1,0 +1,21 @@
+model WalletTransaction {
+  id          Int              @id @default(autoincrement())
+  walletId    Int
+  type        TransactionType
+  amount      Decimal          @db.Decimal(12, 2)
+  description String?
+  orderId     Int?
+  referenceId String?
+  createdAt   DateTime         @default(now())
+
+  wallet      Wallet           @relation(fields: [walletId], references: [id])
+  order       Order?           @relation(fields: [orderId], references: [id])
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+  REFUND
+  PAYOUT
+  REWARD
+}

@@ -1,0 +1,12 @@
+model CouponUsage {
+  id           Int      @id @default(autoincrement())
+  couponId     Int
+  orderId      Int
+  userId       Int
+  discountAmount Decimal  @db.Decimal(10, 2)
+  createdAt    DateTime @default(now())
+
+  coupon       Coupon   @relation(fields: [couponId], references: [id])
+  order        Order    @relation(fields: [orderId], references: [id])
+  user         User     @relation(fields: [userId], references: [id])
+}

@@ -1,0 +1,10 @@
+model ReviewReply {
+  id        Int      @id @default(autoincrement())
+  reviewId  Int
+  sellerId  Int
+  reply     String
+  createdAt DateTime @default(now())
+
+  review    Review   @relation(fields: [reviewId], references: [id])
+  seller    Seller   @relation(fields: [sellerId], references: [id])
+}

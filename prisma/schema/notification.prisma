@@ -1,0 +1,34 @@
+model Notification {
+  id           Int              @id @default(autoincrement())
+  userId       Int
+  type         NotificationType
+  title        String?
+  message      String?
+  isRead       Boolean          @default(false)
+  referenceId  String?
+  createdAt    DateTime         @default(now())
+
+  user         User             @relation(fields: [userId], references: [id])
+}
+
+model NotificationPreference {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @unique
+  orderUpdates Boolean  @default(true)
+  promotions   Boolean  @default(true)
+  messages     Boolean  @default(true)
+  payouts      Boolean  @default(true)
+  updatedAt    DateTime @updatedAt
+
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+enum NotificationType {
+  ORDER_UPDATE
+  OFFER
+  MESSAGE
+  PAYOUT
+  REVIEW
+  RETURN
+  ALERT
+}

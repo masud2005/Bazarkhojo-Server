@@ -1,0 +1,24 @@
+model FlashSale {
+  id         Int                @id @default(autoincrement())
+  title      String
+  startTime  DateTime
+  endTime    DateTime
+  createdBy  Int
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+
+  creator    User               @relation(fields: [createdBy], references: [id])
+  products   FlashSaleProduct[]
+}
+
+model FlashSaleProduct {
+  id           Int       @id @default(autoincrement())
+  flashSaleId  Int
+  productId    Int
+  discountPrice Decimal   @db.Decimal(10, 2)
+
+  flashSale    FlashSale @relation(fields: [flashSaleId], references: [id])
+  product      Product   @relation(fields: [productId], references: [id])
+
+  @@unique([flashSaleId, productId])
+}

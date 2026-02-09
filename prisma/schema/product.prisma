@@ -1,0 +1,32 @@
+model Product {
+  id               Int       @id @default(autoincrement())
+  sellerId         Int
+  categoryId       Int
+  brandId          Int?
+  name             String
+  slug             String    @unique
+  description      String?
+  price            Decimal   @db.Decimal(10, 2)
+  discountPrice    Decimal?  @db.Decimal(10, 2)
+  stock            Int       @default(0)
+  variants         Json?
+  images           Json?
+  seoTitle         String?
+  seoDescription   String?
+  seoKeywords      String?
+  isApproved       Boolean   @default(false)
+  isFeatured       Boolean   @default(false)
+  lowStockThreshold Int      @default(5)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  seller           Seller    @relation(fields: [sellerId], references: [id])
+  category         Category  @relation(fields: [categoryId], references: [id])
+  brand            Brand?    @relation(fields: [brandId], references: [id])
+  orderItems       OrderItem[]
+  reviews          Review[]
+  wishlists        Wishlist[]
+  cartItems        CartItem[]
+  flashSaleProducts FlashSaleProduct[]
+  discounts        Discount[]
+}

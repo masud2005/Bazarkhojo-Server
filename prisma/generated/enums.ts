@@ -9,7 +9,143 @@
 * 🟢 You can import this file directly.
 */
 
+export const BannerPosition = {
+  HOMEPAGE_TOP: 'HOMEPAGE_TOP',
+  HOMEPAGE_MIDDLE: 'HOMEPAGE_MIDDLE',
+  SIDEBAR: 'SIDEBAR'
+} as const
+
+export type BannerPosition = (typeof BannerPosition)[keyof typeof BannerPosition]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const DiscountType = {
+  PERCENTAGE: 'PERCENTAGE',
+  FIXED: 'FIXED'
+} as const
+
+export type DiscountType = (typeof DiscountType)[keyof typeof DiscountType]
+
+
+export const NotificationType = {
+  ORDER_UPDATE: 'ORDER_UPDATE',
+  OFFER: 'OFFER',
+  MESSAGE: 'MESSAGE',
+  PAYOUT: 'PAYOUT',
+  REVIEW: 'REVIEW',
+  RETURN: 'RETURN',
+  ALERT: 'ALERT'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
+
+export const OrderStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  SHIPPED: 'SHIPPED',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED',
+  RETURN_REQUESTED: 'RETURN_REQUESTED',
+  RETURNED: 'RETURNED'
+} as const
+
+export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
+
+
+export const PaymentMethod = {
+  BKASH: 'BKASH',
+  NAGAD: 'NAGAD',
+  SSLCOMMERZ: 'SSLCOMMERZ',
+  CARD: 'CARD',
+  COD: 'COD'
+} as const
+
+export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
+
+
+export const PaymentStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const Gateway = {
+  BKASH: 'BKASH',
+  NAGAD: 'NAGAD',
+  SSLCOMMERZ: 'SSLCOMMERZ',
+  CARD: 'CARD'
+} as const
+
+export type Gateway = (typeof Gateway)[keyof typeof Gateway]
+
+
+export const PayoutStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  FAILED: 'FAILED'
+} as const
+
+export type PayoutStatus = (typeof PayoutStatus)[keyof typeof PayoutStatus]
+
+
+export const PayoutMethod = {
+  BANK: 'BANK',
+  MOBILE: 'MOBILE'
+} as const
+
+export type PayoutMethod = (typeof PayoutMethod)[keyof typeof PayoutMethod]
+
+
+export const ReturnStatus = {
+  NONE: 'NONE',
+  PENDING: 'PENDING',
+  REQUESTED: 'REQUESTED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type ReturnStatus = (typeof ReturnStatus)[keyof typeof ReturnStatus]
+
+
+export const SubscriptionType = {
+  FREE: 'FREE',
+  PREMIUM: 'PREMIUM'
+} as const
+
+export type SubscriptionType = (typeof SubscriptionType)[keyof typeof SubscriptionType]
+
+
+export const SupportTicketStatus = {
+  OPEN: 'OPEN',
+  IN_PROGRESS: 'IN_PROGRESS',
+  RESOLVED: 'RESOLVED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type SupportTicketStatus = (typeof SupportTicketStatus)[keyof typeof SupportTicketStatus]
+
+
+export const UserRole = {
+  USER: 'USER',
+  SELLER: 'SELLER',
+  ADMIN: 'ADMIN',
+  RIDER: 'RIDER'
+} as const
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const TransactionType = {
+  CREDIT: 'CREDIT',
+  DEBIT: 'DEBIT',
+  REFUND: 'REFUND',
+  PAYOUT: 'PAYOUT',
+  REWARD: 'REWARD'
+} as const
+
+export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
