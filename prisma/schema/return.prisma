@@ -4,14 +4,14 @@ model Return {
   orderItemId  String
   userId       String
   reason       String
-  status       ReturnStatus @default(PENDING) 
+  status       ReturnStatus @default(PENDING)
   refundAmount Decimal?     @db.Decimal(10, 2)
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
-  order        Order        @relation(fields: [orderId], references: [id])
-  orderItem    OrderItem    @relation(fields: [orderItemId], references: [id])
-  user         User         @relation(fields: [userId], references: [id])
+  order     Order     @relation(fields: [orderId], references: [id])
+  orderItem OrderItem @relation(fields: [orderItemId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
 }
 
 enum ReturnStatus {

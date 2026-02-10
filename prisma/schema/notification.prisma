@@ -1,12 +1,16 @@
 model Notification {
-  id           String           @id @default(uuid())
-  userId       String
-  type         String
-  title        String
-  isRead       Boolean          @default(false)
-  createdAt    DateTime         @default(now())
+  id        String   @id @default(uuid())
+  userId    String
+  type      String
+  title     String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
 
-  user         User             @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([isRead])
+  @@index([userId, isRead])
 }
 
 model NotificationPreference {
@@ -18,6 +22,5 @@ model NotificationPreference {
   payouts      Boolean  @default(true)
   updatedAt    DateTime @updatedAt
 
-  user         User     @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
-

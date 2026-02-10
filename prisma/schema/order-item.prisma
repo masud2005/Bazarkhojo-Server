@@ -1,12 +1,12 @@
 model OrderItem {
-  id           String      @id @default(uuid())
-  sellerOrderId String
+  id               String  @id @default(uuid())
+  sellerOrderId    String
   productVariantId String
-  quantity     Int
-  price        Decimal     @db.Decimal(10, 2)
+  quantity         Int
+  price            Decimal @db.Decimal(10, 2)
 
-  sellerOrder  SellerOrder @relation(fields: [sellerOrderId], references: [id])
+  sellerOrder    SellerOrder    @relation(fields: [sellerOrderId], references: [id])
   productVariant ProductVariant @relation(fields: [productVariantId], references: [id])
-  review       Review?
-  returns      Return[]
+  review         Review?
+  returns        Return[]
 }

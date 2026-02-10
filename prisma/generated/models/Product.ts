@@ -98,7 +98,6 @@ export type ProductCountAggregateOutputType = {
   price: number
   discountPrice: number
   stock: number
-  variants: number
   images: number
   seoTitle: number
   seoDescription: number
@@ -185,7 +184,6 @@ export type ProductCountAggregateInputType = {
   price?: true
   discountPrice?: true
   stock?: true
-  variants?: true
   images?: true
   seoTitle?: true
   seoDescription?: true
@@ -297,7 +295,6 @@ export type ProductGroupByOutputType = {
   price: runtime.Decimal
   discountPrice: runtime.Decimal | null
   stock: number
-  variants: runtime.JsonValue | null
   images: runtime.JsonValue | null
   seoTitle: string | null
   seoDescription: string | null
@@ -345,7 +342,6 @@ export type ProductWhereInput = {
   price?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFilter<"Product"> | number
-  variants?: Prisma.JsonNullableFilter<"Product">
   images?: Prisma.JsonNullableFilter<"Product">
   seoTitle?: Prisma.StringNullableFilter<"Product"> | string | null
   seoDescription?: Prisma.StringNullableFilter<"Product"> | string | null
@@ -378,7 +374,6 @@ export type ProductOrderByWithRelationInput = {
   price?: Prisma.SortOrder
   discountPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   stock?: Prisma.SortOrder
-  variants?: Prisma.SortOrderInput | Prisma.SortOrder
   images?: Prisma.SortOrderInput | Prisma.SortOrder
   seoTitle?: Prisma.SortOrderInput | Prisma.SortOrder
   seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -414,7 +409,6 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   price?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFilter<"Product"> | number
-  variants?: Prisma.JsonNullableFilter<"Product">
   images?: Prisma.JsonNullableFilter<"Product">
   seoTitle?: Prisma.StringNullableFilter<"Product"> | string | null
   seoDescription?: Prisma.StringNullableFilter<"Product"> | string | null
@@ -447,7 +441,6 @@ export type ProductOrderByWithAggregationInput = {
   price?: Prisma.SortOrder
   discountPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   stock?: Prisma.SortOrder
-  variants?: Prisma.SortOrderInput | Prisma.SortOrder
   images?: Prisma.SortOrderInput | Prisma.SortOrder
   seoTitle?: Prisma.SortOrderInput | Prisma.SortOrder
   seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -480,7 +473,6 @@ export type ProductScalarWhereWithAggregatesInput = {
   price?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntWithAggregatesFilter<"Product"> | number
-  variants?: Prisma.JsonNullableWithAggregatesFilter<"Product">
   images?: Prisma.JsonNullableWithAggregatesFilter<"Product">
   seoTitle?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   seoDescription?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -502,7 +494,6 @@ export type ProductCreateInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -535,7 +526,6 @@ export type ProductUncheckedCreateInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -562,7 +552,6 @@ export type ProductUpdateInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -595,7 +584,6 @@ export type ProductUncheckedUpdateInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -625,7 +613,6 @@ export type ProductCreateManyInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -647,7 +634,6 @@ export type ProductUpdateManyMutationInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -672,7 +658,6 @@ export type ProductUncheckedUpdateManyInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -717,7 +702,6 @@ export type ProductCountOrderByAggregateInput = {
   price?: Prisma.SortOrder
   discountPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
-  variants?: Prisma.SortOrder
   images?: Prisma.SortOrder
   seoTitle?: Prisma.SortOrder
   seoDescription?: Prisma.SortOrder
@@ -997,7 +981,6 @@ export type ProductCreateWithoutBrandInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1028,7 +1011,6 @@ export type ProductUncheckedCreateWithoutBrandInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1087,7 +1069,6 @@ export type ProductScalarWhereInput = {
   price?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFilter<"Product"> | number
-  variants?: Prisma.JsonNullableFilter<"Product">
   images?: Prisma.JsonNullableFilter<"Product">
   seoTitle?: Prisma.StringNullableFilter<"Product"> | string | null
   seoDescription?: Prisma.StringNullableFilter<"Product"> | string | null
@@ -1109,7 +1090,6 @@ export type ProductCreateWithoutCategoryInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1140,7 +1120,6 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1193,7 +1172,6 @@ export type ProductCreateWithoutDiscountsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1225,7 +1203,6 @@ export type ProductUncheckedCreateWithoutDiscountsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1267,7 +1244,6 @@ export type ProductUpdateWithoutDiscountsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1299,7 +1275,6 @@ export type ProductUncheckedUpdateWithoutDiscountsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1325,7 +1300,6 @@ export type ProductCreateWithoutFlashSaleProductsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1357,7 +1331,6 @@ export type ProductUncheckedCreateWithoutFlashSaleProductsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1399,7 +1372,6 @@ export type ProductUpdateWithoutFlashSaleProductsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1431,7 +1403,6 @@ export type ProductUncheckedUpdateWithoutFlashSaleProductsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1457,7 +1428,6 @@ export type ProductCreateWithoutProductVariantsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1489,7 +1459,6 @@ export type ProductUncheckedCreateWithoutProductVariantsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1531,7 +1500,6 @@ export type ProductUpdateWithoutProductVariantsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1563,7 +1531,6 @@ export type ProductUncheckedUpdateWithoutProductVariantsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1589,7 +1556,6 @@ export type ProductCreateWithoutReviewsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1621,7 +1587,6 @@ export type ProductUncheckedCreateWithoutReviewsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1663,7 +1628,6 @@ export type ProductUpdateWithoutReviewsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1695,7 +1659,6 @@ export type ProductUncheckedUpdateWithoutReviewsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1721,7 +1684,6 @@ export type ProductCreateWithoutSellerInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1752,7 +1714,6 @@ export type ProductUncheckedCreateWithoutSellerInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1805,7 +1766,6 @@ export type ProductCreateWithoutWishlistsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1837,7 +1797,6 @@ export type ProductUncheckedCreateWithoutWishlistsInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1879,7 +1838,6 @@ export type ProductUpdateWithoutWishlistsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1911,7 +1869,6 @@ export type ProductUncheckedUpdateWithoutWishlistsInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1939,7 +1896,6 @@ export type ProductCreateManyBrandInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -1961,7 +1917,6 @@ export type ProductUpdateWithoutBrandInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1992,7 +1947,6 @@ export type ProductUncheckedUpdateWithoutBrandInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2021,7 +1975,6 @@ export type ProductUncheckedUpdateManyWithoutBrandInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2045,7 +1998,6 @@ export type ProductCreateManyCategoryInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -2067,7 +2019,6 @@ export type ProductUpdateWithoutCategoryInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2098,7 +2049,6 @@ export type ProductUncheckedUpdateWithoutCategoryInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2127,7 +2077,6 @@ export type ProductUncheckedUpdateManyWithoutCategoryInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2151,7 +2100,6 @@ export type ProductCreateManySellerInput = {
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: string | null
   seoDescription?: string | null
@@ -2173,7 +2121,6 @@ export type ProductUpdateWithoutSellerInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2204,7 +2151,6 @@ export type ProductUncheckedUpdateWithoutSellerInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2233,7 +2179,6 @@ export type ProductUncheckedUpdateManyWithoutSellerInput = {
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   discountPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
-  variants?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   images?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   seoTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2325,7 +2270,6 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   price?: boolean
   discountPrice?: boolean
   stock?: boolean
-  variants?: boolean
   images?: boolean
   seoTitle?: boolean
   seoDescription?: boolean
@@ -2359,7 +2303,6 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   price?: boolean
   discountPrice?: boolean
   stock?: boolean
-  variants?: boolean
   images?: boolean
   seoTitle?: boolean
   seoDescription?: boolean
@@ -2387,7 +2330,6 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   price?: boolean
   discountPrice?: boolean
   stock?: boolean
-  variants?: boolean
   images?: boolean
   seoTitle?: boolean
   seoDescription?: boolean
@@ -2415,7 +2357,6 @@ export type ProductSelectScalar = {
   price?: boolean
   discountPrice?: boolean
   stock?: boolean
-  variants?: boolean
   images?: boolean
   seoTitle?: boolean
   seoDescription?: boolean
@@ -2428,7 +2369,7 @@ export type ProductSelectScalar = {
   deletedAt?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sellerId" | "categoryId" | "brandId" | "name" | "slug" | "description" | "isActive" | "price" | "discountPrice" | "stock" | "variants" | "images" | "seoTitle" | "seoDescription" | "seoKeywords" | "isApproved" | "isFeatured" | "lowStockThreshold" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sellerId" | "categoryId" | "brandId" | "name" | "slug" | "description" | "isActive" | "price" | "discountPrice" | "stock" | "images" | "seoTitle" | "seoDescription" | "seoKeywords" | "isApproved" | "isFeatured" | "lowStockThreshold" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   seller?: boolean | Prisma.SellerDefaultArgs<ExtArgs>
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
@@ -2475,7 +2416,6 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     price: runtime.Decimal
     discountPrice: runtime.Decimal | null
     stock: number
-    variants: runtime.JsonValue | null
     images: runtime.JsonValue | null
     seoTitle: string | null
     seoDescription: string | null
@@ -2928,7 +2868,6 @@ export interface ProductFieldRefs {
   readonly price: Prisma.FieldRef<"Product", 'Decimal'>
   readonly discountPrice: Prisma.FieldRef<"Product", 'Decimal'>
   readonly stock: Prisma.FieldRef<"Product", 'Int'>
-  readonly variants: Prisma.FieldRef<"Product", 'Json'>
   readonly images: Prisma.FieldRef<"Product", 'Json'>
   readonly seoTitle: Prisma.FieldRef<"Product", 'String'>
   readonly seoDescription: Prisma.FieldRef<"Product", 'String'>

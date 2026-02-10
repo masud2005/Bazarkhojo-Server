@@ -1,21 +1,24 @@
 model Coupon {
-  id              String      @id @default(uuid())
-  code            String      @unique
-  type            DiscountType
-  value           Decimal     @db.Decimal(10, 2)
-  minOrderAmount  Decimal?    @db.Decimal(10, 2)
-  maxDiscount     Decimal?    @db.Decimal(10, 2)
-  startDate       DateTime?
-  endDate         DateTime?
-  usageLimit      Int?
-  usedCount       Int         @default(0)
-  sellerId        String?
-  categoryId      String?
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  id             String       @id @default(uuid())
+  code           String       @unique
+  type           DiscountType
+  value          Decimal      @db.Decimal(10, 2)
+  minOrderAmount Decimal?     @db.Decimal(10, 2)
+  maxDiscount    Decimal?     @db.Decimal(10, 2)
+  startDate      DateTime?
+  endDate        DateTime?
+  usageLimit     Int?
+  usedCount      Int          @default(0)
+  sellerId       String?
+  categoryId     String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 
-  seller          Seller?     @relation(fields: [sellerId], references: [id])
-  category        Category?   @relation(fields: [categoryId], references: [id])
-  orders          Order[]
-  couponUsages    CouponUsage[]
+  seller       Seller?       @relation(fields: [sellerId], references: [id])
+  category     Category?     @relation(fields: [categoryId], references: [id])
+  orders       Order[]
+  couponUsages CouponUsage[]
+
+  @@index([sellerId])
+  @@index([categoryId])
 }

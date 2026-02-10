@@ -1,19 +1,24 @@
 model WalletTransaction {
-  id          String           @id @default(uuid())
-  walletId    String
-  type        TransactionType
-  amount      Decimal          @db.Decimal(12, 2)
-  balanceBefore Decimal         @db.Decimal(12, 2)
-  balanceAfter Decimal          @db.Decimal(12, 2)
-  reference   String?
-  idempotencyKey String         @unique
-  description String?
-  orderId     String?
-  referenceId String?
-  createdAt   DateTime         @default(now())
+  id             String          @id @default(uuid())
+  walletId       String
+  type           TransactionType
+  amount         Decimal         @db.Decimal(12, 2)
+  balanceBefore  Decimal         @db.Decimal(12, 2)
+  balanceAfter   Decimal         @db.Decimal(12, 2)
+  reference      String?
+  idempotencyKey String          @unique
+  description    String?
+  orderId        String?
+  referenceId    String?
+  createdAt      DateTime        @default(now())
 
-  wallet      Wallet           @relation(fields: [walletId], references: [id])
-  order       Order?           @relation(fields: [orderId], references: [id])
+  wallet Wallet @relation(fields: [walletId], references: [id])
+  order  Order? @relation(fields: [orderId], references: [id])
+
+  @@index([walletId])
+  @@index([orderId])
+  @@index([type])
+  @@index([createdAt])
 }
 
 enum TransactionType {

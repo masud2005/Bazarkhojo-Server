@@ -1,45 +1,45 @@
 model User {
-  id                String    @id @default(uuid())
-  email             String    @unique @db.VarChar
-  password          String    @db.VarChar
-  firstName         String?
-  lastName          String?
-  phone             String?
-  role              UserRole  @default(USER)
-  isActive          Boolean   @default(true)
-  isVerified        Boolean   @default(false)
-  twoFactorEnabled  Boolean   @default(false)
-  twoFactorSecret   String?
-  lastLogin         DateTime?
-  referralCode      String?   @unique
-  referredBy        String?      
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  deletedAt         DateTime?
+  id               String    @id @default(uuid())
+  email            String    @unique @db.VarChar
+  password         String    @db.VarChar
+  firstName        String?
+  lastName         String?
+  phone            String?
+  role             UserRole  @default(USER)
+  isActive         Boolean   @default(true)
+  isVerified       Boolean   @default(false)
+  twoFactorEnabled Boolean   @default(false)
+  twoFactorSecret  String?
+  lastLogin        DateTime?
+  referralCode     String?   @unique
+  referredBy       String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime?
 
-  referredByUser    User?     @relation("Referral", fields: [referredBy], references: [id])
-  referredUsers     User[]    @relation("Referral")
-  seller            Seller?
-  rider             Rider?
-  wallet            Wallet?
-  addresses         Address[]
-  orders            Order[]
-  returns           Return[]
-  follows           Follow[]
-  wishlists         Wishlist[]
-  cart              Cart?
-  reviews           Review[]
-  couponUsages      CouponUsage[]
-  conversationsAsUser1 Conversation[] @relation("User1Conversations")
-  conversationsAsUser2 Conversation[] @relation("User2Conversations")
-  messages          Message[]
-  notifications     Notification[]
-  notificationPref  NotificationPreference?
-  supportTickets    SupportTicket[]
-  ticketReplies     TicketReply[]
-  blogs             Blog[]
-  flashSales        FlashSale[]
-  auditLogs         AuditLog[]
+  referredByUser       User?                   @relation("Referral", fields: [referredBy], references: [id])
+  referredUsers        User[]                  @relation("Referral")
+  seller               Seller?
+  rider                Rider?
+  wallet               Wallet?
+  addresses            Address[]
+  orders               Order[]
+  returns              Return[]
+  follows              Follow[]
+  wishlists            Wishlist[]
+  cart                 Cart?
+  reviews              Review[]
+  couponUsages         CouponUsage[]
+  conversationsAsUser1 Conversation[]          @relation("User1Conversations")
+  conversationsAsUser2 Conversation[]          @relation("User2Conversations")
+  messages             Message[]
+  notifications        Notification[]
+  notificationPref     NotificationPreference?
+  supportTickets       SupportTicket[]
+  ticketReplies        TicketReply[]
+  blogs                Blog[]
+  flashSales           FlashSale[]
+  auditLogs            AuditLog[]
 }
 
 enum UserRole {

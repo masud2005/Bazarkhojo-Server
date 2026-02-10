@@ -1,13 +1,13 @@
 model Banner {
-  id        String        @id @default(uuid())
+  id        String         @id @default(uuid())
   imageUrl  String
   link      String?
   position  BannerPosition
-  isActive  Boolean       @default(true)
+  isActive  Boolean        @default(true)
   startDate DateTime?
   endDate   DateTime?
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 }
 
 enum BannerPosition {

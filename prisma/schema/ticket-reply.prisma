@@ -1,10 +1,10 @@
 model TicketReply {
-  id        String        @id @default(uuid())
+  id        String   @id @default(uuid())
   ticketId  String
   userId    String
   message   String
-  createdAt DateTime      @default(now())
+  createdAt DateTime @default(now())
 
-  ticket    SupportTicket @relation(fields: [ticketId], references: [id])
-  user      User          @relation(fields: [userId], references: [id])
+  ticket SupportTicket @relation(fields: [ticketId], references: [id])
+  user   User          @relation(fields: [userId], references: [id])
 }

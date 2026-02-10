@@ -1,25 +1,25 @@
 model Conversation {
-  id            String        @id @default(uuid())
-  user1Id        String
-  user2Id        String
+  id            String    @id @default(uuid())
+  user1Id       String
+  user2Id       String
   lastMessageAt DateTime?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  user1         User          @relation("User1Conversations", fields: [user1Id], references: [id])
-  user2         User          @relation("User2Conversations", fields: [user2Id], references: [id])
-  messages      Message[]
+  user1    User      @relation("User1Conversations", fields: [user1Id], references: [id])
+  user2    User      @relation("User2Conversations", fields: [user2Id], references: [id])
+  messages Message[]
 
   @@unique([user1Id, user2Id])
 }
 
 model Message {
-  id             String       @id @default(uuid())
+  id             String   @id @default(uuid())
   conversationId String
   senderId       String
   message        String
-  createdAt      DateTime     @default(now())
+  createdAt      DateTime @default(now())
 
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
-  sender         User         @relation(fields: [senderId], references: [id])
+  conversation Conversation @relation(fields: [conversationId], references: [id])
+  sender       User         @relation(fields: [senderId], references: [id])
 }

@@ -4,8 +4,8 @@ model Wishlist {
   productId String
   createdAt DateTime @default(now())
 
-  user      User     @relation(fields: [userId], references: [id])
-  product   Product  @relation(fields: [productId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 
   @@unique([userId, productId])
 }

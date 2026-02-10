@@ -1,33 +1,36 @@
 model Product {
-  id               String    @id @default(uuid())
-  sellerId         String
-  categoryId       String
-  brandId          String?
-  name             String
-  slug             String    @unique
-  description      String?
-  isActive         Boolean   @default(true)
-  price            Decimal   @db.Decimal(10, 2)
-  discountPrice    Decimal?  @db.Decimal(10, 2)
-  stock            Int       @default(0)
-  variants         Json?
-  images           Json?
-  seoTitle         String?
-  seoDescription   String?
-  seoKeywords      String?
-  isApproved       Boolean   @default(false)
-  isFeatured       Boolean   @default(false)
-  lowStockThreshold Int      @default(5)
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  deletedAt        DateTime?
+  id                String    @id @default(uuid())
+  sellerId          String
+  categoryId        String
+  brandId           String?
+  name              String
+  slug              String    @unique
+  description       String?
+  isActive          Boolean   @default(true)
+  price             Decimal   @db.Decimal(10, 2)
+  discountPrice     Decimal?  @db.Decimal(10, 2)
+  stock             Int       @default(0)
+  images            Json?
+  seoTitle          String?
+  seoDescription    String?
+  seoKeywords       String?
+  isApproved        Boolean   @default(false)
+  isFeatured        Boolean   @default(false)
+  lowStockThreshold Int       @default(5)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
 
-  seller           Seller    @relation(fields: [sellerId], references: [id])
-  category         Category  @relation(fields: [categoryId], references: [id])
-  brand            Brand?    @relation(fields: [brandId], references: [id])
-  reviews          Review[]
-  wishlists        Wishlist[]
-  productVariants  ProductVariant[]
+  seller            Seller             @relation(fields: [sellerId], references: [id])
+  category          Category           @relation(fields: [categoryId], references: [id])
+  brand             Brand?             @relation(fields: [brandId], references: [id])
+  reviews           Review[]
+  wishlists         Wishlist[]
+  productVariants   ProductVariant[]
   flashSaleProducts FlashSaleProduct[]
-  discounts        Discount[]
+  discounts         Discount[]
+
+  @@index([sellerId])
+  @@index([categoryId])
+  @@index([brandId])
 }

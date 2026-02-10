@@ -1,31 +1,31 @@
 model Seller {
-  id                  String    @id @default(uuid())
-  userId              String    @unique
-  shopName            String
-  shopSlug            String    @unique
-  shopDescription     String?
-  shopLogo            String?
-  shopBanner          String?
-  tradeLicense        String?
-  nid                 String?
-  bankAccount         Json?
-  subscriptionType    SubscriptionType @default(FREE)
-  subscriptionStart   DateTime?
-  subscriptionEnd     DateTime?
-  commissionRate      Decimal   @default(10.00) @db.Decimal(5, 2)
-  isApproved          Boolean   @default(false)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
-  deletedAt           DateTime?
+  id                String           @id @default(uuid())
+  userId            String           @unique
+  shopName          String
+  shopSlug          String           @unique
+  shopDescription   String?
+  shopLogo          String?
+  shopBanner        String?
+  tradeLicense      String?
+  nid               String?
+  bankAccount       Json?
+  subscriptionType  SubscriptionType @default(FREE)
+  subscriptionStart DateTime?
+  subscriptionEnd   DateTime?
+  commissionRate    Decimal          @default(10.00) @db.Decimal(5, 2)
+  isApproved        Boolean          @default(false)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  deletedAt         DateTime?
 
-  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  products            Product[]
-  discounts           Discount[]
-  follows             Follow[]
-  payouts             Payout[]
-  coupons             Coupon[]
-  sellerOrders        SellerOrder[]
-  reviewReplies       ReviewReply[]
+  user          User          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  products      Product[]
+  discounts     Discount[]
+  follows       Follow[]
+  payouts       Payout[]
+  coupons       Coupon[]
+  sellerOrders  SellerOrder[]
+  reviewReplies ReviewReply[]
 }
 
 enum SubscriptionType {
