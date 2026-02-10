@@ -5,9 +5,10 @@ model SellerOrder {
   subtotal Decimal @db.Decimal(12, 2)
   status   String
 
-  order      Order       @relation(fields: [orderId], references: [id])
-  seller     Seller      @relation(fields: [sellerId], references: [id])
-  orderItems OrderItem[]
+  order         Order                      @relation(fields: [orderId], references: [id])
+  seller        Seller                     @relation(fields: [sellerId], references: [id])
+  orderItems    OrderItem[]
+  statusHistory SellerOrderStatusHistory[]
 
   @@index([orderId])
   @@index([sellerId])

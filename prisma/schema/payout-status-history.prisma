@@ -1,0 +1,11 @@
+model PayoutStatusHistory {
+  id         String   @id @default(uuid())
+  payoutId   String
+  fromStatus String
+  toStatus   String
+  createdAt  DateTime @default(now())
+
+  payout Payout @relation(fields: [payoutId], references: [id])
+
+  @@index([payoutId])
+}

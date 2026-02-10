@@ -1,0 +1,13 @@
+model SellerSubscriptionHistory {
+  id           String   @id @default(uuid())
+  sellerId     String
+  previousType String
+  newType      String
+  startDate    DateTime
+  endDate      DateTime
+  createdAt    DateTime @default(now())
+
+  seller Seller @relation(fields: [sellerId], references: [id])
+
+  @@index([sellerId])
+}

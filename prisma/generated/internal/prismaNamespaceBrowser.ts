@@ -72,8 +72,10 @@ export const ModelName = {
   Notification: 'Notification',
   NotificationPreference: 'NotificationPreference',
   OrderItem: 'OrderItem',
+  OrderStatusHistory: 'OrderStatusHistory',
   Order: 'Order',
   Payment: 'Payment',
+  PayoutStatusHistory: 'PayoutStatusHistory',
   Payout: 'Payout',
   ProductVariant: 'ProductVariant',
   Product: 'Product',
@@ -81,7 +83,9 @@ export const ModelName = {
   ReviewReply: 'ReviewReply',
   Review: 'Review',
   Rider: 'Rider',
+  SellerOrderStatusHistory: 'SellerOrderStatusHistory',
   SellerOrder: 'SellerOrder',
+  SellerSubscriptionHistory: 'SellerSubscriptionHistory',
   Seller: 'Seller',
   Setting: 'Setting',
   SupportTicket: 'SupportTicket',
@@ -384,6 +388,18 @@ export const OrderItemScalarFieldEnum = {
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
+export const OrderStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  changedBy: 'changedBy',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderStatusHistoryScalarFieldEnum = (typeof OrderStatusHistoryScalarFieldEnum)[keyof typeof OrderStatusHistoryScalarFieldEnum]
+
+
 export const OrderScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -421,6 +437,17 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const PayoutStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  payoutId: 'payoutId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  createdAt: 'createdAt'
+} as const
+
+export type PayoutStatusHistoryScalarFieldEnum = (typeof PayoutStatusHistoryScalarFieldEnum)[keyof typeof PayoutStatusHistoryScalarFieldEnum]
 
 
 export const PayoutScalarFieldEnum = {
@@ -533,6 +560,17 @@ export const RiderScalarFieldEnum = {
 export type RiderScalarFieldEnum = (typeof RiderScalarFieldEnum)[keyof typeof RiderScalarFieldEnum]
 
 
+export const SellerOrderStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  sellerOrderId: 'sellerOrderId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  changedAt: 'changedAt'
+} as const
+
+export type SellerOrderStatusHistoryScalarFieldEnum = (typeof SellerOrderStatusHistoryScalarFieldEnum)[keyof typeof SellerOrderStatusHistoryScalarFieldEnum]
+
+
 export const SellerOrderScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
@@ -542,6 +580,19 @@ export const SellerOrderScalarFieldEnum = {
 } as const
 
 export type SellerOrderScalarFieldEnum = (typeof SellerOrderScalarFieldEnum)[keyof typeof SellerOrderScalarFieldEnum]
+
+
+export const SellerSubscriptionHistoryScalarFieldEnum = {
+  id: 'id',
+  sellerId: 'sellerId',
+  previousType: 'previousType',
+  newType: 'newType',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt'
+} as const
+
+export type SellerSubscriptionHistoryScalarFieldEnum = (typeof SellerSubscriptionHistoryScalarFieldEnum)[keyof typeof SellerSubscriptionHistoryScalarFieldEnum]
 
 
 export const SellerScalarFieldEnum = {

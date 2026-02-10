@@ -18,14 +18,15 @@ model Order {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 
-  user               User                @relation(fields: [userId], references: [id])
-  rider              Rider?              @relation(fields: [riderId], references: [id])
-  coupon             Coupon?             @relation(fields: [couponId], references: [id])
+  user               User                 @relation(fields: [userId], references: [id])
+  rider              Rider?               @relation(fields: [riderId], references: [id])
+  coupon             Coupon?              @relation(fields: [couponId], references: [id])
   sellerOrders       SellerOrder[]
   walletTransactions WalletTransaction[]
   payments           Payment[]
   returns            Return[]
   couponUsages       CouponUsage[]
+  statusHistory      OrderStatusHistory[]
 
   @@index([userId])
   @@index([riderId])

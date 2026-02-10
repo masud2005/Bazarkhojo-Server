@@ -9,7 +9,8 @@ model Payout {
   createdAt          DateTime      @default(now())
   updatedAt          DateTime      @updatedAt
 
-  seller Seller @relation(fields: [sellerId], references: [id])
+  seller        Seller                @relation(fields: [sellerId], references: [id])
+  statusHistory PayoutStatusHistory[]
 
   @@index([sellerId])
   @@index([status])

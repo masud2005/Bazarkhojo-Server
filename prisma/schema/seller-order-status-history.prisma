@@ -1,0 +1,11 @@
+model SellerOrderStatusHistory {
+  id            String   @id @default(uuid())
+  sellerOrderId String
+  fromStatus    String
+  toStatus      String
+  changedAt     DateTime @default(now())
+
+  sellerOrder SellerOrder @relation(fields: [sellerOrderId], references: [id])
+
+  @@index([sellerOrderId])
+}

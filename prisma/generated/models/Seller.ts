@@ -324,6 +324,7 @@ export type SellerWhereInput = {
   coupons?: Prisma.CouponListRelationFilter
   sellerOrders?: Prisma.SellerOrderListRelationFilter
   reviewReplies?: Prisma.ReviewReplyListRelationFilter
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryListRelationFilter
 }
 
 export type SellerOrderByWithRelationInput = {
@@ -353,6 +354,7 @@ export type SellerOrderByWithRelationInput = {
   coupons?: Prisma.CouponOrderByRelationAggregateInput
   sellerOrders?: Prisma.SellerOrderOrderByRelationAggregateInput
   reviewReplies?: Prisma.ReviewReplyOrderByRelationAggregateInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryOrderByRelationAggregateInput
 }
 
 export type SellerWhereUniqueInput = Prisma.AtLeast<{
@@ -385,6 +387,7 @@ export type SellerWhereUniqueInput = Prisma.AtLeast<{
   coupons?: Prisma.CouponListRelationFilter
   sellerOrders?: Prisma.SellerOrderListRelationFilter
   reviewReplies?: Prisma.ReviewReplyListRelationFilter
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryListRelationFilter
 }, "id" | "userId" | "shopSlug">
 
 export type SellerOrderByWithAggregationInput = {
@@ -463,6 +466,7 @@ export type SellerCreateInput = {
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateInput = {
@@ -491,6 +495,7 @@ export type SellerUncheckedCreateInput = {
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUpdateInput = {
@@ -519,6 +524,7 @@ export type SellerUpdateInput = {
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateInput = {
@@ -547,6 +553,7 @@ export type SellerUncheckedUpdateInput = {
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateManyInput = {
@@ -790,6 +797,20 @@ export type SellerUpdateOneRequiredWithoutSellerOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SellerUpdateToOneWithWhereWithoutSellerOrdersInput, Prisma.SellerUpdateWithoutSellerOrdersInput>, Prisma.SellerUncheckedUpdateWithoutSellerOrdersInput>
 }
 
+export type SellerCreateNestedOneWithoutSubscriptionHistoryInput = {
+  create?: Prisma.XOR<Prisma.SellerCreateWithoutSubscriptionHistoryInput, Prisma.SellerUncheckedCreateWithoutSubscriptionHistoryInput>
+  connectOrCreate?: Prisma.SellerCreateOrConnectWithoutSubscriptionHistoryInput
+  connect?: Prisma.SellerWhereUniqueInput
+}
+
+export type SellerUpdateOneRequiredWithoutSubscriptionHistoryNestedInput = {
+  create?: Prisma.XOR<Prisma.SellerCreateWithoutSubscriptionHistoryInput, Prisma.SellerUncheckedCreateWithoutSubscriptionHistoryInput>
+  connectOrCreate?: Prisma.SellerCreateOrConnectWithoutSubscriptionHistoryInput
+  upsert?: Prisma.SellerUpsertWithoutSubscriptionHistoryInput
+  connect?: Prisma.SellerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SellerUpdateToOneWithWhereWithoutSubscriptionHistoryInput, Prisma.SellerUpdateWithoutSubscriptionHistoryInput>, Prisma.SellerUncheckedUpdateWithoutSubscriptionHistoryInput>
+}
+
 export type EnumSubscriptionTypeFieldUpdateOperationsInput = {
   set?: $Enums.SubscriptionType
 }
@@ -851,6 +872,7 @@ export type SellerCreateWithoutCouponsInput = {
   payouts?: Prisma.PayoutCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutCouponsInput = {
@@ -878,6 +900,7 @@ export type SellerUncheckedCreateWithoutCouponsInput = {
   payouts?: Prisma.PayoutUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutCouponsInput = {
@@ -921,6 +944,7 @@ export type SellerUpdateWithoutCouponsInput = {
   payouts?: Prisma.PayoutUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutCouponsInput = {
@@ -948,6 +972,7 @@ export type SellerUncheckedUpdateWithoutCouponsInput = {
   payouts?: Prisma.PayoutUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateWithoutDiscountsInput = {
@@ -975,6 +1000,7 @@ export type SellerCreateWithoutDiscountsInput = {
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutDiscountsInput = {
@@ -1002,6 +1028,7 @@ export type SellerUncheckedCreateWithoutDiscountsInput = {
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutDiscountsInput = {
@@ -1045,6 +1072,7 @@ export type SellerUpdateWithoutDiscountsInput = {
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutDiscountsInput = {
@@ -1072,6 +1100,7 @@ export type SellerUncheckedUpdateWithoutDiscountsInput = {
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateWithoutFollowsInput = {
@@ -1099,6 +1128,7 @@ export type SellerCreateWithoutFollowsInput = {
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutFollowsInput = {
@@ -1126,6 +1156,7 @@ export type SellerUncheckedCreateWithoutFollowsInput = {
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutFollowsInput = {
@@ -1169,6 +1200,7 @@ export type SellerUpdateWithoutFollowsInput = {
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutFollowsInput = {
@@ -1196,6 +1228,7 @@ export type SellerUncheckedUpdateWithoutFollowsInput = {
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateWithoutPayoutsInput = {
@@ -1223,6 +1256,7 @@ export type SellerCreateWithoutPayoutsInput = {
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutPayoutsInput = {
@@ -1250,6 +1284,7 @@ export type SellerUncheckedCreateWithoutPayoutsInput = {
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutPayoutsInput = {
@@ -1293,6 +1328,7 @@ export type SellerUpdateWithoutPayoutsInput = {
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutPayoutsInput = {
@@ -1320,6 +1356,7 @@ export type SellerUncheckedUpdateWithoutPayoutsInput = {
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateWithoutProductsInput = {
@@ -1347,6 +1384,7 @@ export type SellerCreateWithoutProductsInput = {
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutProductsInput = {
@@ -1374,6 +1412,7 @@ export type SellerUncheckedCreateWithoutProductsInput = {
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutProductsInput = {
@@ -1417,6 +1456,7 @@ export type SellerUpdateWithoutProductsInput = {
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutProductsInput = {
@@ -1444,6 +1484,7 @@ export type SellerUncheckedUpdateWithoutProductsInput = {
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateWithoutReviewRepliesInput = {
@@ -1471,6 +1512,7 @@ export type SellerCreateWithoutReviewRepliesInput = {
   payouts?: Prisma.PayoutCreateNestedManyWithoutSellerInput
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutReviewRepliesInput = {
@@ -1498,6 +1540,7 @@ export type SellerUncheckedCreateWithoutReviewRepliesInput = {
   payouts?: Prisma.PayoutUncheckedCreateNestedManyWithoutSellerInput
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutReviewRepliesInput = {
@@ -1541,6 +1584,7 @@ export type SellerUpdateWithoutReviewRepliesInput = {
   payouts?: Prisma.PayoutUpdateManyWithoutSellerNestedInput
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutReviewRepliesInput = {
@@ -1568,6 +1612,7 @@ export type SellerUncheckedUpdateWithoutReviewRepliesInput = {
   payouts?: Prisma.PayoutUncheckedUpdateManyWithoutSellerNestedInput
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateWithoutSellerOrdersInput = {
@@ -1595,6 +1640,7 @@ export type SellerCreateWithoutSellerOrdersInput = {
   payouts?: Prisma.PayoutCreateNestedManyWithoutSellerInput
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutSellerOrdersInput = {
@@ -1622,6 +1668,7 @@ export type SellerUncheckedCreateWithoutSellerOrdersInput = {
   payouts?: Prisma.PayoutUncheckedCreateNestedManyWithoutSellerInput
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutSellerOrdersInput = {
@@ -1665,6 +1712,7 @@ export type SellerUpdateWithoutSellerOrdersInput = {
   payouts?: Prisma.PayoutUpdateManyWithoutSellerNestedInput
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutSellerOrdersInput = {
@@ -1691,6 +1739,135 @@ export type SellerUncheckedUpdateWithoutSellerOrdersInput = {
   follows?: Prisma.FollowUncheckedUpdateManyWithoutSellerNestedInput
   payouts?: Prisma.PayoutUncheckedUpdateManyWithoutSellerNestedInput
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
+  reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
+}
+
+export type SellerCreateWithoutSubscriptionHistoryInput = {
+  id?: string
+  shopName: string
+  shopSlug: string
+  shopDescription?: string | null
+  shopLogo?: string | null
+  shopBanner?: string | null
+  tradeLicense?: string | null
+  nid?: string | null
+  bankAccount?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  subscriptionType?: $Enums.SubscriptionType
+  subscriptionStart?: Date | string | null
+  subscriptionEnd?: Date | string | null
+  commissionRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isApproved?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutSellerInput
+  products?: Prisma.ProductCreateNestedManyWithoutSellerInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutSellerInput
+  follows?: Prisma.FollowCreateNestedManyWithoutSellerInput
+  payouts?: Prisma.PayoutCreateNestedManyWithoutSellerInput
+  coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
+  sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
+  reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+}
+
+export type SellerUncheckedCreateWithoutSubscriptionHistoryInput = {
+  id?: string
+  userId: string
+  shopName: string
+  shopSlug: string
+  shopDescription?: string | null
+  shopLogo?: string | null
+  shopBanner?: string | null
+  tradeLicense?: string | null
+  nid?: string | null
+  bankAccount?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  subscriptionType?: $Enums.SubscriptionType
+  subscriptionStart?: Date | string | null
+  subscriptionEnd?: Date | string | null
+  commissionRate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isApproved?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutSellerInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutSellerInput
+  follows?: Prisma.FollowUncheckedCreateNestedManyWithoutSellerInput
+  payouts?: Prisma.PayoutUncheckedCreateNestedManyWithoutSellerInput
+  coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
+  sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
+  reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+}
+
+export type SellerCreateOrConnectWithoutSubscriptionHistoryInput = {
+  where: Prisma.SellerWhereUniqueInput
+  create: Prisma.XOR<Prisma.SellerCreateWithoutSubscriptionHistoryInput, Prisma.SellerUncheckedCreateWithoutSubscriptionHistoryInput>
+}
+
+export type SellerUpsertWithoutSubscriptionHistoryInput = {
+  update: Prisma.XOR<Prisma.SellerUpdateWithoutSubscriptionHistoryInput, Prisma.SellerUncheckedUpdateWithoutSubscriptionHistoryInput>
+  create: Prisma.XOR<Prisma.SellerCreateWithoutSubscriptionHistoryInput, Prisma.SellerUncheckedCreateWithoutSubscriptionHistoryInput>
+  where?: Prisma.SellerWhereInput
+}
+
+export type SellerUpdateToOneWithWhereWithoutSubscriptionHistoryInput = {
+  where?: Prisma.SellerWhereInput
+  data: Prisma.XOR<Prisma.SellerUpdateWithoutSubscriptionHistoryInput, Prisma.SellerUncheckedUpdateWithoutSubscriptionHistoryInput>
+}
+
+export type SellerUpdateWithoutSubscriptionHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  shopName?: Prisma.StringFieldUpdateOperationsInput | string
+  shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
+  shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shopLogo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shopBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeLicense?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  subscriptionStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissionRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutSellerNestedInput
+  products?: Prisma.ProductUpdateManyWithoutSellerNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutSellerNestedInput
+  follows?: Prisma.FollowUpdateManyWithoutSellerNestedInput
+  payouts?: Prisma.PayoutUpdateManyWithoutSellerNestedInput
+  coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
+  sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
+  reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+}
+
+export type SellerUncheckedUpdateWithoutSubscriptionHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  shopName?: Prisma.StringFieldUpdateOperationsInput | string
+  shopSlug?: Prisma.StringFieldUpdateOperationsInput | string
+  shopDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shopLogo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shopBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeLicense?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  subscriptionStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commissionRate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  products?: Prisma.ProductUncheckedUpdateManyWithoutSellerNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutSellerNestedInput
+  follows?: Prisma.FollowUncheckedUpdateManyWithoutSellerNestedInput
+  payouts?: Prisma.PayoutUncheckedUpdateManyWithoutSellerNestedInput
+  coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
+  sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
 }
 
@@ -1719,6 +1896,7 @@ export type SellerCreateWithoutUserInput = {
   coupons?: Prisma.CouponCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutUserInput = {
@@ -1746,6 +1924,7 @@ export type SellerUncheckedCreateWithoutUserInput = {
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutSellerInput
   sellerOrders?: Prisma.SellerOrderUncheckedCreateNestedManyWithoutSellerInput
   reviewReplies?: Prisma.ReviewReplyUncheckedCreateNestedManyWithoutSellerInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutUserInput = {
@@ -1789,6 +1968,7 @@ export type SellerUpdateWithoutUserInput = {
   coupons?: Prisma.CouponUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutUserInput = {
@@ -1816,6 +1996,7 @@ export type SellerUncheckedUpdateWithoutUserInput = {
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutSellerNestedInput
   sellerOrders?: Prisma.SellerOrderUncheckedUpdateManyWithoutSellerNestedInput
   reviewReplies?: Prisma.ReviewReplyUncheckedUpdateManyWithoutSellerNestedInput
+  subscriptionHistory?: Prisma.SellerSubscriptionHistoryUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 
@@ -1831,6 +2012,7 @@ export type SellerCountOutputType = {
   coupons: number
   sellerOrders: number
   reviewReplies: number
+  subscriptionHistory: number
 }
 
 export type SellerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1841,6 +2023,7 @@ export type SellerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   coupons?: boolean | SellerCountOutputTypeCountCouponsArgs
   sellerOrders?: boolean | SellerCountOutputTypeCountSellerOrdersArgs
   reviewReplies?: boolean | SellerCountOutputTypeCountReviewRepliesArgs
+  subscriptionHistory?: boolean | SellerCountOutputTypeCountSubscriptionHistoryArgs
 }
 
 /**
@@ -1902,6 +2085,13 @@ export type SellerCountOutputTypeCountReviewRepliesArgs<ExtArgs extends runtime.
   where?: Prisma.ReviewReplyWhereInput
 }
 
+/**
+ * SellerCountOutputType without action
+ */
+export type SellerCountOutputTypeCountSubscriptionHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SellerSubscriptionHistoryWhereInput
+}
+
 
 export type SellerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1930,6 +2120,7 @@ export type SellerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   coupons?: boolean | Prisma.Seller$couponsArgs<ExtArgs>
   sellerOrders?: boolean | Prisma.Seller$sellerOrdersArgs<ExtArgs>
   reviewReplies?: boolean | Prisma.Seller$reviewRepliesArgs<ExtArgs>
+  subscriptionHistory?: boolean | Prisma.Seller$subscriptionHistoryArgs<ExtArgs>
   _count?: boolean | Prisma.SellerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seller"]>
 
@@ -2008,6 +2199,7 @@ export type SellerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   coupons?: boolean | Prisma.Seller$couponsArgs<ExtArgs>
   sellerOrders?: boolean | Prisma.Seller$sellerOrdersArgs<ExtArgs>
   reviewReplies?: boolean | Prisma.Seller$reviewRepliesArgs<ExtArgs>
+  subscriptionHistory?: boolean | Prisma.Seller$subscriptionHistoryArgs<ExtArgs>
   _count?: boolean | Prisma.SellerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SellerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2028,6 +2220,7 @@ export type $SellerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     coupons: Prisma.$CouponPayload<ExtArgs>[]
     sellerOrders: Prisma.$SellerOrderPayload<ExtArgs>[]
     reviewReplies: Prisma.$ReviewReplyPayload<ExtArgs>[]
+    subscriptionHistory: Prisma.$SellerSubscriptionHistoryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2450,6 +2643,7 @@ export interface Prisma__SellerClient<T, Null = never, ExtArgs extends runtime.T
   coupons<T extends Prisma.Seller$couponsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seller$couponsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sellerOrders<T extends Prisma.Seller$sellerOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seller$sellerOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SellerOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewReplies<T extends Prisma.Seller$reviewRepliesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seller$reviewRepliesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptionHistory<T extends Prisma.Seller$subscriptionHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seller$subscriptionHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SellerSubscriptionHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3058,6 +3252,30 @@ export type Seller$reviewRepliesArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.ReviewReplyScalarFieldEnum | Prisma.ReviewReplyScalarFieldEnum[]
+}
+
+/**
+ * Seller.subscriptionHistory
+ */
+export type Seller$subscriptionHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SellerSubscriptionHistory
+   */
+  select?: Prisma.SellerSubscriptionHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SellerSubscriptionHistory
+   */
+  omit?: Prisma.SellerSubscriptionHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SellerSubscriptionHistoryInclude<ExtArgs> | null
+  where?: Prisma.SellerSubscriptionHistoryWhereInput
+  orderBy?: Prisma.SellerSubscriptionHistoryOrderByWithRelationInput | Prisma.SellerSubscriptionHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.SellerSubscriptionHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SellerSubscriptionHistoryScalarFieldEnum | Prisma.SellerSubscriptionHistoryScalarFieldEnum[]
 }
 
 /**

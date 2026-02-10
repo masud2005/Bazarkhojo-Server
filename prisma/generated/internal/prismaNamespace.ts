@@ -405,8 +405,10 @@ export const ModelName = {
   Notification: 'Notification',
   NotificationPreference: 'NotificationPreference',
   OrderItem: 'OrderItem',
+  OrderStatusHistory: 'OrderStatusHistory',
   Order: 'Order',
   Payment: 'Payment',
+  PayoutStatusHistory: 'PayoutStatusHistory',
   Payout: 'Payout',
   ProductVariant: 'ProductVariant',
   Product: 'Product',
@@ -414,7 +416,9 @@ export const ModelName = {
   ReviewReply: 'ReviewReply',
   Review: 'Review',
   Rider: 'Rider',
+  SellerOrderStatusHistory: 'SellerOrderStatusHistory',
   SellerOrder: 'SellerOrder',
+  SellerSubscriptionHistory: 'SellerSubscriptionHistory',
   Seller: 'Seller',
   Setting: 'Setting',
   SupportTicket: 'SupportTicket',
@@ -438,7 +442,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "address" | "banner" | "blog" | "brand" | "cartItem" | "cart" | "category" | "cmsPage" | "conversation" | "message" | "couponUsage" | "coupon" | "discount" | "flashSale" | "flashSaleProduct" | "follow" | "auditLog" | "outboxEvent" | "notification" | "notificationPreference" | "orderItem" | "order" | "payment" | "payout" | "productVariant" | "product" | "return" | "reviewReply" | "review" | "rider" | "sellerOrder" | "seller" | "setting" | "supportTicket" | "ticketReply" | "user" | "walletTransaction" | "wallet" | "wishlist"
+    modelProps: "address" | "banner" | "blog" | "brand" | "cartItem" | "cart" | "category" | "cmsPage" | "conversation" | "message" | "couponUsage" | "coupon" | "discount" | "flashSale" | "flashSaleProduct" | "follow" | "auditLog" | "outboxEvent" | "notification" | "notificationPreference" | "orderItem" | "orderStatusHistory" | "order" | "payment" | "payoutStatusHistory" | "payout" | "productVariant" | "product" | "return" | "reviewReply" | "review" | "rider" | "sellerOrderStatusHistory" | "sellerOrder" | "sellerSubscriptionHistory" | "seller" | "setting" | "supportTicket" | "ticketReply" | "user" | "walletTransaction" | "wallet" | "wishlist"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1996,6 +2000,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    OrderStatusHistory: {
+      payload: Prisma.$OrderStatusHistoryPayload<ExtArgs>
+      fields: Prisma.OrderStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OrderStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OrderStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.OrderStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OrderStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.OrderStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.OrderStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.OrderStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OrderStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.OrderStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.OrderStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.OrderStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OrderStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OrderStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.OrderStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.OrderStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOrderStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.OrderStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrderStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OrderStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrderStatusHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
     Order: {
       payload: Prisma.$OrderPayload<ExtArgs>
       fields: Prisma.OrderFieldRefs
@@ -2141,6 +2219,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.PaymentCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.PaymentCountAggregateOutputType> | number
+        }
+      }
+    }
+    PayoutStatusHistory: {
+      payload: Prisma.$PayoutStatusHistoryPayload<ExtArgs>
+      fields: Prisma.PayoutStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PayoutStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PayoutStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.PayoutStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PayoutStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.PayoutStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.PayoutStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.PayoutStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PayoutStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.PayoutStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.PayoutStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.PayoutStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PayoutStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PayoutStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.PayoutStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PayoutStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.PayoutStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePayoutStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.PayoutStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PayoutStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PayoutStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PayoutStatusHistoryCountAggregateOutputType> | number
         }
       }
     }
@@ -2662,6 +2814,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SellerOrderStatusHistory: {
+      payload: Prisma.$SellerOrderStatusHistoryPayload<ExtArgs>
+      fields: Prisma.SellerOrderStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SellerOrderStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SellerOrderStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.SellerOrderStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SellerOrderStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.SellerOrderStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.SellerOrderStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.SellerOrderStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SellerOrderStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.SellerOrderStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.SellerOrderStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.SellerOrderStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SellerOrderStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SellerOrderStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.SellerOrderStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerOrderStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.SellerOrderStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSellerOrderStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.SellerOrderStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SellerOrderStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SellerOrderStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SellerOrderStatusHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
     SellerOrder: {
       payload: Prisma.$SellerOrderPayload<ExtArgs>
       fields: Prisma.SellerOrderFieldRefs
@@ -2733,6 +2959,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SellerOrderCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SellerOrderCountAggregateOutputType> | number
+        }
+      }
+    }
+    SellerSubscriptionHistory: {
+      payload: Prisma.$SellerSubscriptionHistoryPayload<ExtArgs>
+      fields: Prisma.SellerSubscriptionHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SellerSubscriptionHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SellerSubscriptionHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.SellerSubscriptionHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SellerSubscriptionHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.SellerSubscriptionHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.SellerSubscriptionHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.SellerSubscriptionHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SellerSubscriptionHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.SellerSubscriptionHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>
+        }
+        update: {
+          args: Prisma.SellerSubscriptionHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.SellerSubscriptionHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SellerSubscriptionHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SellerSubscriptionHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.SellerSubscriptionHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SellerSubscriptionHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.SellerSubscriptionHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSellerSubscriptionHistory>
+        }
+        groupBy: {
+          args: Prisma.SellerSubscriptionHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SellerSubscriptionHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SellerSubscriptionHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SellerSubscriptionHistoryCountAggregateOutputType> | number
         }
       }
     }
@@ -3643,6 +3943,18 @@ export const OrderItemScalarFieldEnum = {
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
+export const OrderStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  changedBy: 'changedBy',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderStatusHistoryScalarFieldEnum = (typeof OrderStatusHistoryScalarFieldEnum)[keyof typeof OrderStatusHistoryScalarFieldEnum]
+
+
 export const OrderScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -3680,6 +3992,17 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const PayoutStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  payoutId: 'payoutId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  createdAt: 'createdAt'
+} as const
+
+export type PayoutStatusHistoryScalarFieldEnum = (typeof PayoutStatusHistoryScalarFieldEnum)[keyof typeof PayoutStatusHistoryScalarFieldEnum]
 
 
 export const PayoutScalarFieldEnum = {
@@ -3792,6 +4115,17 @@ export const RiderScalarFieldEnum = {
 export type RiderScalarFieldEnum = (typeof RiderScalarFieldEnum)[keyof typeof RiderScalarFieldEnum]
 
 
+export const SellerOrderStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  sellerOrderId: 'sellerOrderId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  changedAt: 'changedAt'
+} as const
+
+export type SellerOrderStatusHistoryScalarFieldEnum = (typeof SellerOrderStatusHistoryScalarFieldEnum)[keyof typeof SellerOrderStatusHistoryScalarFieldEnum]
+
+
 export const SellerOrderScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
@@ -3801,6 +4135,19 @@ export const SellerOrderScalarFieldEnum = {
 } as const
 
 export type SellerOrderScalarFieldEnum = (typeof SellerOrderScalarFieldEnum)[keyof typeof SellerOrderScalarFieldEnum]
+
+
+export const SellerSubscriptionHistoryScalarFieldEnum = {
+  id: 'id',
+  sellerId: 'sellerId',
+  previousType: 'previousType',
+  newType: 'newType',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt'
+} as const
+
+export type SellerSubscriptionHistoryScalarFieldEnum = (typeof SellerSubscriptionHistoryScalarFieldEnum)[keyof typeof SellerSubscriptionHistoryScalarFieldEnum]
 
 
 export const SellerScalarFieldEnum = {
@@ -4367,8 +4714,10 @@ export type GlobalOmitConfig = {
   notification?: Prisma.NotificationOmit
   notificationPreference?: Prisma.NotificationPreferenceOmit
   orderItem?: Prisma.OrderItemOmit
+  orderStatusHistory?: Prisma.OrderStatusHistoryOmit
   order?: Prisma.OrderOmit
   payment?: Prisma.PaymentOmit
+  payoutStatusHistory?: Prisma.PayoutStatusHistoryOmit
   payout?: Prisma.PayoutOmit
   productVariant?: Prisma.ProductVariantOmit
   product?: Prisma.ProductOmit
@@ -4376,7 +4725,9 @@ export type GlobalOmitConfig = {
   reviewReply?: Prisma.ReviewReplyOmit
   review?: Prisma.ReviewOmit
   rider?: Prisma.RiderOmit
+  sellerOrderStatusHistory?: Prisma.SellerOrderStatusHistoryOmit
   sellerOrder?: Prisma.SellerOrderOmit
+  sellerSubscriptionHistory?: Prisma.SellerSubscriptionHistoryOmit
   seller?: Prisma.SellerOmit
   setting?: Prisma.SettingOmit
   supportTicket?: Prisma.SupportTicketOmit

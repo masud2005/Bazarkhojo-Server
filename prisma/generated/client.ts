@@ -143,6 +143,11 @@ export type NotificationPreference = Prisma.NotificationPreferenceModel
  */
 export type OrderItem = Prisma.OrderItemModel
 /**
+ * Model OrderStatusHistory
+ * 
+ */
+export type OrderStatusHistory = Prisma.OrderStatusHistoryModel
+/**
  * Model Order
  * 
  */
@@ -152,6 +157,11 @@ export type Order = Prisma.OrderModel
  * 
  */
 export type Payment = Prisma.PaymentModel
+/**
+ * Model PayoutStatusHistory
+ * 
+ */
+export type PayoutStatusHistory = Prisma.PayoutStatusHistoryModel
 /**
  * Model Payout
  * 
@@ -188,10 +198,20 @@ export type Review = Prisma.ReviewModel
  */
 export type Rider = Prisma.RiderModel
 /**
+ * Model SellerOrderStatusHistory
+ * 
+ */
+export type SellerOrderStatusHistory = Prisma.SellerOrderStatusHistoryModel
+/**
  * Model SellerOrder
  * 
  */
 export type SellerOrder = Prisma.SellerOrderModel
+/**
+ * Model SellerSubscriptionHistory
+ * 
+ */
+export type SellerSubscriptionHistory = Prisma.SellerSubscriptionHistoryModel
 /**
  * Model Seller
  * 

@@ -301,6 +301,7 @@ export type UserWhereInput = {
   blogs?: Prisma.BlogListRelationFilter
   flashSales?: Prisma.FlashSaleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  orderStatusChanges?: Prisma.OrderStatusHistoryListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -344,6 +345,7 @@ export type UserOrderByWithRelationInput = {
   blogs?: Prisma.BlogOrderByRelationAggregateInput
   flashSales?: Prisma.FlashSaleOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -390,6 +392,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   blogs?: Prisma.BlogListRelationFilter
   flashSales?: Prisma.FlashSaleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  orderStatusChanges?: Prisma.OrderStatusHistoryListRelationFilter
 }, "id" | "email" | "referralCode">
 
 export type UserOrderByWithAggregationInput = {
@@ -478,6 +481,7 @@ export type UserCreateInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -520,6 +524,7 @@ export type UserUncheckedCreateInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -562,6 +567,7 @@ export type UserUpdateInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -604,6 +610,7 @@ export type UserUncheckedUpdateInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -915,6 +922,20 @@ export type UserUpdateOneRequiredWithoutNotificationPrefNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationPrefInput, Prisma.UserUpdateWithoutNotificationPrefInput>, Prisma.UserUncheckedUpdateWithoutNotificationPrefInput>
 }
 
+export type UserCreateNestedOneWithoutOrderStatusChangesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrderStatusChangesInput, Prisma.UserUncheckedCreateWithoutOrderStatusChangesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrderStatusChangesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutOrderStatusChangesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrderStatusChangesInput, Prisma.UserUncheckedCreateWithoutOrderStatusChangesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrderStatusChangesInput
+  upsert?: Prisma.UserUpsertWithoutOrderStatusChangesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrderStatusChangesInput, Prisma.UserUpdateWithoutOrderStatusChangesInput>, Prisma.UserUncheckedUpdateWithoutOrderStatusChangesInput>
+}
+
 export type UserCreateNestedOneWithoutOrdersInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
@@ -1142,6 +1163,7 @@ export type UserCreateWithoutAddressesInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAddressesInput = {
@@ -1183,6 +1205,7 @@ export type UserUncheckedCreateWithoutAddressesInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAddressesInput = {
@@ -1240,6 +1263,7 @@ export type UserUpdateWithoutAddressesInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAddressesInput = {
@@ -1281,6 +1305,7 @@ export type UserUncheckedUpdateWithoutAddressesInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBlogsInput = {
@@ -1322,6 +1347,7 @@ export type UserCreateWithoutBlogsInput = {
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBlogsInput = {
@@ -1363,6 +1389,7 @@ export type UserUncheckedCreateWithoutBlogsInput = {
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBlogsInput = {
@@ -1420,6 +1447,7 @@ export type UserUpdateWithoutBlogsInput = {
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlogsInput = {
@@ -1461,6 +1489,7 @@ export type UserUncheckedUpdateWithoutBlogsInput = {
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCartInput = {
@@ -1502,6 +1531,7 @@ export type UserCreateWithoutCartInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCartInput = {
@@ -1543,6 +1573,7 @@ export type UserUncheckedCreateWithoutCartInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCartInput = {
@@ -1600,6 +1631,7 @@ export type UserUpdateWithoutCartInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCartInput = {
@@ -1641,6 +1673,7 @@ export type UserUncheckedUpdateWithoutCartInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutConversationsAsUser1Input = {
@@ -1682,6 +1715,7 @@ export type UserCreateWithoutConversationsAsUser1Input = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutConversationsAsUser1Input = {
@@ -1723,6 +1757,7 @@ export type UserUncheckedCreateWithoutConversationsAsUser1Input = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutConversationsAsUser1Input = {
@@ -1769,6 +1804,7 @@ export type UserCreateWithoutConversationsAsUser2Input = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutConversationsAsUser2Input = {
@@ -1810,6 +1846,7 @@ export type UserUncheckedCreateWithoutConversationsAsUser2Input = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutConversationsAsUser2Input = {
@@ -1867,6 +1904,7 @@ export type UserUpdateWithoutConversationsAsUser1Input = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConversationsAsUser1Input = {
@@ -1908,6 +1946,7 @@ export type UserUncheckedUpdateWithoutConversationsAsUser1Input = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutConversationsAsUser2Input = {
@@ -1960,6 +1999,7 @@ export type UserUpdateWithoutConversationsAsUser2Input = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConversationsAsUser2Input = {
@@ -2001,6 +2041,7 @@ export type UserUncheckedUpdateWithoutConversationsAsUser2Input = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMessagesInput = {
@@ -2042,6 +2083,7 @@ export type UserCreateWithoutMessagesInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMessagesInput = {
@@ -2083,6 +2125,7 @@ export type UserUncheckedCreateWithoutMessagesInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMessagesInput = {
@@ -2140,6 +2183,7 @@ export type UserUpdateWithoutMessagesInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -2181,6 +2225,7 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCouponUsagesInput = {
@@ -2222,6 +2267,7 @@ export type UserCreateWithoutCouponUsagesInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCouponUsagesInput = {
@@ -2263,6 +2309,7 @@ export type UserUncheckedCreateWithoutCouponUsagesInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCouponUsagesInput = {
@@ -2320,6 +2367,7 @@ export type UserUpdateWithoutCouponUsagesInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCouponUsagesInput = {
@@ -2361,6 +2409,7 @@ export type UserUncheckedUpdateWithoutCouponUsagesInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFlashSalesInput = {
@@ -2402,6 +2451,7 @@ export type UserCreateWithoutFlashSalesInput = {
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFlashSalesInput = {
@@ -2443,6 +2493,7 @@ export type UserUncheckedCreateWithoutFlashSalesInput = {
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFlashSalesInput = {
@@ -2500,6 +2551,7 @@ export type UserUpdateWithoutFlashSalesInput = {
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFlashSalesInput = {
@@ -2541,6 +2593,7 @@ export type UserUncheckedUpdateWithoutFlashSalesInput = {
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFollowsInput = {
@@ -2582,6 +2635,7 @@ export type UserCreateWithoutFollowsInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFollowsInput = {
@@ -2623,6 +2677,7 @@ export type UserUncheckedCreateWithoutFollowsInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFollowsInput = {
@@ -2680,6 +2735,7 @@ export type UserUpdateWithoutFollowsInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowsInput = {
@@ -2721,6 +2777,7 @@ export type UserUncheckedUpdateWithoutFollowsInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -2762,6 +2819,7 @@ export type UserCreateWithoutAuditLogsInput = {
   ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -2803,6 +2861,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2860,6 +2919,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2901,6 +2961,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2942,6 +3003,7 @@ export type UserCreateWithoutNotificationsInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2983,6 +3045,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -3040,6 +3103,7 @@ export type UserUpdateWithoutNotificationsInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -3081,6 +3145,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationPrefInput = {
@@ -3122,6 +3187,7 @@ export type UserCreateWithoutNotificationPrefInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationPrefInput = {
@@ -3163,6 +3229,7 @@ export type UserUncheckedCreateWithoutNotificationPrefInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationPrefInput = {
@@ -3220,6 +3287,7 @@ export type UserUpdateWithoutNotificationPrefInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationPrefInput = {
@@ -3256,6 +3324,191 @@ export type UserUncheckedUpdateWithoutNotificationPrefInput = {
   conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
+  ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
+  flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOrderStatusChangesInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phone?: string | null
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isVerified?: boolean
+  twoFactorEnabled?: boolean
+  twoFactorSecret?: string | null
+  lastLogin?: Date | string | null
+  referralCode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  referredByUser?: Prisma.UserCreateNestedOneWithoutReferredUsersInput
+  referredUsers?: Prisma.UserCreateNestedManyWithoutReferredByUserInput
+  seller?: Prisma.SellerCreateNestedOneWithoutUserInput
+  rider?: Prisma.RiderCreateNestedOneWithoutUserInput
+  wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutUserInput
+  follows?: Prisma.FollowCreateNestedManyWithoutUserInput
+  wishlists?: Prisma.WishlistCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartCreateNestedOneWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageCreateNestedManyWithoutUserInput
+  conversationsAsUser1?: Prisma.ConversationCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationPref?: Prisma.NotificationPreferenceCreateNestedOneWithoutUserInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutUserInput
+  ticketReplies?: Prisma.TicketReplyCreateNestedManyWithoutUserInput
+  blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
+  flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOrderStatusChangesInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phone?: string | null
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isVerified?: boolean
+  twoFactorEnabled?: boolean
+  twoFactorSecret?: string | null
+  lastLogin?: Date | string | null
+  referralCode?: string | null
+  referredBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  referredUsers?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByUserInput
+  seller?: Prisma.SellerUncheckedCreateNestedOneWithoutUserInput
+  rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
+  wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutUserInput
+  follows?: Prisma.FollowUncheckedCreateNestedManyWithoutUserInput
+  wishlists?: Prisma.WishlistUncheckedCreateNestedManyWithoutUserInput
+  cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  couponUsages?: Prisma.CouponUsageUncheckedCreateNestedManyWithoutUserInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser1Input
+  conversationsAsUser2?: Prisma.ConversationUncheckedCreateNestedManyWithoutUser2Input
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPref?: Prisma.NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutUserInput
+  ticketReplies?: Prisma.TicketReplyUncheckedCreateNestedManyWithoutUserInput
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
+  flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOrderStatusChangesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrderStatusChangesInput, Prisma.UserUncheckedCreateWithoutOrderStatusChangesInput>
+}
+
+export type UserUpsertWithoutOrderStatusChangesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOrderStatusChangesInput, Prisma.UserUncheckedUpdateWithoutOrderStatusChangesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrderStatusChangesInput, Prisma.UserUncheckedCreateWithoutOrderStatusChangesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOrderStatusChangesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOrderStatusChangesInput, Prisma.UserUncheckedUpdateWithoutOrderStatusChangesInput>
+}
+
+export type UserUpdateWithoutOrderStatusChangesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  referredByUser?: Prisma.UserUpdateOneWithoutReferredUsersNestedInput
+  referredUsers?: Prisma.UserUpdateManyWithoutReferredByUserNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutUserNestedInput
+  rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
+  wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutUserNestedInput
+  follows?: Prisma.FollowUpdateManyWithoutUserNestedInput
+  wishlists?: Prisma.WishlistUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUpdateOneWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUpdateManyWithoutUserNestedInput
+  conversationsAsUser1?: Prisma.ConversationUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationPref?: Prisma.NotificationPreferenceUpdateOneWithoutUserNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutUserNestedInput
+  ticketReplies?: Prisma.TicketReplyUpdateManyWithoutUserNestedInput
+  blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
+  flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOrderStatusChangesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastLogin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  referredUsers?: Prisma.UserUncheckedUpdateManyWithoutReferredByUserNestedInput
+  seller?: Prisma.SellerUncheckedUpdateOneWithoutUserNestedInput
+  rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
+  wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutUserNestedInput
+  follows?: Prisma.FollowUncheckedUpdateManyWithoutUserNestedInput
+  wishlists?: Prisma.WishlistUncheckedUpdateManyWithoutUserNestedInput
+  cart?: Prisma.CartUncheckedUpdateOneWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  couponUsages?: Prisma.CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  conversationsAsUser1?: Prisma.ConversationUncheckedUpdateManyWithoutUser1NestedInput
+  conversationsAsUser2?: Prisma.ConversationUncheckedUpdateManyWithoutUser2NestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPref?: Prisma.NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutUserNestedInput
   ticketReplies?: Prisma.TicketReplyUncheckedUpdateManyWithoutUserNestedInput
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
@@ -3302,6 +3555,7 @@ export type UserCreateWithoutOrdersInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -3343,6 +3597,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -3400,6 +3655,7 @@ export type UserUpdateWithoutOrdersInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -3441,6 +3697,7 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReturnsInput = {
@@ -3482,6 +3739,7 @@ export type UserCreateWithoutReturnsInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReturnsInput = {
@@ -3523,6 +3781,7 @@ export type UserUncheckedCreateWithoutReturnsInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReturnsInput = {
@@ -3580,6 +3839,7 @@ export type UserUpdateWithoutReturnsInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReturnsInput = {
@@ -3621,6 +3881,7 @@ export type UserUncheckedUpdateWithoutReturnsInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewsInput = {
@@ -3662,6 +3923,7 @@ export type UserCreateWithoutReviewsInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewsInput = {
@@ -3703,6 +3965,7 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewsInput = {
@@ -3760,6 +4023,7 @@ export type UserUpdateWithoutReviewsInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -3801,6 +4065,7 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRiderInput = {
@@ -3842,6 +4107,7 @@ export type UserCreateWithoutRiderInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRiderInput = {
@@ -3883,6 +4149,7 @@ export type UserUncheckedCreateWithoutRiderInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRiderInput = {
@@ -3940,6 +4207,7 @@ export type UserUpdateWithoutRiderInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRiderInput = {
@@ -3981,6 +4249,7 @@ export type UserUncheckedUpdateWithoutRiderInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSellerInput = {
@@ -4022,6 +4291,7 @@ export type UserCreateWithoutSellerInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSellerInput = {
@@ -4063,6 +4333,7 @@ export type UserUncheckedCreateWithoutSellerInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSellerInput = {
@@ -4120,6 +4391,7 @@ export type UserUpdateWithoutSellerInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSellerInput = {
@@ -4161,6 +4433,7 @@ export type UserUncheckedUpdateWithoutSellerInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSupportTicketsInput = {
@@ -4202,6 +4475,7 @@ export type UserCreateWithoutSupportTicketsInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSupportTicketsInput = {
@@ -4243,6 +4517,7 @@ export type UserUncheckedCreateWithoutSupportTicketsInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSupportTicketsInput = {
@@ -4300,6 +4575,7 @@ export type UserUpdateWithoutSupportTicketsInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSupportTicketsInput = {
@@ -4341,6 +4617,7 @@ export type UserUncheckedUpdateWithoutSupportTicketsInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTicketRepliesInput = {
@@ -4382,6 +4659,7 @@ export type UserCreateWithoutTicketRepliesInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTicketRepliesInput = {
@@ -4423,6 +4701,7 @@ export type UserUncheckedCreateWithoutTicketRepliesInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTicketRepliesInput = {
@@ -4480,6 +4759,7 @@ export type UserUpdateWithoutTicketRepliesInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketRepliesInput = {
@@ -4521,6 +4801,7 @@ export type UserUncheckedUpdateWithoutTicketRepliesInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReferredUsersInput = {
@@ -4562,6 +4843,7 @@ export type UserCreateWithoutReferredUsersInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReferredUsersInput = {
@@ -4603,6 +4885,7 @@ export type UserUncheckedCreateWithoutReferredUsersInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReferredUsersInput = {
@@ -4649,6 +4932,7 @@ export type UserCreateWithoutReferredByUserInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReferredByUserInput = {
@@ -4690,6 +4974,7 @@ export type UserUncheckedCreateWithoutReferredByUserInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReferredByUserInput = {
@@ -4752,6 +5037,7 @@ export type UserUpdateWithoutReferredUsersInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferredUsersInput = {
@@ -4793,6 +5079,7 @@ export type UserUncheckedUpdateWithoutReferredUsersInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutReferredByUserInput = {
@@ -4873,6 +5160,7 @@ export type UserCreateWithoutWalletInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWalletInput = {
@@ -4914,6 +5202,7 @@ export type UserUncheckedCreateWithoutWalletInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWalletInput = {
@@ -4971,6 +5260,7 @@ export type UserUpdateWithoutWalletInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWalletInput = {
@@ -5012,6 +5302,7 @@ export type UserUncheckedUpdateWithoutWalletInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWishlistsInput = {
@@ -5053,6 +5344,7 @@ export type UserCreateWithoutWishlistsInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWishlistsInput = {
@@ -5094,6 +5386,7 @@ export type UserUncheckedCreateWithoutWishlistsInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutAuthorInput
   flashSales?: Prisma.FlashSaleUncheckedCreateNestedManyWithoutCreatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWishlistsInput = {
@@ -5151,6 +5444,7 @@ export type UserUpdateWithoutWishlistsInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWishlistsInput = {
@@ -5192,6 +5486,7 @@ export type UserUncheckedUpdateWithoutWishlistsInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyReferredByUserInput = {
@@ -5252,6 +5547,7 @@ export type UserUpdateWithoutReferredByUserInput = {
   blogs?: Prisma.BlogUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferredByUserInput = {
@@ -5293,6 +5589,7 @@ export type UserUncheckedUpdateWithoutReferredByUserInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutAuthorNestedInput
   flashSales?: Prisma.FlashSaleUncheckedUpdateManyWithoutCreatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  orderStatusChanges?: Prisma.OrderStatusHistoryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutReferredByUserInput = {
@@ -5337,6 +5634,7 @@ export type UserCountOutputType = {
   blogs: number
   flashSales: number
   auditLogs: number
+  orderStatusChanges: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5357,6 +5655,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   blogs?: boolean | UserCountOutputTypeCountBlogsArgs
   flashSales?: boolean | UserCountOutputTypeCountFlashSalesArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  orderStatusChanges?: boolean | UserCountOutputTypeCountOrderStatusChangesArgs
 }
 
 /**
@@ -5488,6 +5787,13 @@ export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.AuditLogWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOrderStatusChangesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderStatusHistoryWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5530,6 +5836,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   blogs?: boolean | Prisma.User$blogsArgs<ExtArgs>
   flashSales?: boolean | Prisma.User$flashSalesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  orderStatusChanges?: boolean | Prisma.User$orderStatusChangesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5620,6 +5927,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   blogs?: boolean | Prisma.User$blogsArgs<ExtArgs>
   flashSales?: boolean | Prisma.User$flashSalesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  orderStatusChanges?: boolean | Prisma.User$orderStatusChangesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5655,6 +5963,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     blogs: Prisma.$BlogPayload<ExtArgs>[]
     flashSales: Prisma.$FlashSalePayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+    orderStatusChanges: Prisma.$OrderStatusHistoryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6091,6 +6400,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   blogs<T extends Prisma.User$blogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   flashSales<T extends Prisma.User$flashSalesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$flashSalesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FlashSalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orderStatusChanges<T extends Prisma.User$orderStatusChangesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$orderStatusChangesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7052,6 +7362,30 @@ export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * User.orderStatusChanges
+ */
+export type User$orderStatusChangesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrderStatusHistory
+   */
+  select?: Prisma.OrderStatusHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrderStatusHistory
+   */
+  omit?: Prisma.OrderStatusHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderStatusHistoryInclude<ExtArgs> | null
+  where?: Prisma.OrderStatusHistoryWhereInput
+  orderBy?: Prisma.OrderStatusHistoryOrderByWithRelationInput | Prisma.OrderStatusHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.OrderStatusHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderStatusHistoryScalarFieldEnum | Prisma.OrderStatusHistoryScalarFieldEnum[]
 }
 
 /**

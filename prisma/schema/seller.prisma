@@ -18,14 +18,15 @@ model Seller {
   updatedAt         DateTime         @updatedAt
   deletedAt         DateTime?
 
-  user          User          @relation(fields: [userId], references: [id], onDelete: Restrict)
-  products      Product[]
-  discounts     Discount[]
-  follows       Follow[]
-  payouts       Payout[]
-  coupons       Coupon[]
-  sellerOrders  SellerOrder[]
-  reviewReplies ReviewReply[]
+  user                User                        @relation(fields: [userId], references: [id], onDelete: Restrict)
+  products            Product[]
+  discounts           Discount[]
+  follows             Follow[]
+  payouts             Payout[]
+  coupons             Coupon[]
+  sellerOrders        SellerOrder[]
+  reviewReplies       ReviewReply[]
+  subscriptionHistory SellerSubscriptionHistory[]
 }
 
 enum SubscriptionType {
